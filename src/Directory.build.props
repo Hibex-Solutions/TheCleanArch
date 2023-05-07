@@ -1,5 +1,13 @@
 <Project>
   <PropertyGroup>
     <IsPackable>true</IsPackable>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <FileVersion>$(VersionPrefix).0</FileVersion>
+    <AssemblyVersion>$(VersionPrefix).0</AssemblyVersion>
+
+    <RepositoryUrl>https://github.com/e5r/clean-arch</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProject>https://github.com/e5r/clean-arch</PackageProject>
+    <PackageLicense>https://github.com/e5r/manifest/blob/master/license/APACHE-2.0.txt</PackageLicense>
   </PropertyGroup>  
 </Project>

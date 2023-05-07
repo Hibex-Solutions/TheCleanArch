@@ -13,22 +13,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: Setup dotNET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+    
     - name: Restore dependencies
       run: |
         dotnet restore ./src/CleanArch.Core/CleanArch.Core.csproj
         dotnet restore ./test/CleanArch.Core.Tests/CleanArch.Core.Tests.csproj
+    
     - name: Build
       run: |
         dotnet build ./src/CleanArch.Core/CleanArch.Core.csproj --configuration Release --no-restore
         dotnet build ./test/CleanArch.Core.Tests/CleanArch.Core.Tests.csproj --configuration Release --no-restore
+    
     - name: Test
       run: dotnet test ./test/CleanArch.Core.Tests/CleanArch.Core.Tests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+    
     - name: Copy Coverage To Predictable Location
       run: cp coverage/**/coverage.cobertura.xml coverage.cobertura.xml
+    
     - name: Code Coverage Summary Report
       uses: irongut/CodeCoverageSummary@v1.2.0
       with:
@@ -41,6 +47,7 @@ jobs:
         indicators: true
         output: both
         thresholds: '60 80'
+    
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
       if: github.event_name == 'pull_request'
