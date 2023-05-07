@@ -23,7 +23,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{025B35F2-4953-4AA3-9EF0-0AD35ACA1BD3}"
 	ProjectSection(SolutionItems) = preProject
 		test\Directory.build.props = test\Directory.build.props
-		test\Directory.Packages.props = test\Directory.Packages.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArch.Core", "src\CleanArch.Core\CleanArch.Core.csproj", "{FD1E023C-E250-4E48-99BA-6081D0018045}"
