@@ -22,7 +22,9 @@ namespace CleanArch.Core.Tests.Patterns.GuardClauses
         [Fact]
         public void NotNullArgument_AcceptNotNull()
         {
-            _ = Guard.NotNullArgument(new string("Initial value"), "value");
+            var value = Guard.NotNullArgument(new string("Initial value"), "value");
+
+            Assert.IsType<string>(value);
         }
 
         [Fact]

@@ -6,7 +6,7 @@
 # Notas para o desenvolvedor
 
 * [Usamos .NET 6][NET6-LINK]
-* [Usamos .NET SDK 6.0.403][NETSDK6-LINK]
+* [Usamos .NET SDK 6.0.408][NETSDK6-LINK]
 * [Usamos C# 10][CSHARP10-LINK]
 * [Usamos NuGet Central Package Management][NUGET-CPM-LINK]
 
