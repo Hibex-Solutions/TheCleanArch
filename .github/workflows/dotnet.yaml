@@ -22,23 +22,26 @@ jobs:
     - name: Restore dependencies
       run: |
         dotnet restore ./src/CleanArch.Core/CleanArch.Core.csproj
+        dotnet restore ./src/CleanArch.DomainDrivenDesign/CleanArch.DomainDrivenDesign.csproj
         dotnet restore ./test/CleanArch.Core.Tests/CleanArch.Core.Tests.csproj
+        dotnet restore ./test/CleanArch.DomainDrivenDesign.Tests/CleanArch.DomainDrivenDesign.Tests.csproj
     
     - name: Build
       run: |
         dotnet build ./src/CleanArch.Core/CleanArch.Core.csproj --configuration Release --no-restore
+        dotnet build ./src/CleanArch.DomainDrivenDesign/CleanArch.DomainDrivenDesign.csproj --configuration Release --no-restore
         dotnet build ./test/CleanArch.Core.Tests/CleanArch.Core.Tests.csproj --configuration Release --no-restore
+        dotnet build ./test/CleanArch.DomainDrivenDesign.Tests/CleanArch.DomainDrivenDesign.Tests.csproj --configuration Release --no-restore
     
     - name: Test
-      run: dotnet test ./test/CleanArch.Core.Tests/CleanArch.Core.Tests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
-    
-    - name: Copy Coverage To Predictable Location
-      run: cp coverage/**/coverage.cobertura.xml coverage.cobertura.xml
+      run: |
+        dotnet test ./test/CleanArch.Core.Tests/CleanArch.Core.Tests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+        dotnet test ./test/CleanArch.DomainDrivenDesign.Tests/CleanArch.DomainDrivenDesign.Tests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
     
     - name: Code Coverage Summary Report
       uses: irongut/CodeCoverageSummary@v1.2.0
       with:
-        filename: coverage.cobertura.xml
+        filename: coverage/**/coverage.cobertura.xml
         badge: true
         fail_below_min: true
         format: markdown
