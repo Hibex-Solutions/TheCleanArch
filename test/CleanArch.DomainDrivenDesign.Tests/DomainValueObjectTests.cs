@@ -33,6 +33,15 @@ public class DomainValueObjectTests
         Assert.NotEqual(value2.GetHashCode(), value3.GetHashCode());
     }
 
+    [Fact]
+    public void DomainValueObject_IsNotCompatibleWithOtherTypes()
+    {
+        var value1 = new MyDomainValueObject(1, "One");
+        var value2 = new Object();
+
+        Assert.False(value1.Equals(value2));
+    }
+
     #region Stubs
     private class MyDomainValueObject : DomainValueObject
     {
