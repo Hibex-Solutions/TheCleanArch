@@ -18,7 +18,10 @@ public class DomainValueObjectTests
         Assert.NotEqual(value1, value3);
         Assert.NotEqual(value2, value3);
 
+        Assert.True(value1 == value2);
         Assert.True(value1.Equals(value2));
+
+        Assert.True(value1 != value3);
         Assert.False(value1.Equals(value3));
     }
 
@@ -53,6 +56,14 @@ public class DomainValueObjectTests
 
         public int IntegerValue { get; private set; }
         public string StringValue { get; private set; }
+
+        public static bool operator ==(MyDomainValueObject one, MyDomainValueObject two) => EqualOperator(one, two);
+
+        public static bool operator !=(MyDomainValueObject one, MyDomainValueObject two) => NotEqualOperator(one, two);
+
+        public override bool Equals(object obj) => base.Equals(obj);
+
+        public override int GetHashCode() => base.GetHashCode();
 
         /// <summary>
         /// Obtém uma lista de componentes para comparação de igualdade
