@@ -27,6 +27,13 @@ public abstract class DomainEvent
         CreatedAt = createdAt;
     }
 
+    /// <summary>
+    /// Identificador do evento
+    /// </summary>
     public Guid Id { get; private set; }
+
+    /// <summary>
+    /// Momento que o evento foi criado
+    /// </summary>
     public DateTimeOffset CreatedAt { get; private set; }
 }
