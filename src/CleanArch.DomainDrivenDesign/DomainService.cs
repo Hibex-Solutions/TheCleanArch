@@ -5,14 +5,13 @@
 namespace CleanArch.DomainDrivenDesign;
 
 /// <summary>
-/// Um agregado de entidades relacionadas e dependentes
+/// Um serviço de domínio
 /// </summary>
-public abstract class DomainAggregate<TRootEntity>
-    where TRootEntity : IDomainAggregateRoot
+public abstract class DomainService
 {
     private readonly List<DomainEvent> _emittedDomainEvents;
 
-    public DomainAggregate()
+    public DomainService()
     {
         _emittedDomainEvents = new List<DomainEvent>();
     }
@@ -24,9 +23,4 @@ public abstract class DomainAggregate<TRootEntity>
     {
         get => _emittedDomainEvents.AsReadOnly();
     }
-
-    /// <summary>
-    /// Entidade raiz
-    /// </summary>
-    public IDomainEntity RootEntity { get; private set; }
 }
