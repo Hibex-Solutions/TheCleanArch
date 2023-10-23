@@ -14,12 +14,22 @@ public abstract class DomainValueObject
     /// </sumary>
     protected abstract IEnumerable<object> GetEqualityComponents();
 
+    /// <summary>
+    /// Utilitário para sobrecarga do operador de igualdade "==" nas classes herdeiras
+    /// </summary>
+    /// <returns></returns>
     protected static bool EqualOperator(DomainValueObject left, DomainValueObject right)
     {
         return !(left is null ^ right is null)
             && (ReferenceEquals(left, right) || left.Equals(right));
     }
 
+    /// <summary>
+    /// Utilitário para sobrecarga do operador de não igualdade "!=" nas classes herdeiras
+    /// </summary>
+    /// <param name="left"></param>
+    /// <param name="right"></param>
+    /// <returns></returns>
     protected static bool NotEqualOperator(DomainValueObject left, DomainValueObject right)
     {
         return !EqualOperator(left, right);
