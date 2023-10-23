@@ -12,7 +12,7 @@ namespace CleanArch.DomainDrivenDesign;
 /// <para>A entidade de domínio em si é definida por sua própria implementação
 /// concreta, que tem suas características e regras próprias.</para>
 /// </remarks>
-public class DomainEntity<TId>
+public abstract class DomainEntity<TId> : IDomainEntity
 {
     /// <summary>
     /// Identificador da entidade
