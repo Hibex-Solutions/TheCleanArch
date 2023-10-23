@@ -11,7 +11,7 @@ namespace CleanArch.Core.Tests.Patterns.GuardClauses;
 [Trait("target", nameof(Guard))]
 public class GuardTests
 {
-    [Fact]
+    [Fact(DisplayName = "NotNullArgument() reject null values")]
     public void NotNullArgument_RejectNull()
     {
         var exception = Assert.Throws<ArgumentNullException>(
@@ -20,7 +20,7 @@ public class GuardTests
         Assert.Equal("value", exception.ParamName);
     }
 
-    [Fact]
+    [Fact(DisplayName = "NotNullArgument() accept not null values")]
     public void NotNullArgument_AcceptNotNull()
     {
         var value = Guard.NotNullArgument(new string("Initial value"), "value");
@@ -28,7 +28,7 @@ public class GuardTests
         Assert.IsType<string>(value);
     }
 
-    [Fact]
+    [Fact(DisplayName = "NotNullArgument() returns same value")]
     public void NotNullArgument_ReturnsSameValue()
     {
         var value1 = Guard.NotNullArgument(new string("Initial value"), "value");
@@ -39,7 +39,7 @@ public class GuardTests
         Assert.Equal(value2.GetHashCode(), value2Copy.GetHashCode());
     }
 
-    [Fact]
+    [Fact(DisplayName = "NotEmptyArgument() reject null value")]
     public void NotEmptyArgument_RejectNull()
     {
         var exception = Assert.Throws<ArgumentNullException>(
@@ -48,7 +48,7 @@ public class GuardTests
         Assert.Equal("value", exception.ParamName);
     }
 
-    [Fact]
+    [Fact(DisplayName = "NotEmptyArgument() reject empty value collection")]
     public void NotEmptyArgument_RejectEmptyCollection()
     {
         var exception1 = Assert.Throws<ArgumentOutOfRangeException>(
@@ -69,7 +69,7 @@ public class GuardTests
         Assert.Equal("value4", exception4.ParamName);
     }
 
-    [Fact]
+    [Fact(DisplayName = "NotEmptyArgument() returns same value")]
     public void NotEmptyArgument_ReturnsSameValue()
     {
         var value1 = Guard.NotEmptyArgument(new string("Initial value"), "value");

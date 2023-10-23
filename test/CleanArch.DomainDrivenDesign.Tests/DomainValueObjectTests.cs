@@ -7,7 +7,7 @@ namespace CleanArch.DomainDrivenDesign.Tests;
 [Trait("target", nameof(DomainValueObject))]
 public class DomainValueObjectTests
 {
-    [Fact]
+    [Fact(DisplayName = "DomainValueObject are comparable")]
     public void DomainValueObject_AreComparable()
     {
         var value1 = new MyDomainValueObject(1, "One");
@@ -25,7 +25,7 @@ public class DomainValueObjectTests
         Assert.False(value1.Equals(value3));
     }
 
-    [Fact]
+    [Fact(DisplayName = "HashCode are comparable")]
     public void DomainValueObjectHashCode_AreComparable()
     {
         var value1 = new MyDomainValueObject(2, "Two");
@@ -36,7 +36,7 @@ public class DomainValueObjectTests
         Assert.NotEqual(value2.GetHashCode(), value3.GetHashCode());
     }
 
-    [Fact]
+    [Fact(DisplayName = "Iis not compatible with other types")]
     public void DomainValueObject_IsNotCompatibleWithOtherTypes()
     {
         var value1 = new MyDomainValueObject(1, "One");
