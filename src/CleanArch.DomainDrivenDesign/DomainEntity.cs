@@ -7,6 +7,15 @@ namespace CleanArch.DomainDrivenDesign;
 /// <summary>
 /// Uma entidade de domínio
 /// </summary>
-public class DomainEntity
+/// <remarks>
+/// <para>Uma entidade de domínio sempre tem um identificador único.</para>
+/// <para>A entidade de domínio em si é definida por sua própria implementação
+/// concreta, que tem suas características e regras próprias.</para>
+/// </remarks>
+public class DomainEntity<TId>
 {
+    /// <summary>
+    /// Identificador da entidade
+    /// </summary>
+    public TId Id { get; protected set; }
 }
