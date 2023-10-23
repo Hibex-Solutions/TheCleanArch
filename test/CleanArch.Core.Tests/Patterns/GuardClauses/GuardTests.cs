@@ -8,6 +8,7 @@ using CleanArch.Core.Patterns.GuardClauses;
 
 namespace CleanArch.Core.Tests.Patterns.GuardClauses;
 
+[Trait("target", nameof(Guard))]
 public class GuardTests
 {
     [Fact]
