@@ -7,20 +7,28 @@ namespace CleanArch.DomainDrivenDesign;
 /// <summary>
 /// Um serviço de domínio
 /// </summary>
-public abstract class DomainService
+public abstract class DomainService : EventEmittingObject
 {
-    private readonly List<DomainEvent> _emittedDomainEvents;
-
-    public DomainService()
+    /// <summary>
+    /// Eventos de domínio emitidos em uma operação de serviço
+    /// </summary>
+    /// <remarks>Nunca é um valor nulo</remarks>
+    public new IReadOnlyCollection<DomainEvent> EmittedDomainEvents
     {
-        _emittedDomainEvents = new List<DomainEvent>();
+        get => GetEmittedDomainEventsList().AsReadOnly();
     }
 
     /// <summary>
-    /// Eventos de domínio emitidos em uma operação
+    /// Adiciona um evento a lista de eventos emitidos pelo serviço
     /// </summary>
-    public IReadOnlyCollection<DomainEvent> EmittedDomainEvents
-    {
-        get => _emittedDomainEvents.AsReadOnly();
-    }
+    /// <param name="domainEvent">Instância de evento a adicionar</param>
+    /// <exception cref="ArgumentException">Quando <paramref name="domainEvent"/> é nulo</exception>
+    protected new void AddDomainEvent(DomainEvent domainEvent) => base.AddDomainEvent(domainEvent);
+
+    /// <summary>
+    /// Remove um evento da lista de eventos emitidos pelo serviço
+    /// </summary>
+    /// <param name="domainEvent">Instância de evento a remover</param>
+    /// <exception cref="ArgumentException">Quando <paramref name="domainEvent"/> é nulo</exception>
+    protected new void RemoveDomainEvent(DomainEvent domainEvent) => base.RemoveDomainEvent(domainEvent);
 }

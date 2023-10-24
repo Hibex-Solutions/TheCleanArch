@@ -7,26 +7,34 @@ namespace CleanArch.DomainDrivenDesign;
 /// <summary>
 /// Um agregado de entidades relacionadas e dependentes
 /// </summary>
-public abstract class DomainAggregate<TRootEntity>
+public abstract class DomainAggregate<TRootEntity> : EventEmittingObject
     where TRootEntity : IDomainAggregateRoot
 {
-    private readonly List<DomainEvent> _emittedDomainEvents;
-
-    public DomainAggregate()
-    {
-        _emittedDomainEvents = new List<DomainEvent>();
-    }
-
-    /// <summary>
-    /// Eventos de domínio emitidos em uma operação
-    /// </summary>
-    public IReadOnlyCollection<DomainEvent> EmittedDomainEvents
-    {
-        get => _emittedDomainEvents.AsReadOnly();
-    }
-
     /// <summary>
     /// Entidade raiz
     /// </summary>
     public IDomainEntity RootEntity { get; private set; }
+
+    /// <summary>
+    /// Eventos de domínio emitidos em uma operação de agregado
+    /// </summary>
+    /// <remarks>Nunca é um valor nulo</remarks>
+    public new IReadOnlyCollection<DomainEvent> EmittedDomainEvents
+    {
+        get => GetEmittedDomainEventsList().AsReadOnly();
+    }
+
+    /// <summary>
+    /// Adiciona um evento a lista de eventos emitidos pelo agregado
+    /// </summary>
+    /// <param name="domainEvent">Instância de evento a adicionar</param>
+    /// <exception cref="ArgumentException">Quando <paramref name="domainEvent"/> é nulo</exception>
+    protected new void AddDomainEvent(DomainEvent domainEvent) => base.AddDomainEvent(domainEvent);
+
+    /// <summary>
+    /// Remove um evento da lista de eventos emitidos pelo agregado
+    /// </summary>
+    /// <param name="domainEvent">Instância de evento a remover</param>
+    /// <exception cref="ArgumentException">Quando <paramref name="domainEvent"/> é nulo</exception>
+    protected new void RemoveDomainEvent(DomainEvent domainEvent) => base.RemoveDomainEvent(domainEvent);
 }
