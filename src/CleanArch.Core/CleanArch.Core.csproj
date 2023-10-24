@@ -2,6 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
+        <PackageId>CleanArch.Core</PackageId>
+        <Description>Utilitários base CleanArch - Para uma arquitetura limpa</Description>
     </PropertyGroup>
 
 </Project>
