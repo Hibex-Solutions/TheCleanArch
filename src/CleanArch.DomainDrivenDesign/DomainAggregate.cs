@@ -8,7 +8,7 @@ namespace CleanArch.DomainDrivenDesign;
 /// Um agregado de entidades relacionadas e dependentes
 /// </summary>
 public abstract class DomainAggregate<TRootEntity> : EventEmittingObject
-    where TRootEntity : IDomainAggregateRoot
+    where TRootEntity : IDomainRootEntity
 {
     /// <summary>
     /// Entidade raiz

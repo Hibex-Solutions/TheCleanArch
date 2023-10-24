@@ -33,7 +33,7 @@ public class DomainAggregateTests
         }
     }
 
-    public class MyRootEntity : DomainEntity<int>, IDomainAggregateRoot { }
+    public class MyRootEntity : DomainEntity<int>, IDomainRootEntity { }
 
     public class MyDomainEvent : DomainEvent
     {

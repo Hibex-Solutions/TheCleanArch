@@ -5,6 +5,6 @@
 namespace CleanArch.DomainDrivenDesign;
 
 /// <summary>
-/// Uma raiz de agregado
+/// Uma entidade raiz
 /// </summary>
-public interface IDomainAggregateRoot : IDomainEntity { }
+public interface IDomainRootEntity : IDomainEntity { }
