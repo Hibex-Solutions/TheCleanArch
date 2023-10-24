@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <PackageId>CleanArch.DomainDrivenDesign</PackageId>
+        <Description>Utilitários DDD CleanArch - Para uma arquitetura limpa baseada em Domain Driven Design</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\CleanArch.Core\CleanArch.Core.csproj" />
+    </ItemGroup>
+
+</Project>
