@@ -16,4 +16,4 @@ jobs:
     - name: .NET Push
       run: dotnet nuget push ./artifacts/CleanArch.*.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_TOKEN}
       env:
-        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+        NUGET_TOKEN: ${{ secrets.NUGET_CLEANARCH_TOKEN }}
