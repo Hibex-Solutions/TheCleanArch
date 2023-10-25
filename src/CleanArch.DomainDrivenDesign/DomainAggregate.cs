@@ -13,7 +13,7 @@ public abstract class DomainAggregate<TRootEntity> : EventEmittingObject
     /// <summary>
     /// Entidade raiz
     /// </summary>
-    public IDomainEntity RootEntity { get; protected set; }
+    public TRootEntity RootEntity { get; protected set; }
 
     /// <summary>
     /// Eventos de domínio emitidos em uma operação de agregado
