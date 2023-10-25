@@ -1,3 +1,5 @@
+name: Release candidate packages
+
 on:
   push:
     tags:

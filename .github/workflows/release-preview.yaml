@@ -1,3 +1,5 @@
+name: Release preview packages
+
 on:
   push:
     tags:
