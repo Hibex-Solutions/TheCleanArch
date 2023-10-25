@@ -7,5 +7,4 @@ namespace CleanArch.DomainDrivenDesign;
 /// <summary>
 /// Um repositório de domínio
 /// </summary>
-public interface IDomainRepository<T> where T : IDomainRootEntity
-{ }
+public interface IDomainRepository { }
