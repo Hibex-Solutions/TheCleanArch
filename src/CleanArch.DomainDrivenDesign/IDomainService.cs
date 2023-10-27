@@ -5,6 +5,6 @@
 namespace CleanArch.DomainDrivenDesign;
 
 /// <summary>
-/// Uma entidade raiz
+/// Um serviço de domínio
 /// </summary>
-public interface IDomainRootEntity : IDomainEntity { }
+public interface IDomainService { }

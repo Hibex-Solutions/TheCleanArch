@@ -8,8 +8,8 @@ namespace CleanArch.DomainDrivenDesign;
 /// Um repositório de domínio para agregado
 /// </summary>
 /// <typeparam name="TAggregate">Tipo do agregado</typeparam>
-/// <typeparam name="TRootEntity">Tipo da entidade raiz</typeparam>
-public interface IDomainRepository<TAggregate, TRootEntity> : IDomainRepository
-    where TAggregate : DomainAggregate<TRootEntity>
-    where TRootEntity : IDomainRootEntity
+/// <typeparam name="TEntity">Tipo da entidade raiz</typeparam>
+public interface IDomainRepository<TAggregate, TEntity> : IDomainRepository
+    where TAggregate : DomainAggregate<TEntity>
+    where TEntity : IDomainEntity
 { }

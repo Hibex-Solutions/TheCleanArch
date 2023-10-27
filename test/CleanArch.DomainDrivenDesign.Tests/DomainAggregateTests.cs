@@ -2,6 +2,8 @@
 // This file is a part of E5R CleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
+using System.Collections.ObjectModel;
+
 namespace CleanArch.DomainDrivenDesign.Tests;
 
 [Trait("target", "DomainAggregate")]
@@ -11,29 +13,60 @@ public class DomainAggregateTests
     public void DomainAggregate_MustEmitEvents()
     {
         var domainAggregate = new MyDomainAggregateWithThreeEvents();
+        var firstEvents = domainAggregate.GetDomainEvents();
+
+        domainAggregate.EmitOtherEvent();
+
+        var lastEvents = domainAggregate.GetDomainEvents();
 
         Assert.NotNull(domainAggregate);
         Assert.IsAssignableFrom<DomainAggregate<MyRootEntity>>(domainAggregate);
-        Assert.NotNull(domainAggregate.EmittedDomainEvents);
-        Assert.Equal(3, domainAggregate.EmittedDomainEvents.Count);
+        Assert.NotNull(domainAggregate.RootEntity);
+        Assert.Equal(2, firstEvents.Count);
+        Assert.Equal(3, lastEvents.Count);
     }
 
     #region Stubs
     public class MyDomainAggregateWithThreeEvents : DomainAggregate<MyRootEntity>
     {
+        private readonly List<MyOtherEntity> _others = new();
+
         public MyDomainAggregateWithThreeEvents()
         {
-            var event1 = new MyDomainEvent(new DateTimeOffset(DateTime.Now));
-            var event2 = new MyDomainEvent(new DateTimeOffset(DateTime.Now));
-            var event3 = new MyDomainEvent(new DateTimeOffset(DateTime.Now));
+            RootEntity = new MyRootEntity();
+            _others.Add(new MyOtherEntity());
+        }
 
-            AddDomainEvent(event1);
-            AddDomainEvent(event2);
-            AddDomainEvent(event3);
+        public void EmitOtherEvent() => _others?.FirstOrDefault()?.Method();
+
+        public ReadOnlyCollection<DomainEvent> GetDomainEvents()
+        {
+            var allEvents = new List<DomainEvent>();
+
+            allEvents.AddRange(RootEntity.ExportedDomainEvents);
+
+            _others.ForEach(o => allEvents.AddRange(o.ExportedDomainEvents));
+
+            return allEvents.AsReadOnly();
         }
     }
 
-    public class MyRootEntity : DomainEntity<int>, IDomainRootEntity { }
+    public class MyRootEntity : DomainEntity<int>
+    {
+        public MyRootEntity()
+        {
+            DomainEvents.Add(new MyDomainEvent(DateTimeOffset.UtcNow));
+            DomainEvents.Add(new MyDomainEvent(DateTimeOffset.UtcNow));
+        }
+    }
+
+    public class MyOtherEntity : DomainEntity<int>
+    {
+        public void Method()
+        {
+            DomainEvents.Add(new MyDomainEvent(DateTimeOffset.UtcNow));
+        }
+    }
 
     public class MyDomainEvent : DomainEvent
     {

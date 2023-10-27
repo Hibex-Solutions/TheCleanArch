@@ -7,7 +7,7 @@ namespace CleanArch.DomainDrivenDesign;
 /// <summary>
 /// Um repositório de domínio para entidade raiz
 /// </summary>
-/// <typeparam name="TRootEntity">Tipo da entidade raiz</typeparam>
-public interface IDomainRepository<TRootEntity> : IDomainRepository
-    where TRootEntity : IDomainRootEntity
+/// <typeparam name="TEntity">Tipo da entidade raiz</typeparam>
+public interface IDomainRepository<TEntity> : IDomainRepository
+    where TEntity : IDomainEntity
 { }
