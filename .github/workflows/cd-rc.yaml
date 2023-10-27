@@ -1,9 +1,9 @@
-name: Release preview packages
+name: CD-RC
 
 on:
   push:
     tags:
-    - "v[0-9]+.[0-9]+.[0-9]+-preview[0-9][0-9][0-9]"
+    - "v[0-9]+.[0-9]+.[0-9]+-rc[0-9][0-9][0-9]"
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -16,6 +16,6 @@ jobs:
     - name: .NET Pack
       run: dotnet pack --configuration Release /p:Version=${VERSION} --output ./artifacts
     - name: .NET Push
-      run: dotnet nuget push ./artifacts/CleanArch.*.${VERSION}.nupkg --source https://nuget.pkg.github.com/e5r/index.json --api-key ${GITHUB_TOKEN}
+      run: dotnet nuget push ./artifacts/CleanArch.*.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_TOKEN}
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NUGET_TOKEN: ${{ secrets.NUGET_CLEANARCH_TOKEN }}
