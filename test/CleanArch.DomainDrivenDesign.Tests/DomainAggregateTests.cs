@@ -2,7 +2,13 @@
 // This file is a part of E5R CleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
+// Copyright (c) E5R Development Team. All rights reserved.
+// This file is a part of E5R CleanArch.
+// Licensed under the Apache version 2.0: LICENSE file.
+
 using System.Collections.ObjectModel;
+
+using CleanArch.Core;
 
 namespace CleanArch.DomainDrivenDesign.Tests;
 
@@ -35,6 +41,11 @@ public class DomainAggregateTests
         {
             RootEntity = new MyRootEntity();
             _others.Add(new MyOtherEntity());
+        }
+
+        public override Task<IReadOnlyCollection<IHandleableCustomEvent>> CollectEmittedCustomEvents()
+        {
+            throw new NotImplementedException();
         }
 
         public void EmitOtherEvent() => _others?.FirstOrDefault()?.Method();
