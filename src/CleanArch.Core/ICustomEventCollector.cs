@@ -3,7 +3,6 @@
 // Licensed under the Apache version 2.0: LICENSE file.
 
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CleanArch.Core;
 
@@ -17,8 +16,8 @@ namespace CleanArch.Core;
 public interface ICustomEventCollector
 {
     /// <summary>
-    /// Coleta uma lista de eventos personalizados emitidos
+    /// Coleta uma lista assíncrona de eventos personalizados emitidos
     /// </summary>
-    /// <returns>Uma lista de eventos customizáveis</returns>
-    Task<IReadOnlyCollection<IHandleableCustomEvent>> CollectEmittedCustomEvents();
+    /// <returns>Uma lista assíncrona de eventos customizáveis</returns>
+    IAsyncEnumerable<IHandleableCustomEvent> CollectEmittedCustomEvents();
 }
