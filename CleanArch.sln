@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArch.DomainDrivenDesig
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArch.DomainDrivenDesign.Tests", "test\CleanArch.DomainDrivenDesign.Tests\CleanArch.DomainDrivenDesign.Tests.csproj", "{18260AF6-5952-471C-8789-1CB418EAA7D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArch.Extensions.DependencyInjection", "src\CleanArch.Extensions.DependencyInjection\CleanArch.Extensions.DependencyInjection.csproj", "{41866467-1434-44BE-A22B-4C3A24791914}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{18260AF6-5952-471C-8789-1CB418EAA7D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18260AF6-5952-471C-8789-1CB418EAA7D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18260AF6-5952-471C-8789-1CB418EAA7D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41866467-1434-44BE-A22B-4C3A24791914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41866467-1434-44BE-A22B-4C3A24791914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41866467-1434-44BE-A22B-4C3A24791914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41866467-1434-44BE-A22B-4C3A24791914}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{0B2E2A2F-42FB-4581-B8C5-6A93DAA295BE} = {AFB45AC0-BC28-43A3-955C-26B2171CB6A3}
 		{CC1A6F07-76B0-47FF-A975-460E7C7F1456} = {47752E97-C7F1-406A-B2C8-ECA8BF970A9F}
 		{18260AF6-5952-471C-8789-1CB418EAA7D2} = {025B35F2-4953-4AA3-9EF0-0AD35ACA1BD3}
+		{41866467-1434-44BE-A22B-4C3A24791914} = {47752E97-C7F1-406A-B2C8-ECA8BF970A9F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88A765C3-6691-4B87-8B71-247EFEE0B4B3}
