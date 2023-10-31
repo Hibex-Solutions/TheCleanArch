@@ -15,7 +15,7 @@ namespace CleanArch.DomainDrivenDesign;
 /// <para>A definição do evento de domínio em si é dada pelo próprio tipo que
 /// o</para>
 /// </remarks>
-public class DomainEvent : IHandleableCustomEvent
+public class DomainEvent : IEvent
 {
     public DomainEvent(DateTimeOffset createdAt)
     {

@@ -2,9 +2,15 @@
 // This file is a part of E5R CleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
+using System.Threading.Tasks;
+
 namespace CleanArch.Core;
 
 /// <summary>
-/// Um evento personalizado manipulável por um <see cref="CustomEventHandler{TEvent}"/>
+/// Um manipulador de comando <see cref="TCommand"/>
 /// </summary>
-public interface IHandleableCustomEvent { }
+public interface ICommandHandler<TCommand>
+    where TCommand : ICommand
+{
+    Task HandleAsync(TCommand command);
+}

@@ -43,7 +43,7 @@ public class DomainAggregateTests
             _others.Add(new MyOtherEntity());
         }
 
-        public override IAsyncEnumerable<IHandleableCustomEvent> CollectEmittedCustomEvents()
+        public override IAsyncEnumerable<DomainEvent> GetAllExportedDomainEvents()
         {
             throw new NotImplementedException();
         }

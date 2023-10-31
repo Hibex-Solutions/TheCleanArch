@@ -2,16 +2,12 @@
 // This file is a part of E5R CleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
-using System.Threading.Tasks;
-
-using CleanArch.Core;
-
 namespace CleanArch.DomainDrivenDesign;
 
 /// <summary>
 /// Um agregado de entidades relacionadas e dependentes
 /// </summary>
-public abstract class DomainAggregate<TRootEntity> : ICustomEventCollector
+public abstract class DomainAggregate<TRootEntity>
     where TRootEntity : IDomainEntity
 {
     /// <summary>
@@ -20,8 +16,9 @@ public abstract class DomainAggregate<TRootEntity> : ICustomEventCollector
     public TRootEntity RootEntity { get; protected set; }
 
     /// <summary>
-    /// Coleta uma lista assíncrona de eventos personalizados emitidos
+    /// Obtém todos os eventos de domínio exportados pelas entidades envolvidas
+    /// no agregado
     /// </summary>
-    /// <returns>Uma lista assíncrona de eventos customizáveis</returns>
-    public abstract IAsyncEnumerable<IHandleableCustomEvent> CollectEmittedCustomEvents();
+    /// <returns>Uma lista assíncrona de eventos de domínio</returns>
+    public abstract IAsyncEnumerable<DomainEvent> GetAllExportedDomainEvents();
 }
