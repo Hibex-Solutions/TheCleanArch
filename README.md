@@ -10,12 +10,7 @@
 * [Usamos C# 10][CSHARP10-LINK]
 
 ## TODO
-- [ ] Criar descritor de camadas (Layers)
-      - Deve ter anotações para objetos de camada e assembly de camadas
 - [ ] Criar identificadores para AppService e AppUseCase
-      - Ambos devem ser anotados com a camada de aplicação/usecase
-      - Anotar os componentes da camada de Domain Driven Design com
-        o tipo adequado
 - [ ] AppService e AppUseCase devem ter um método que permita executar
       manipuladores de eventos para uma lista de eventos e retornar um
       resumo.
