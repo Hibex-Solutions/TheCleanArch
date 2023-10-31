@@ -2,8 +2,6 @@
 // This file is a part of E5R CleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
-using CleanArch.Core;
-
 namespace CleanArch.DomainDrivenDesign;
 
 /// <summary>
@@ -15,7 +13,7 @@ namespace CleanArch.DomainDrivenDesign;
 /// <para>A definição do evento de domínio em si é dada pelo próprio tipo que
 /// o</para>
 /// </remarks>
-public class DomainEvent : IEvent
+public class DomainEvent
 {
     public DomainEvent(DateTimeOffset createdAt)
     {
