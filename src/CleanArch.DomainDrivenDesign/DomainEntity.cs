@@ -29,12 +29,12 @@ public abstract class DomainEntity<TId> : IDomainEntity
     public TId Id { get; protected set; }
 
     /// <summary>
-    /// Eventos de domínio exportados pela entidade
+    /// Obtem eventos de domínio exportados pela entidade
     /// </summary>
     /// <remarks>Nunca é um valor nulo</remarks>
-    public IReadOnlyCollection<DomainEvent> ExportedDomainEvents
+    public IReadOnlyCollection<DomainEvent> GetExportedDomainEvents()
     {
-        get => (_domainEvents ??= new List<DomainEvent>()).AsReadOnly();
+        return (_domainEvents ??= new List<DomainEvent>()).AsReadOnly();
     }
 
     /// <summary>

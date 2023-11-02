@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <PackageId>CleanArch.DomainDrivenDesign</PackageId>
-        <Description>Utilitários DDD CleanArch - Para uma arquitetura limpa baseada em Domain Driven Design</Description>
+        <Description>Utilitários para trabalhar com Domain Driven Design e CleanArch</Description>
     </PropertyGroup>
 
     <ItemGroup>

@@ -54,9 +54,9 @@ public class DomainAggregateTests
         {
             var allEvents = new List<DomainEvent>();
 
-            allEvents.AddRange(RootEntity.ExportedDomainEvents);
+            allEvents.AddRange(RootEntity.GetExportedDomainEvents());
 
-            _others.ForEach(o => allEvents.AddRange(o.ExportedDomainEvents));
+            _others.ForEach(o => allEvents.AddRange(o.GetExportedDomainEvents()));
 
             return allEvents.AsReadOnly();
         }
