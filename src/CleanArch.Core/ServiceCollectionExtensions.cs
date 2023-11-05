@@ -2,16 +2,9 @@
 // This file is a part of E5R CleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
-using System.Linq;
-using System.Reflection;
-
-using CleanArch.Core;
 using CleanArch.Core.Patterns.GuardClauses;
 
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-
-namespace CleanArch.Extensions.DependencyInjection;
+namespace CleanArch.Core;
 
 public static class ServiceCollectionExtensions
 {
@@ -38,12 +31,10 @@ public static class ServiceCollectionExtensions
 
         foreach (var cmdHandlerType in cmdHandlerImplementationTypes)
         {
-            var cmdHandlerInterfaces = cmdHandlerType.GetInterfaces()
-                .Where(t => t.IsGenericType && cmdHandlerInterfaceType == t.GetGenericTypeDefinition());
-
-            foreach (var cmdHandlerInterface in cmdHandlerInterfaces)
+            foreach (var cmdHandlerInterface in cmdHandlerType.GetInterfaces()
+                .Where(t => t.IsGenericType && cmdHandlerInterfaceType == t.GetGenericTypeDefinition()))
             {
-                services.TryAddScoped(cmdHandlerInterface, cmdHandlerType);
+                services.AddScoped(cmdHandlerInterface, cmdHandlerType);
             }
         };
 

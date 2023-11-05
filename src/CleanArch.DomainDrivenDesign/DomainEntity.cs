@@ -33,16 +33,12 @@ public abstract class DomainEntity<TId> : IDomainEntity
     /// </summary>
     /// <remarks>Nunca é um valor nulo</remarks>
     public IReadOnlyCollection<DomainEvent> GetExportedDomainEvents()
-    {
-        return (_domainEvents ??= new List<DomainEvent>()).AsReadOnly();
-    }
+    => (_domainEvents ??= new List<DomainEvent>()).AsReadOnly();
 
     /// <summary>
     /// Lista de eventos para manipulação
     /// </summary>
     /// <remarks>Nunca é um valor nulo</remarks>
-    protected List<DomainEvent> DomainEvents
-    {
-        get => _domainEvents ??= new List<DomainEvent>();
-    }
+    protected List<DomainEvent> GetDomainEvents()
+    => _domainEvents ??= new List<DomainEvent>();
 }

@@ -8,12 +8,10 @@
 
 using System.Collections.ObjectModel;
 
-using CleanArch.Core;
-
 namespace CleanArch.DomainDrivenDesign.Tests;
 
 [Trait("target", "DomainAggregate")]
-public class DomainAggregateTests
+public class DomainAggregateTest
 {
     [Fact(DisplayName = "DomainAggregate must emit events")]
     public void DomainAggregate_MustEmitEvents()
@@ -43,7 +41,7 @@ public class DomainAggregateTests
             _others.Add(new MyOtherEntity());
         }
 
-        public override IAsyncEnumerable<DomainEvent> GetAllExportedDomainEvents()
+        public override IEnumerable<DomainEvent> GetAllExportedDomainEvents()
         {
             throw new NotImplementedException();
         }
@@ -66,8 +64,10 @@ public class DomainAggregateTests
     {
         public MyRootEntity()
         {
-            DomainEvents.Add(new MyDomainEvent(DateTimeOffset.UtcNow));
-            DomainEvents.Add(new MyDomainEvent(DateTimeOffset.UtcNow));
+            var events = GetDomainEvents();
+
+            events.Add(new MyDomainEvent(DateTimeOffset.UtcNow));
+            events.Add(new MyDomainEvent(DateTimeOffset.UtcNow));
         }
     }
 
@@ -75,7 +75,7 @@ public class DomainAggregateTests
     {
         public void Method()
         {
-            DomainEvents.Add(new MyDomainEvent(DateTimeOffset.UtcNow));
+            GetDomainEvents().Add(new MyDomainEvent(DateTimeOffset.UtcNow));
         }
     }
 

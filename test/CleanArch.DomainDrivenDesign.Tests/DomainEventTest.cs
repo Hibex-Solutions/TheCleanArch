@@ -5,7 +5,7 @@
 namespace CleanArch.DomainDrivenDesign.Tests;
 
 [Trait("target", nameof(DomainEvent))]
-public class DomainEventTests
+public class DomainEventTest
 {
     [Fact]
     public void DomainEvent_Generate_Guid()

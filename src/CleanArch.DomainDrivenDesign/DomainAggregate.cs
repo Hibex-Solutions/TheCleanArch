@@ -19,6 +19,6 @@ public abstract class DomainAggregate<TRootEntity>
     /// Obtém todos os eventos de domínio exportados pelas entidades envolvidas
     /// no agregado
     /// </summary>
-    /// <returns>Uma lista assíncrona de eventos de domínio</returns>
-    public abstract IAsyncEnumerable<DomainEvent> GetAllExportedDomainEvents();
+    /// <returns>Uma lista de eventos de domínio</returns>
+    public abstract IEnumerable<DomainEvent> GetAllExportedDomainEvents();
 }

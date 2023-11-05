@@ -9,7 +9,7 @@ using CleanArch.Core.Patterns.GuardClauses;
 namespace CleanArch.Core.Tests.Patterns.GuardClauses;
 
 [Trait("target", nameof(Guard))]
-public class GuardTests
+public class GuardTest
 {
     [Fact(DisplayName = "NotNullArgument() reject null values")]
     public void NotNullArgument_RejectNull()

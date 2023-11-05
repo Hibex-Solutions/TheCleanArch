@@ -5,7 +5,7 @@
 namespace CleanArch.DomainDrivenDesign.Tests;
 
 [Trait("target", nameof(DomainValueObject))]
-public class DomainValueObjectTests
+public class DomainValueObjectTest
 {
     [Fact(DisplayName = "DomainValueObject are comparable")]
     public void DomainValueObject_AreComparable()

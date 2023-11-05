@@ -5,7 +5,7 @@
 namespace CleanArch.DomainDrivenDesign.Tests;
 
 [Trait("target", "DomainEntity")]
-public class DomainEntityTests
+public class DomainEntityTest
 {
     [Fact(DisplayName = "Permite atribuição de Id de forma protegida")]
     public void DomainEntity_EnablesProtectedIdAssignment()
