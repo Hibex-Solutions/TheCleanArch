@@ -27,7 +27,7 @@ insert_final_newline = false
 # Organize usings
 dotnet_separate_import_directive_groups = true
 dotnet_sort_system_directives_first = true
-file_header_template = Copyright (c) E5R Development Team. All rights reserved.\nThis file is a part of E5R CleanArch.\nLicensed under the Apache version 2.0: LICENSE file.
+file_header_template = Copyright (c) Hibex Solutions. All rights reserved.\nThis file is a part of CleanArch.\nLicensed under the Apache version 2.0: LICENSE file.
 
 # this. and Me. preferences
 dotnet_style_qualification_for_event = false:silent

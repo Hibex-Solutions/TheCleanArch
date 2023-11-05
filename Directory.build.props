@@ -1,9 +1,9 @@
 <Project>
   <PropertyGroup>
     <Product>CleanArch</Product>
-    <Company>E5R Development Team</Company>
-    <Copyright>Copyright (c) E5R Development Team. All rights reserved.</Copyright>
-    <Authors>erlimar</Authors>
+    <Company>Hibex Solutions</Company>
+    <Copyright>Copyright (c) Hibex Solutions. All rights reserved.</Copyright>
+    <Authors>Hibex-Solutions</Authors>
 
     <AnalysisLevel>6.0-minimum</AnalysisLevel>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
