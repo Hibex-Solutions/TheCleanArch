@@ -16,7 +16,7 @@ public class DomainEventTest
     }
 
     [Theory]
-    [InlineData(nameof(GetConstructorData))]
+    [MemberData(nameof(GetConstructorData))]
     public void DomainEvent_DoesNotModify_Id(Guid id)
     {
         var myEvent = new MyDomainEvent(id);
