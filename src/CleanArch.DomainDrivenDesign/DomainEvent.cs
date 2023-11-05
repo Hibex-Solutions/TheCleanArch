@@ -2,6 +2,8 @@
 // This file is a part of CleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
+using CleanArch.Core;
+
 namespace CleanArch.DomainDrivenDesign;
 
 /// <summary>
@@ -13,7 +15,7 @@ namespace CleanArch.DomainDrivenDesign;
 /// <para>A definição do evento de domínio em si é dada pelo próprio tipo que
 /// o</para>
 /// </remarks>
-public class DomainEvent
+public class DomainEvent : ICommand
 {
     public DomainEvent()
     {
