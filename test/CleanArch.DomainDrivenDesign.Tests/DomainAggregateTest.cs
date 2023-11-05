@@ -1,9 +1,5 @@
-// Copyright (c) E5R Development Team. All rights reserved.
-// This file is a part of E5R CleanArch.
-// Licensed under the Apache version 2.0: LICENSE file.
-
-// Copyright (c) E5R Development Team. All rights reserved.
-// This file is a part of E5R CleanArch.
+// Copyright (c) Hibex Solutions. All rights reserved.
+// This file is a part of CleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
 using System.Collections.ObjectModel;
@@ -66,8 +62,8 @@ public class DomainAggregateTest
         {
             var events = GetDomainEvents();
 
-            events.Add(new MyDomainEvent(DateTimeOffset.UtcNow));
-            events.Add(new MyDomainEvent(DateTimeOffset.UtcNow));
+            events.Add(new MyDomainEvent());
+            events.Add(new MyDomainEvent());
         }
     }
 
@@ -75,14 +71,10 @@ public class DomainAggregateTest
     {
         public void Method()
         {
-            GetDomainEvents().Add(new MyDomainEvent(DateTimeOffset.UtcNow));
+            GetDomainEvents().Add(new MyDomainEvent());
         }
     }
 
-    public class MyDomainEvent : DomainEvent
-    {
-        public MyDomainEvent(DateTimeOffset createdAt) : base(createdAt)
-        { }
-    }
+    public class MyDomainEvent : DomainEvent { }
     #endregion
 }

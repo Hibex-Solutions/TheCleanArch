@@ -10,42 +10,35 @@ public class DomainEventTest
     [Fact]
     public void DomainEvent_Generate_Guid()
     {
-        var nowOffset = new DateTimeOffset(DateTime.Now);
-        var myEvent = new MyDomainEvent(nowOffset);
+        var myEvent = new MyDomainEvent();
 
-        Assert.Equal(nowOffset, myEvent.CreatedAt);
         Assert.NotEqual(Guid.Empty, myEvent.Id);
     }
 
     [Theory]
-    [MemberData(nameof(GetConstructorData))]
-    public void DomainEvent_DoesNotModify_IdAndCreatedAt(Guid id, DateTime createdAt)
+    [InlineData(nameof(GetConstructorData))]
+    public void DomainEvent_DoesNotModify_Id(Guid id)
     {
-        var myEvent = new MyDomainEvent(id, new DateTimeOffset(createdAt));
+        var myEvent = new MyDomainEvent(id);
 
         Assert.Equal(id, myEvent.Id);
-        Assert.Equal(new DateTimeOffset(createdAt), myEvent.CreatedAt);
     }
 
     #region Data generators
     public static IEnumerable<object[]> GetConstructorData()
     {
-        yield return new object[] { Guid.NewGuid(), new DateTime(2023, 10, 23, 9, 52, 15) };
-        yield return new object[] { Guid.NewGuid(), new DateTime(1983, 8, 8) };
-        yield return new object[] { Guid.NewGuid(), new DateTime(1969, 7, 20, 23, 56, 0) };
+        yield return new object[] { Guid.NewGuid() };
+        yield return new object[] { Guid.NewGuid() };
+        yield return new object[] { Guid.NewGuid() };
     }
     #endregion
 
     #region Stubs
     public class MyDomainEvent : DomainEvent
     {
-        public MyDomainEvent(DateTimeOffset createdAt) : base(createdAt)
-        {
-        }
+        public MyDomainEvent() : base() { }
 
-        public MyDomainEvent(Guid id, DateTimeOffset createdAt) : base(id, createdAt)
-        {
-        }
+        public MyDomainEvent(Guid id) : base(id) { }
     }
     #endregion
 }

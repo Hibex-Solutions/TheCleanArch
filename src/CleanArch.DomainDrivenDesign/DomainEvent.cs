@@ -15,25 +15,18 @@ namespace CleanArch.DomainDrivenDesign;
 /// </remarks>
 public class DomainEvent
 {
-    public DomainEvent(DateTimeOffset createdAt)
+    public DomainEvent()
     {
         Id = Guid.NewGuid();
-        CreatedAt = createdAt;
     }
 
-    public DomainEvent(Guid id, DateTimeOffset createdAt)
+    public DomainEvent(Guid id)
     {
         Id = id;
-        CreatedAt = createdAt;
     }
 
     /// <summary>
     /// Identificador do evento
     /// </summary>
     public Guid Id { get; private set; }
-
-    /// <summary>
-    /// Momento que o evento foi criado
-    /// </summary>
-    public DateTimeOffset CreatedAt { get; private set; }
 }
