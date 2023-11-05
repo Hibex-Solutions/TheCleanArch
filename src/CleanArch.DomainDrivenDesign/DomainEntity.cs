@@ -17,11 +17,7 @@ public abstract class DomainEntity<TId> : IDomainEntity
     /// <summary>
     /// Lista de eventos de domínio
     /// </summary>
-    /// <remarks>
-    /// A lista só é instanciada se precisar ser usada. Isso é feito através
-    /// do método <see cref="GetEmittedDomainEventsList"/>.
-    /// </remarks>
-    private List<DomainEvent> _domainEvents;
+    private List<DomainEvent> _domainEventList;
 
     /// <summary>
     /// Identificador da entidade
@@ -33,12 +29,12 @@ public abstract class DomainEntity<TId> : IDomainEntity
     /// </summary>
     /// <remarks>Nunca é um valor nulo</remarks>
     public IReadOnlyCollection<DomainEvent> GetExportedDomainEvents()
-    => (_domainEvents ??= new List<DomainEvent>()).AsReadOnly();
+    => (_domainEventList ??= new List<DomainEvent>()).AsReadOnly();
 
     /// <summary>
-    /// Lista de eventos para manipulação
+    /// Obtém a lista de eventos para manipulação
     /// </summary>
     /// <remarks>Nunca é um valor nulo</remarks>
-    protected List<DomainEvent> GetDomainEvents()
-    => _domainEvents ??= new List<DomainEvent>();
+    protected List<DomainEvent> GetDomainEventList()
+    => _domainEventList ??= new List<DomainEvent>();
 }

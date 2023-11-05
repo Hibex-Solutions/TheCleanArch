@@ -13,10 +13,12 @@ namespace CleanArch.DomainDrivenDesign;
 /// <para>Um evento de domínio sempre tem um identificador único e ocorre em um
 /// momento específico do tempo.</para>
 /// <para>A definição do evento de domínio em si é dada pelo próprio tipo que
-/// o</para>
+/// o implementa</para>
 /// </remarks>
 public class DomainEvent : ICommand
 {
+    private List<ICommandHandler> _commandHandlers;
+
     public DomainEvent()
     {
         Id = Guid.NewGuid();
@@ -31,4 +33,20 @@ public class DomainEvent : ICommand
     /// Identificador do evento
     /// </summary>
     public Guid Id { get; private set; }
+
+    public bool Commited => _commandHandlers is not null && _commandHandlers.Any();
+
+    /// <summary>
+    /// Confirma uma manipulação
+    /// </summary>
+    /// <param name="handler">Manipulador</param>
+    public void Commit(ICommandHandler handler)
+    {
+        _commandHandlers ??= new List<ICommandHandler>();
+
+        if (!_commandHandlers.Contains(handler))
+        {
+            _commandHandlers.Add(handler);
+        }
+    }
 }

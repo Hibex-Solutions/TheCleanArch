@@ -60,7 +60,7 @@ public class DomainAggregateTest
     {
         public MyRootEntity()
         {
-            var events = GetDomainEvents();
+            var events = GetDomainEventList();
 
             events.Add(new MyDomainEvent());
             events.Add(new MyDomainEvent());
@@ -71,7 +71,7 @@ public class DomainAggregateTest
     {
         public void Method()
         {
-            GetDomainEvents().Add(new MyDomainEvent());
+            GetDomainEventList().Add(new MyDomainEvent());
         }
     }
 
