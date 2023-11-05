@@ -2,15 +2,9 @@
 // This file is a part of CleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
-using System.Threading.Tasks;
-
 namespace CleanArch.Core;
 
 /// <summary>
-/// Um manipulador de comando <see cref="TCommand"/>
+/// Um manipulador de comando <see cref="ICommand"/>
 /// </summary>
-public interface ICommandHandler<TCommand>
-    where TCommand : ICommand
-{
-    Task HandleAsync(TCommand command);
-}
+public interface ICommandHandler { }
