@@ -1,11 +1,11 @@
 <Project>
   <PropertyGroup>
     <IsPackable>true</IsPackable>
-    <PackageTags>E5R;DDD;CleanArch;Clean-Architecture;Domain-Driven-Design</PackageTags>
-    <PackageLicense>https://raw.githubusercontent.com/e5r/clean-arch/main/LICENSE</PackageLicense>
-    <RepositoryUrl>https://github.com/e5r/clean-arch</RepositoryUrl>
+    <PackageTags>Hibex-Solutions;DDD;CleanArch;Clean-Architecture;Domain-Driven-Design</PackageTags>
+    <PackageLicense>https://raw.githubusercontent.com/Hibex-Solutions/clean-arch/main/LICENSE</PackageLicense>
+    <RepositoryUrl>https://github.com/Hibex-Solutions/clean-arch</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageProject>https://github.com/e5r/clean-arch</PackageProject>
-    <PackageLicense>https://github.com/e5r/manifest/blob/master/license/APACHE-2.0.txt</PackageLicense>
+    <PackageProject>https://github.com/Hibex-Solutions/clean-arch</PackageProject>
+    <PackageLicense>https://github.com/Hibex-Solutions/manifest/blob/master/license/APACHE-2.0.txt</PackageLicense>
   </PropertyGroup>
 </Project>

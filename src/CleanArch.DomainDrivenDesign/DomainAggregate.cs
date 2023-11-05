@@ -20,5 +20,18 @@ public abstract class DomainAggregate<TRootEntity>
     /// no agregado
     /// </summary>
     /// <returns>Uma lista de eventos de domínio</returns>
-    public abstract IEnumerable<DomainEvent> GetAllExportedDomainEvents();
+    protected abstract IEnumerable<DomainEvent> GetAllExportedDomainEvents();
+
+    /// <summary>
+    /// Tenta obter o próximo evento de domínio ainda não comprometido
+    /// </summary>
+    /// <param name="domainEvent">Evento de saída</param>
+    /// <returns>True quando conseguir o evento e false caso contrário</returns>
+    public bool TryGetNextNonCommittedDomainEvent(out DomainEvent domainEvent)
+    {
+        domainEvent = GetAllExportedDomainEvents()?
+            .FirstOrDefault(w => !w.Committed);
+
+        return domainEvent is not null;
+    }
 }

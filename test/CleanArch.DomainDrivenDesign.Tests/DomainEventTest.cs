@@ -33,7 +33,7 @@ public class DomainEventTest
     {
         var myDomainEvent = new MyDomainEvent();
 
-        Assert.False(myDomainEvent.Commited);
+        Assert.False(myDomainEvent.Committed);
     }
 
     [Fact(DisplayName = "Commited is true if has one handler")]
@@ -44,7 +44,7 @@ public class DomainEventTest
 
         myDomainEvent.Commit(handlerMock.Object);
 
-        Assert.True(myDomainEvent.Commited);
+        Assert.True(myDomainEvent.Committed);
     }
 
     [Fact(DisplayName = "Commited is true if has many handlers")]
@@ -59,7 +59,7 @@ public class DomainEventTest
         myDomainEvent.Commit(handlerMock2.Object);
         myDomainEvent.Commit(handlerMock3.Object);
 
-        Assert.True(myDomainEvent.Commited);
+        Assert.True(myDomainEvent.Committed);
     }
 
     #region Data generators

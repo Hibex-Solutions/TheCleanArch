@@ -34,7 +34,7 @@ public class DomainEvent : ICommand
     /// </summary>
     public Guid Id { get; private set; }
 
-    public bool Commited => _commandHandlers is not null && _commandHandlers.Any();
+    public bool Committed => _commandHandlers is not null && _commandHandlers.Any();
 
     /// <summary>
     /// Confirma uma manipulação
