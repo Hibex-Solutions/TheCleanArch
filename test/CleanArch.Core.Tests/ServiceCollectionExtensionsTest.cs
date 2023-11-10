@@ -2,7 +2,10 @@
 // This file is a part of CleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
+using System.Linq;
 using System.Threading.Tasks;
+
+using CleanArch.Core.Patterns.CommandHandler;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,34 +25,59 @@ public class ServiceCollectionExtensionsTest
         Assert.IsType<DefaultTimeProvider>(instance);
     }
 
-    [Fact(DisplayName = "Test")]
-    public void Test()
+    [Fact(DisplayName = "DefaultCommandHandlerDiscoverer is registered with AddCleanArchDefaults()")]
+    public void DefaultCommandHandlerDiscoverer_WithAddCleanArchDefaults()
+    {
+        var collection = new ServiceCollection().AddCleanArchDefaults();
+        var serviceProvider = new DefaultServiceProviderFactory().CreateServiceProvider(collection);
+        var instance = serviceProvider.GetService<ICommandHandlerDiscoverer>();
+
+        Assert.NotNull(instance);
+        Assert.IsType<DefaultCommandHandlerDiscoverer>(instance);
+    }
+
+    [Fact(DisplayName = "AddCleanArchCommandHandlersFromAssembly() registers all ICommandHandlers")]
+    public void AddCleanArchCommandHandlersFromAssembly_RegistersAllICommandHandlers()
     {
         var thisAssembly = typeof(MyCommand).Assembly;
         var collection = new ServiceCollection().AddCleanArchCommandHandlersFromAssembly(thisAssembly);
         var serviceProvider = new DefaultServiceProviderFactory().CreateServiceProvider(collection);
 
-        var commandHandlerGenericType = typeof(ICommandHandler<>);
+        var instances = serviceProvider.GetServices<ICommandHandler>();
 
-        var instance = serviceProvider.GetService(commandHandlerGenericType);
+        Assert.NotNull(instances);
+        Assert.NotEmpty(instances);
+        Assert.InRange(instances.Count(), 3, int.MaxValue);
+        Assert.Contains(typeof(MyMockCommandHandler1), instances.Select(s => s.GetType()));
+        Assert.Contains(typeof(MyMockCommandHandler2), instances.Select(s => s.GetType()));
+        Assert.Contains(typeof(MyMockCommandHandler3), instances.Select(s => s.GetType()));
     }
 
     #region Stubs
     public class MyCommand : ICommand { }
 
-    public class MyMockCommandHandler1 : ICommandHandler<MyCommand>
+    public class MyMockCommandHandler1 : CommandHandler<MyCommand>
     {
-        public Task HandleAsync(MyCommand command) => throw new NotImplementedException();
+        protected override Task HandleAsync(MyCommand command)
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    public class MyMockCommandHandler2 : ICommandHandler<MyCommand>
+    public class MyMockCommandHandler2 : CommandHandler<MyCommand>
     {
-        public Task HandleAsync(MyCommand command) => throw new NotImplementedException();
+        protected override Task HandleAsync(MyCommand command)
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    public class MyMockCommandHandler3 : ICommandHandler<MyCommand>
+    public class MyMockCommandHandler3 : CommandHandler<MyCommand>
     {
-        public Task HandleAsync(MyCommand command) => throw new NotImplementedException();
+        protected override Task HandleAsync(MyCommand command)
+        {
+            throw new NotImplementedException();
+        }
     }
     #endregion
 }

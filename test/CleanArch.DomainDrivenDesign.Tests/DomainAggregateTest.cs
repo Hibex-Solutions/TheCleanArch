@@ -55,7 +55,7 @@ public class DomainAggregateTest
     [Fact(DisplayName = "TryGetNextNonCommittedDomainEvent get next event live")]
     public void TryGetNextNonCommittedDomainEventFail_GetNextEventLive()
     {
-        var commandHandlerMock = new Mock<ICommandHandler<MyDomainEvent>>();
+        var commandHandlerMock = new Mock<CommandHandler<MyDomainEvent>>();
         var aggregate = new MyDomainNextEventLiveAggregate();
         var result1 = aggregate.TryGetNextNonCommittedDomainEvent(out DomainEvent domainEvent1);
 

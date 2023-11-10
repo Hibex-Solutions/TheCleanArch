@@ -39,7 +39,7 @@ public class DomainEventTest
     [Fact(DisplayName = "Commited is true if has one handler")]
     public void Commited_IsTrue_IfHasOneHandler()
     {
-        var handlerMock = new Mock<ICommandHandler<MyDomainEvent>>();
+        var handlerMock = new Mock<CommandHandler<MyDomainEvent>>();
         var myDomainEvent = new MyDomainEvent();
 
         myDomainEvent.Commit(handlerMock.Object);
@@ -50,9 +50,9 @@ public class DomainEventTest
     [Fact(DisplayName = "Commited is true if has many handlers")]
     public void Commited_IsTrue_IfHasManyHandlers()
     {
-        var handlerMock1 = new Mock<ICommandHandler<MyDomainEvent>>();
-        var handlerMock2 = new Mock<ICommandHandler<MyDomainEvent>>();
-        var handlerMock3 = new Mock<ICommandHandler<MyDomainEvent>>();
+        var handlerMock1 = new Mock<CommandHandler<MyDomainEvent>>();
+        var handlerMock2 = new Mock<CommandHandler<MyDomainEvent>>();
+        var handlerMock3 = new Mock<CommandHandler<MyDomainEvent>>();
         var myDomainEvent = new MyDomainEvent();
 
         myDomainEvent.Commit(handlerMock1.Object);

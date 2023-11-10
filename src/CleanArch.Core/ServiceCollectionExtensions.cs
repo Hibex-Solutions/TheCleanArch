@@ -2,6 +2,7 @@
 // This file is a part of CleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
+using CleanArch.Core.Patterns.CommandHandler;
 using CleanArch.Core.Patterns.GuardClauses;
 
 namespace CleanArch.Core;
@@ -13,6 +14,7 @@ public static class ServiceCollectionExtensions
         _ = Guard.NotNullArgument(services, nameof(services));
 
         services.AddScoped<ITimeProvider, DefaultTimeProvider>();
+        services.AddScoped<ICommandHandlerDiscoverer, DefaultCommandHandlerDiscoverer>();
 
         return services;
     }
@@ -24,18 +26,22 @@ public static class ServiceCollectionExtensions
         _ = Guard.NotNullArgument(services, nameof(services));
         _ = Guard.NotNullArgument(assembly, nameof(assembly));
 
-        var cmdHandlerInterfaceType = typeof(ICommandHandler<>);
-        var cmdHandlerImplementationTypes = assembly.DefinedTypes
-            .Where(t => t.GetInterfaces().Any(tt =>
-                tt.IsGenericType && cmdHandlerInterfaceType == tt.GetGenericTypeDefinition()));
+        var commandHandlerInterfaceType = typeof(ICommandHandler);
+        var commandHandlerGenericType = typeof(CommandHandler<>);
 
-        foreach (var cmdHandlerType in cmdHandlerImplementationTypes)
+        var cmdHandlerImplementationTypes = assembly.DefinedTypes.Where(w =>
+            commandHandlerInterfaceType.IsAssignableFrom(w) &&
+            w.BaseType is not null &&
+            w.BaseType.IsGenericType &&
+            w.BaseType.GetGenericTypeDefinition().Equals(commandHandlerGenericType));
+
+        foreach (var commandHandlerImplementationType in cmdHandlerImplementationTypes)
         {
-            foreach (var cmdHandlerInterface in cmdHandlerType.GetInterfaces()
-                .Where(t => t.IsGenericType && cmdHandlerInterfaceType == t.GetGenericTypeDefinition()))
-            {
-                services.AddScoped(cmdHandlerInterface, cmdHandlerType);
-            }
+            var commandHandlerType = commandHandlerGenericType.MakeGenericType(
+                commandHandlerImplementationType.BaseType.GenericTypeArguments);
+
+            services.AddScoped(commandHandlerType, commandHandlerImplementationType);
+            services.AddScoped(commandHandlerInterfaceType, commandHandlerImplementationType);
         };
 
         return services;

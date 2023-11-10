@@ -5,6 +5,9 @@
 namespace CleanArch.Core;
 
 /// <summary>
-/// Um manipulador de comando <see cref="ICommand"/>
+/// Um manipulador de comando
 /// </summary>
-public interface ICommandHandler { }
+public interface ICommandHandler
+{
+    Task HandleAsync(object command);
+}
