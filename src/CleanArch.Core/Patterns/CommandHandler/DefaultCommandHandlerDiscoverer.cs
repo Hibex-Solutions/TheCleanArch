@@ -4,11 +4,14 @@
 
 using CleanArch.Core.Patterns.GuardClauses;
 
+using Microsoft.Extensions.Caching.Memory;
+
 namespace CleanArch.Core.Patterns.CommandHandler;
 
 public class DefaultCommandHandlerDiscoverer : ICommandHandlerDiscoverer
 {
     private readonly IServiceProvider _serviceProvider;
+    private IMemoryCache _memoryCache;
 
     public DefaultCommandHandlerDiscoverer(IServiceProvider serviceProvider)
     {
@@ -55,7 +58,7 @@ public class DefaultCommandHandlerDiscoverer : ICommandHandlerDiscoverer
             WriteToCache(commandType, commandHandlerType);
         }
 
-        return _serviceProvider.GetServices<ICommandHandler>()?
+        return _serviceProvider.GetService<IEnumerable<ICommandHandler>>()?
             .Where(w => commandHandlerType.Equals(w.GetType().BaseType))
             ?? Enumerable.Empty<ICommandHandler>();
     }
@@ -64,10 +67,15 @@ public class DefaultCommandHandlerDiscoverer : ICommandHandlerDiscoverer
     {
         _ = Guard.NotNullArgument(originType, nameof(originType));
 
-        // TODO: Buscar do cache caso serviço de cache esteja configurado
-        // Microsoft.Extensions.Caching.Memory.IMemoryCache + _serviceProvider
+        var cacheEntry = (typeof(CommandHandlerDiscoveryTypeSummary), originType);
 
-        return null;
+        return (_memoryCache ??= _serviceProvider.GetService<IMemoryCache>()) is null
+            ? null
+            : _memoryCache.TryGetValue(cacheEntry, out object cacheValue)
+            ? cacheValue is CommandHandlerDiscoveryTypeSummary
+                ? cacheValue as CommandHandlerDiscoveryTypeSummary
+                : null
+            : null;
     }
 
     private void WriteToCache(Type originType, Type resolvedType)
@@ -75,8 +83,8 @@ public class DefaultCommandHandlerDiscoverer : ICommandHandlerDiscoverer
         _ = Guard.NotNullArgument(originType, nameof(originType));
         _ = Guard.NotNullArgument(resolvedType, nameof(resolvedType));
 
-        // TODO: Gravar do cache caso serviço de cache esteja configurado
-        // Microsoft.Extensions.Caching.Memory.IMemoryCache + _serviceProvider
+        WriteToCache(
+            new CommandHandlerDiscoveryTypeSummary(originType, resolvedType));
     }
 
     private void WriteToCache(Type originType, Exception exception)
@@ -84,7 +92,21 @@ public class DefaultCommandHandlerDiscoverer : ICommandHandlerDiscoverer
         _ = Guard.NotNullArgument(originType, nameof(originType));
         _ = Guard.NotNullArgument(exception, nameof(exception));
 
-        // TODO: Gravar do cache caso serviço de cache esteja configurado
-        // Microsoft.Extensions.Caching.Memory.IMemoryCache + _serviceProvider
+        WriteToCache(
+            new CommandHandlerDiscoveryTypeSummary(originType, exception));
+    }
+
+    private void WriteToCache(CommandHandlerDiscoveryTypeSummary summary)
+    {
+        _ = Guard.NotNullArgument(summary, nameof(summary));
+
+        if ((_memoryCache ??= _serviceProvider.GetService<IMemoryCache>()) is null)
+        {
+            return;
+        }
+
+        var cacheEntry = (typeof(CommandHandlerDiscoveryTypeSummary), summary.OriginType);
+
+        _memoryCache.Set(cacheEntry, summary);
     }
 }

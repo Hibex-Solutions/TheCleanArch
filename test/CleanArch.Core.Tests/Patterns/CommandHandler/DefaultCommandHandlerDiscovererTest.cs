@@ -2,16 +2,18 @@
 // This file is a part of CleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
+using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 
 using CleanArch.Core.Patterns.CommandHandler;
 
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 
 using Moq;
 
-namespace CleanArch.Core.Tests;
+namespace CleanArch.Core.Tests.Patterns.CommandHandler;
 
 [Trait("target", nameof(DefaultCommandHandlerDiscoverer))]
 public class DefaultCommandHandlerDiscovererTest
@@ -62,6 +64,37 @@ public class DefaultCommandHandlerDiscovererTest
         Assert.Equal(2, handlers.Count());
         Assert.Contains(typeof(CommandHandler1Of2), handlersTypes);
         Assert.Contains(typeof(CommandHandler1Of2), handlersTypes);
+    }
+
+    [Fact(DisplayName = "Always tries to get IMemoryCache service when it is not configured")]
+    public void GetCommandHandlersByCommandType_AlwaysTriesToGetIMemoryCacheService_WhenItIsNotConfigured()
+    {
+        var serviceProviderMock = new Mock<IServiceProvider>();
+        var discoverer = new DefaultCommandHandlerDiscoverer(serviceProviderMock.Object);
+
+        _ = discoverer.GetCommandHandlersByCommandType(typeof(MyCommand));
+
+        serviceProviderMock.Verify(v => v.GetService(typeof(IMemoryCache)), Times.Exactly(2));
+    }
+
+    [Fact(DisplayName = "Attempts to get IMemoryCache service only once when configured")]
+    public void GetCommandHandlersByCommandType_AttemptsToGetIMemoryCacheServiceOnlyOnce_WhenConfigured()
+    {
+        var memoryCacheMock = new Mock<IMemoryCache>();
+        var serviceProviderMock = new Mock<IServiceProvider>();
+
+        serviceProviderMock.Setup(s => s.GetService(typeof(IMemoryCache)))
+            .Returns(memoryCacheMock.Object);
+
+        var discoverer = new DefaultCommandHandlerDiscoverer(serviceProviderMock.Object);
+
+        _ = discoverer.GetCommandHandlersByCommandType(typeof(MyCommand));
+        _ = discoverer.GetCommandHandlersByCommandType(typeof(MyCommand));
+        _ = discoverer.GetCommandHandlersByCommandType(typeof(MyCommand));
+        _ = discoverer.GetCommandHandlersByCommandType(typeof(MyCommand));
+        _ = discoverer.GetCommandHandlersByCommandType(typeof(MyCommand));
+
+        serviceProviderMock.Verify(v => v.GetService(typeof(IMemoryCache)), Times.Exactly(1));
     }
 
     #region Stubs
