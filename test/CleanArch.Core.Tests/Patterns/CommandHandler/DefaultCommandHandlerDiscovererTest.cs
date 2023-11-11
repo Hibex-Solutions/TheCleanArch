@@ -10,6 +10,7 @@ using CleanArch.Core.Patterns.CommandHandler;
 
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 using Moq;
 
@@ -80,11 +81,11 @@ public class DefaultCommandHandlerDiscovererTest
     [Fact(DisplayName = "Attempts to get IMemoryCache service only once when configured")]
     public void GetCommandHandlersByCommandType_AttemptsToGetIMemoryCacheServiceOnlyOnce_WhenConfigured()
     {
-        var memoryCacheMock = new Mock<IMemoryCache>();
+        var memoryCache = new MemoryCache(Options.Create(new MemoryCacheOptions()));
         var serviceProviderMock = new Mock<IServiceProvider>();
 
         serviceProviderMock.Setup(s => s.GetService(typeof(IMemoryCache)))
-            .Returns(memoryCacheMock.Object);
+            .Returns(memoryCache);
 
         var discoverer = new DefaultCommandHandlerDiscoverer(serviceProviderMock.Object);
 
