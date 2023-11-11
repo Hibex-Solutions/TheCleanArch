@@ -4,7 +4,7 @@
  modelo para projetos _dotNET_ à partir do _NET6_, que aplicam os conceitos
  de arquitetura limpa com _Domain Driven Design_, e nada mais.
 
- ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Hibex-Solutions/clean-arch?style=flat-square&logo=files) ![GitHub repo size](https://img.shields.io/github/repo-size/Hibex-Solutions/clean-arch?style=flat-square&logo=github) ![GitHub top language](https://img.shields.io/github/languages/top/Hibex-Solutions/clean-arch?style=flat-square&logo=dotnet)
+![GitHub repo size](https://img.shields.io/github/repo-size/Hibex-Solutions/clean-arch?style=flat-square&logo=github) ![GitHub top language](https://img.shields.io/github/languages/top/Hibex-Solutions/clean-arch?style=flat-square)
 
 | | Release | RC | Preview |
 |------- | :---- | :------- | :---- |
