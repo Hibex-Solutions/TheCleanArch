@@ -18,8 +18,8 @@
 
 # Notas para o desenvolvedor
 
-* [Usamos .NET SDK 6.0.408][NET6-LINK]
-* [Usamos C# 10][CSHARP10-LINK]
+* [Usamos .NET 6.0.22 como versão mínima][NET6-LINK]
+* [Usamos C# 12 como linguagem padrão][CSHARP10-LINK]
 * [Veja como contribuir][CONTRIB-LINK]
 
 
