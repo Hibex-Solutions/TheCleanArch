@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <PackageId>CleanArch.Application</PackageId>
+    <Description>Utilitários para aplicações de negócio com CleanArch</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CleanArch.Core\CleanArch.Core.csproj" />
+  </ItemGroup>
+
+</Project>

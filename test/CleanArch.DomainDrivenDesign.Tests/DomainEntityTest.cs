@@ -17,7 +17,6 @@ public class DomainEntityTest
         Assert.Equal(int.MinValue, myMinIntEntity.Id);
     }
 
-
     #region Stubs
     public class MyIntDomainEntity : DomainEntity<int>
     {

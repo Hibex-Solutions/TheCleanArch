@@ -89,9 +89,9 @@ public class DomainAggregateTest
 
     public class MyDomainNextEventLiveAggregate : DomainAggregate<MyRootEntity>
     {
-        private List<DomainEvent>? _eventList;
+        private List<DomainEvent> _eventList;
 
-        protected override IEnumerable<DomainEvent>? GetAllExportedDomainEvents()
+        protected override IEnumerable<DomainEvent> GetAllExportedDomainEvents()
         => _eventList;
 
         public void AddDomainEvent()

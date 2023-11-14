@@ -68,7 +68,7 @@ public class DomainValueObjectTest
         /// <summary>
         /// Obtém uma lista de componentes para comparação de igualdade
         /// </summary>
-        protected override IEnumerable<object?> GetEqualityComponents()
+        protected override IEnumerable<object> GetEqualityComponents()
         {
             yield return IntegerValue;
             yield return StringValue;

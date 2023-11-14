@@ -11,14 +11,14 @@
 | Source | ![GitHub tag (with filter)](https://img.shields.io/github/v/tag/Hibex-Solutions/clean-arch?filter=!v*-*&style=flat-square&logo=github) | ![GitHub tag (with filter)](https://img.shields.io/github/v/tag/Hibex-Solutions/clean-arch?filter=v*-rc*&style=flat-square&logo=github) | ![GitHub tag (with filter)](https://img.shields.io/github/v/tag/Hibex-Solutions/clean-arch?filter=v*-preview*&style=flat-square&logo=github) |
 | Build | ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/Hibex-Solutions/clean-arch/ci.yaml?style=flat-square&label=CI) | ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/Hibex-Solutions/clean-arch/cd-rc.yaml?style=flat-square&label=RC) | ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/Hibex-Solutions/clean-arch/cd-preview.yaml?style=flat-square&label=PREVIEW) |
 | CleanArch.Core | ![Nuget (with prereleases)](https://img.shields.io/nuget/v/CleanArch.Core?style=flat-square&logo=nuget) | ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/CleanArch.Core?style=flat-square&logo=nuget) | - |
-| CleanArch.ApplicationBusiness | ![Nuget (with prereleases)](https://img.shields.io/nuget/v/CleanArch.ApplicationBusiness?style=flat-square&logo=nuget) | ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/CleanArch.ApplicationBusiness?style=flat-square&logo=nuget) | - |
+| CleanArch.Application | ![Nuget (with prereleases)](https://img.shields.io/nuget/v/CleanArch.Application?style=flat-square&logo=nuget) | ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/CleanArch.Application?style=flat-square&logo=nuget) | - |
 | CleanArch.DomainDrivenDesign | ![Nuget (with prereleases)](https://img.shields.io/nuget/v/CleanArch.DomainDrivenDesign?style=flat-square&logo=nuget) | ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/CleanArch.DomainDrivenDesign?style=flat-square&logo=nuget) | - |
 
 > :warning: Comunidade, fique atenta a nosso [código de conduta][CONDUCT-LINK]!
 
 # Notas para o desenvolvedor
 
-* [Usamos .NET 6][NET6-LINK]
+* [Usamos .NET SDK 6.0.408][NET6-LINK]
 * [Usamos C# 10][CSHARP10-LINK]
 * [Veja como contribuir][CONTRIB-LINK]
 
