@@ -1,11 +1,21 @@
 <Project>
   <PropertyGroup>
+    <Product>CleanArch</Product>
+    <Company>Hibex Solutions</Company>
+    <Copyright>Copyright (c) Hibex Solutions. All rights reserved.</Copyright>
+    <Authors>Hibex-Solutions</Authors>
+
+    <AnalysisLevel>6.0-minimum</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <LangVersion>10.0</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+
     <IsPackable>true</IsPackable>
+    <PackageProjectUrl>https://github.com/Hibex-Solutions/clean-arch</PackageProjectUrl>
     <PackageTags>Hibex-Solutions;DDD;CleanArch;Clean-Architecture;Domain-Driven-Design</PackageTags>
-    <PackageLicense>https://raw.githubusercontent.com/Hibex-Solutions/clean-arch/main/LICENSE</PackageLicense>
     <RepositoryUrl>https://github.com/Hibex-Solutions/clean-arch</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageProject>https://github.com/Hibex-Solutions/clean-arch</PackageProject>
-    <PackageLicense>https://github.com/Hibex-Solutions/manifest/blob/master/license/APACHE-2.0.txt</PackageLicense>
+    <PackageLicenseUrl>https://github.com/Hibex-Solutions/clean-arch/blob/main/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 </Project>

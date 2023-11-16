@@ -52,7 +52,7 @@ public class GuardTest
     public void NotEmptyArgument_RejectEmptyCollection()
     {
         var exception1 = Assert.Throws<ArgumentOutOfRangeException>(
-            () => _ = Guard.NotEmptyArgument(new object[] { }, "value1"));
+            () => _ = Guard.NotEmptyArgument(Array.Empty<object>(), "value1"));
 
         var exception2 = Assert.Throws<ArgumentOutOfRangeException>(
             () => _ = Guard.NotEmptyArgument(Array.Empty<object>(), "value2"));
