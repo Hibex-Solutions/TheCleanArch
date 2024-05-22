@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{41BBDCD1-5620-42A7-85C5-1CA151BC8102}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheCleanArch.Core", "src\TheCleanArch.Core\TheCleanArch.Core.csproj", "{33015C46-D8AE-4007-8723-D1922D8960BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BAAA2AC6-884F-44E7-AB6D-9AB847735854}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheCleanArch.CoreTests", "test\TheCleanArch.CoreTests\TheCleanArch.CoreTests.csproj", "{9D1DB030-1752-4BF6-B21F-CB0B6DFCF10F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33015C46-D8AE-4007-8723-D1922D8960BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33015C46-D8AE-4007-8723-D1922D8960BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33015C46-D8AE-4007-8723-D1922D8960BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33015C46-D8AE-4007-8723-D1922D8960BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D1DB030-1752-4BF6-B21F-CB0B6DFCF10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D1DB030-1752-4BF6-B21F-CB0B6DFCF10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D1DB030-1752-4BF6-B21F-CB0B6DFCF10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D1DB030-1752-4BF6-B21F-CB0B6DFCF10F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33015C46-D8AE-4007-8723-D1922D8960BC} = {41BBDCD1-5620-42A7-85C5-1CA151BC8102}
+		{9D1DB030-1752-4BF6-B21F-CB0B6DFCF10F} = {BAAA2AC6-884F-44E7-AB6D-9AB847735854}
+	EndGlobalSection
+EndGlobal

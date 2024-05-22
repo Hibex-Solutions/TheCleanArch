@@ -1,0 +1,15 @@
+<Project>
+    <PropertyGroup>
+        <Product>TheCleanArch</Product>
+        <Company>Hibex Solutions</Company>
+        <Copyright>Copyright (c) The Clean Arch Project. All rights reserved.</Copyright>
+        <Authors>TheCleanArch</Authors>
+
+        <AnalysisLevel>6.0-minimum</AnalysisLevel>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <LangVersion>10.0</LangVersion>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+</Project>

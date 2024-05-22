@@ -1,0 +1,20 @@
+<Project>
+    <PropertyGroup>
+        <Product>TheCleanArch</Product>
+        <Company>Hibex Solutions</Company>
+        <Copyright>Copyright (c) The Clean Arch Project. All rights reserved.</Copyright>
+        <Authors>TheCleanArch</Authors>
+        <AnalysisLevel>6.0-minimum</AnalysisLevel>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <LangVersion>10.0</LangVersion>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+
+        <IsPackable>true</IsPackable>
+        <PackageProjectUrl>https://github.com/Hibex-Solutions/TheCleanArch</PackageProjectUrl>
+        <PackageTags>Hibex-Solutions;DDD;TheCleanArch;Clean-Architecture;Domain-Driven-Design</PackageTags>
+        <RepositoryUrl>https://github.com/Hibex-Solutions/TheCleanArch</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseUrl>https://github.com/Hibex-Solutions/TheCleanArch/blob/main/LICENSE</PackageLicenseUrl>
+    </PropertyGroup>
+</Project>
