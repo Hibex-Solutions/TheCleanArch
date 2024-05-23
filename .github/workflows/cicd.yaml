@@ -41,9 +41,9 @@ jobs:
       - run: dotnet gitversion /output json /showvariable CommitsSinceVersionSource
 
       - run: |
-        build_meta_data=$(dotnet gitversion /output json /showvariable BuildMetaData)
-        if [ "$build_meta_data" == "" ]; then
-          echo "BuildMetaData é nulo!"
-        else
-          echo "BuildMetaData não nulo!"
-        fi
+          build_meta_data=$(dotnet gitversion /output json /showvariable BuildMetaData)
+          if [ "$build_meta_data" == "" ]; then
+            echo "BuildMetaData é nulo!"
+          else
+            echo "BuildMetaData não nulo!"
+          fi
