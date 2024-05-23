@@ -16,19 +16,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup GitVersion
-        uses: gittools/actions/gitversion/setup@v1.1.0
-        with:
-          versionSpec: '5.x'
+      # - name: Setup GitVersion
+      #   uses: gittools/actions/gitversion/setup@v1.1.0
+      #   with:
+      #     versionSpec: '5.x'
 
-      - name: Determine Version
-        id: version_step
-        uses: gittools/actions/gitversion/execute@v1.1.0
-        with:
-          useConfigFile: true
-          additionalArguments: '/showConfig'
-
-      - run: env
+      # - name: Determine Version
+      #   id: version_step
+      #   uses: gittools/actions/gitversion/execute@v1.1.0
+      #   with:
+      #     useConfigFile: true
+      #     additionalArguments: '/showConfig'
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -36,7 +34,9 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: Restore
-        run: dotnet restore ./TheCleanArch.sln
+        run: |
+          dotnet tool restore
+          dotnet restore ./TheCleanArch.sln
 
       - name: Build
         run: dotnet build ./TheCleanArch.sln -c Release --no-restore
@@ -44,4 +44,10 @@ jobs:
       - name: Test
         run: dotnet test ./TheCleanArch.sln -c Release --no-build
 
-      - run: echo ${{ steps.version_step.outputs.fullSemVer }}
+      - run: dotnet gitversion
+      - run: dotnet gitversion /output json /showvariable BuildMetaData
+      - run: dotnet gitversion /output json /showvariable SemVer
+      - run: dotnet gitversion /output json /showvariable FullSemVer
+      - run: dotnet gitversion /output json /showvariable ShortSha
+      - run: dotnet gitversion /output json /showvariable NuGetVersionV2
+      - run: dotnet gitversion /output json /showvariable CommitsSinceVersionSource
