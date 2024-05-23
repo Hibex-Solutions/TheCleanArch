@@ -34,3 +34,12 @@ jobs:
 
       - name: .NET Test
         run: dotnet test ./TheCleanArch.sln -c Release --no-build
+
+      - name: Show GitVersion
+        run: |
+          echo "GITVERSION_BUILDMETADATA=${GITVERSION_BUILDMETADATA}"
+          echo "GITVERSION_SEMVER=${GITVERSION_SEMVER}"
+          echo "GITVERSION_FULLSEMVER=${GITVERSION_FULLSEMVER}"
+          echo "GITVERSION_SHORTSHA=${GITVERSION_SHORTSHA}"
+          echo "GITVERSION_NUGETVERSIONV2=${GITVERSION_NUGETVERSIONV2}"
+          echo "GITVERSION_COMMITSSINCEVERSIONSOURCE=${GITVERSION_COMMITSSINCEVERSIONSOURCE}"
