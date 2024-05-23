@@ -16,18 +16,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # - name: Setup GitVersion
-      #   uses: gittools/actions/gitversion/setup@v1.1.0
-      #   with:
-      #     versionSpec: '5.x'
-
-      # - name: Determine Version
-      #   id: version_step
-      #   uses: gittools/actions/gitversion/execute@v1.1.0
-      #   with:
-      #     useConfigFile: true
-      #     additionalArguments: '/showConfig'
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -51,3 +39,11 @@ jobs:
       - run: dotnet gitversion /output json /showvariable ShortSha
       - run: dotnet gitversion /output json /showvariable NuGetVersionV2
       - run: dotnet gitversion /output json /showvariable CommitsSinceVersionSource
+
+      - run: |
+        build_meta_data=$(dotnet gitversion /output json /showvariable BuildMetaData)
+        if [ "$build_meta_data" == "" ]; then
+          echo "BuildMetaData é nulo!"
+        else
+          echo "BuildMetaData não nulo!"
+        fi
