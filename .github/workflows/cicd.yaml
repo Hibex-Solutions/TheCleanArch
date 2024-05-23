@@ -28,6 +28,10 @@ jobs:
           useConfigFile: true
           additionalArguments: '/showConfig'
 
+      - run: |
+          echo "FullSemVer (env.fullSemVer)            : ${{ env.fullSemVer }}"
+        name: Display GitVersion variables (without prefix)
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
