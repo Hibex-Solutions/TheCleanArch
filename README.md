@@ -10,3 +10,16 @@ Mais uma implementação da definição de _"Arquitetura Limpa"_ conforme escrit
 
 * [.NET 6](https://dotnet.microsoft.com/pt-br/download/dotnet/6.0)
 * [C# 10](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10)
+
+## Instruções de desenvolvimento
+
+Ao iniciar:
+```sh
+$ dotnet restore
+$ dotnet tool restore
+```
+
+Para exibir informações de versão:
+```sh
+$ dotnet gitversion
+```
