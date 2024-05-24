@@ -7,6 +7,7 @@ on:
 env:
   GITHUB_NUGET_SOURCE: 'https://nuget.pkg.github.com/Hibex-Solutions/index.json'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 jobs:
   build:
@@ -39,9 +40,10 @@ jobs:
 
       - name: Publish private packages
         run: |
-          major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
-          short_sha=$(dotnet gitversion /output json /showvariable ShortSha)
-          
-          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="ci.sha.$short_sha"  --output ./artifacts
-          ls -lha ./artifacts
-          dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
+          dotnet gitversion
+          #major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
+          #short_sha=$(dotnet gitversion /output json /showvariable ShortSha)
+          #
+          #dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="ci.sha.$short_sha"  --output ./artifacts
+          #ls -lha ./artifacts
+          #dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
