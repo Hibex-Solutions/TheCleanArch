@@ -1,10 +1,6 @@
-<div style="text-align:center">
-
 ![](docs/assets/CleanArchBanner.png)
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Hibex-Solutions/TheCleanArch/ci.yaml?style=flat-square&logo=github&label=CI) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Hibex-Solutions/TheCleanArch/cd.yaml?style=flat-square&logo=github&label=CD)
-
-</div>
 
 Mais uma implementação da definição de _"Arquitetura Limpa"_ conforme escrito por _Robert C. Martin (Uncle Bob)_ em seu artigo _"The Clean Architecture"_. Neste caso, implementamos para .NET.
 
