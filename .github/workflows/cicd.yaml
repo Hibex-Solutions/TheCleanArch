@@ -57,8 +57,11 @@ jobs:
 
       - name: Publish Preview
         if: ${{ steps.step_version.is_released_version == '0' }}
+        env:
+          VERSION_PREFIX: ${{ steps.step_version.version_prefix }}
+          VERSION_SUFFIX: ${{ steps.step_version.version_suffix }}
         run: |
-          dotnet pack -c Release /p:VersionPrefix="${{ steps.step_version.version_prefix }}" /p:VersionSuffix="${{ steps.step_version.version_suffix }}"  --output ./artifact
+          dotnet pack -c Release /p:VersionPrefix="$VERSION_PREFIX" /p:VersionSuffix="$VERSION_SUFFIX"  --output ./artifact
           ls -lha ./artifacts
 
       - name: Publish Release
