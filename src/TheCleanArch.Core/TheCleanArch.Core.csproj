@@ -3,7 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <PackageId>TheCleanArch.Core</PackageId>
-    <Description>Utilitários base TheCleanArch</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Description>Utilitários base para The Clean Arch</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="docs\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
 </Project>

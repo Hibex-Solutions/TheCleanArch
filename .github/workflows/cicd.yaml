@@ -61,6 +61,6 @@ jobs:
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
 
       - name: Release packages
-        if: ${{ steps.step_version.is_released_version == 'true' }}
+        if: ${{ steps.step_version.is_released_version }}
         run: echo "Publish release packages"
       
