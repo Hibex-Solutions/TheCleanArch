@@ -39,6 +39,9 @@ jobs:
             version_prefix=$(dotnet gitversion /output json /showvariable NuGetVersionV2)
             version_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
             version_sha=$(dotnet gitversion /output json /showvariable ShortSha)
+            echo "version_prefix=$version_prefix"
+            echo "version_metadata=$version_metadata"
+            echo "version_sha=$version_sha"
             echo "is_released_version=0" >> "$GITHUB_OUTPUT"
             echo "version_prefix=$version_prefix" >> "$GITHUB_OUTPUT"
             echo "version_suffix=preview$version_metadata.sha-$version_sha" >> "$GITHUB_OUTPUT"
