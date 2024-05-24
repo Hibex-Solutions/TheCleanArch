@@ -35,24 +35,21 @@ jobs:
       - name: Set up version
         id: version
         run: |
-          build_meta=$(dotnet gitversion /output json /showvariable BuildMetaData)
-          commits_since=$(dotnet gitversion /output json /showvariable CommitsSinceVersionSource)
-          prerelease_tag=$(dotnet gitversion /output json /showvariable PreReleaseTag)
-          prerelease_label=$(dotnet gitversion /output json /showvariable PreReleaseLabel)
-
-          if [ -z "$build_meta" ] && [ "$commits_since" = "0" ]; then
+          if [ "$GITHUB_REF" =~ "^refs/tags/v[0-9]+.[0-9]+.[0-9]+$"" ]; then
             echo "is_released=true" >> "$GITHUB_OUTPUT"
-
-            if [ -n "$prerelease_tag" ] && [ "$prerelease_label" =~ ^preview|rc$ ]; then
-              echo "is_prerelease=true" >> "$GITHUB_OUTPUT"
-              echo "is_public=true" >> "$GITHUB_OUTPUT"
-            elif [ -n "$prerelease_tag" ]; then
-              echo "is_prerelease=true" >> "$GITHUB_OUTPUT"
-              echo "is_public=false" >> "$GITHUB_OUTPUT"
-            else
-              echo "is_prerelease=false" >> "$GITHUB_OUTPUT"
-              echo "is_public=true" >> "$GITHUB_OUTPUT"
-            fi
+            echo "is_prerelease=false" >> "$GITHUB_OUTPUT"
+            echo "is_public=true" >> "$GITHUB_OUTPUT"
+          
+          elif [ "$GITHUB_REF" =~ "^refs/tags/v[0-9]+.[0-9]+.[0-9]+\+.*$"" ]; then
+            echo "is_released=true" >> "$GITHUB_OUTPUT"
+            echo "is_prerelease=true" >> "$GITHUB_OUTPUT"
+            echo "is_public=true" >> "$GITHUB_OUTPUT"
+          
+          elif [ "$GITHUB_REF" =~ "^refs/tags/v[0-9]+.[0-9]+.[0-9]+\-.*$"" ]; then
+            echo "is_released=true" >> "$GITHUB_OUTPUT"
+            echo "is_prerelease=true" >> "$GITHUB_OUTPUT"
+            echo "is_public=false" >> "$GITHUB_OUTPUT"
+          
           else
             echo "is_released=false" >> "$GITHUB_OUTPUT"
             echo "is_prerelease=false" >> "$GITHUB_OUTPUT"
@@ -67,30 +64,28 @@ jobs:
         if: ${{ steps.version.is_released }}
         run: dotnet test ./TheCleanArch.sln -c Release --no-build
 
-      - name: Publish private packages
+      - name: Publish ALPHA packages
         if: ${{ steps.version.is_released && steps.version.is_prerelease && !steps.version.is_public }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
-          release_tag=$(dotnet gitversion /output json /showvariable NuGetPreReleaseTagV2)
+          build_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
           short_sha=$(dotnet gitversion /output json /showvariable ShortSha)
           
-          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="$release_tag.sha.$short_sha"  --output ./artifacts
-          ls -lha ./artifacts
+          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="alpha.$build_metadata.sha.$short_sha"  --output ./artifacts
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
 
-      - name: Publish public packages
+      - name: Publish PREVIEW packages
         if: ${{ steps.version.is_released && steps.version.is_prerelease && steps.version.is_public }}
         env:
           NUGET_TOKEN: ${{ secrets.NUGET_THECLEANARCH_TOKEN }}
         run: |
           major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
-          release_tag=$(dotnet gitversion /output json /showvariable NuGetPreReleaseTagV2)
+          build_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
           short_sha=$(dotnet gitversion /output json /showvariable ShortSha)
           
-          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="$release_tag.sha.$short_sha"  --output ./artifacts
-          ls -lha ./artifacts
+          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="alpha.$build_metadata.sha.$short_sha"  --output ./artifacts
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$NUGET_SOURCE"  --api-key "${NUGET_TOKEN}"
 
       - name: Release packages
@@ -101,6 +96,5 @@ jobs:
           full_semver=$(dotnet gitversion /output json /showvariable FullSemVer)
           
           dotnet pack -c Release /p:Version="$full_semver" --output ./artifacts
-          ls -lha ./artifacts
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$NUGET_SOURCE"  --api-key "${NUGET_TOKEN}"
       
