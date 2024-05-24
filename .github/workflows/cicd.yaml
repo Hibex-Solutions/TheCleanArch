@@ -62,7 +62,7 @@ jobs:
           version_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
           version_sha=$(dotnet gitversion /output json /showvariable ShortSha)
           version_suffix="preview$version_metadata.sha-$version_sha"
-          dotnet pack -c Release /p:VersionPrefix="$version_prefix" /p:VersionSuffix="$version_suffix"  --output ./artifact
+          dotnet pack -c Release /p:VersionPrefix="$version_prefix" /p:VersionSuffix="$version_suffix"  --output ./artifacts
           ls -lha ./artifacts
 
       - name: Publish Release
