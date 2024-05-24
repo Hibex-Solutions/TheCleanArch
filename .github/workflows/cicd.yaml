@@ -58,7 +58,7 @@ jobs:
       - name: Publish Preview
         if: ${{ steps.step_version.is_released_version == '0' }}
         env:
-          VERSION_PREFIX: ${{ steps.step_version.version_prefix }}
+          VERSION_PREFIX: '${{ steps.step_version.version_prefix }}'
           VERSION_SUFFIX: ${{ steps.step_version.version_suffix }}
         run: |
           env
