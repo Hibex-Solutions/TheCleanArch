@@ -47,7 +47,7 @@ jobs:
         run: dotnet test ./TheCleanArch.sln -c Release --no-build
 
       - name: Publish preview packages
-        if: ${{ steps.step_version.is_released_versio == 'false' }}
+        if: ${{ steps.step_version.is_released_version == 'false' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
