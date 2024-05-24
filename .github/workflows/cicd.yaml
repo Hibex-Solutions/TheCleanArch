@@ -46,10 +46,10 @@ jobs:
         run: dotnet test ./TheCleanArch.sln -c Release --no-build
 
       - name: Publish Preview
-        if: ${{ steps.step_version.is_released_version == "0" }}
+        if: ${{ steps.step_version.is_released_version == '0' }}
         run: echo "Publish preview packages"
 
       - name: Publish Release
-        if: ${{ steps.step_version.is_released_version == "1" }}
+        if: ${{ steps.step_version.is_released_version == '1' }}
         run: echo "Publish release packages"
       
