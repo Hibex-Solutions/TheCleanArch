@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup .NET
+      - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 6.0.x
@@ -30,7 +30,7 @@ jobs:
           dotnet tool restore
           dotnet restore ./TheCleanArch.sln
 
-      - name: Determine Version
+      - name: Set up version
         id: step_version
         run: |
           build_meta_data=$(dotnet gitversion /output json /showvariable BuildMetaData)
@@ -46,8 +46,8 @@ jobs:
       - name: Test
         run: dotnet test ./TheCleanArch.sln -c Release --no-build
 
-      - name: Publish Preview
-        if: ${{ steps.step_version.is_released_version }}
+      - name: Publish preview packages
+        if: ${{ steps.step_version.is_released_versio == 'false' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -60,7 +60,7 @@ jobs:
           
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
 
-      - name: Publish Release
-        if: ${{ steps.step_version.is_released_version == '1' }}
+      - name: Release packages
+        if: ${{ steps.step_version.is_released_version == 'true' }}
         run: echo "Publish release packages"
       
