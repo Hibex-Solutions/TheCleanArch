@@ -61,6 +61,7 @@ jobs:
           VERSION_PREFIX: ${{ steps.step_version.version_prefix }}
           VERSION_SUFFIX: ${{ steps.step_version.version_suffix }}
         run: |
+          env
           dotnet pack -c Release /p:VersionPrefix="$VERSION_PREFIX" /p:VersionSuffix="$VERSION_SUFFIX"  --output ./artifact
           ls -lha ./artifacts
 
