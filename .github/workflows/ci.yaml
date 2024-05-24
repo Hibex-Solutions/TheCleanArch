@@ -41,10 +41,11 @@ jobs:
         run: dotnet test ./TheCleanArch.sln -c Release --no-build
 
       - name: Publish private packages
+        if: ${{ matrix.os == 'ubuntu-22.04' }}
         run: |
           major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
+          build_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
           short_sha=$(dotnet gitversion /output json /showvariable ShortSha)
           
-          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="ci.sha.$short_sha"  --output ./artifacts
-          ls -lha ./artifacts
+          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="ci$build_metadata.sha.$short_sha"  --output ./artifacts
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
