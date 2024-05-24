@@ -36,7 +36,12 @@ jobs:
           if [ "$build_meta_data" == "" ]; then
             echo "is_released_version=1" >> "$GITHUB_OUTPUT"
           else
+            version_prefix=$(dotnet gitversion /output json /showvariable NuGetVersionV2)
+            version_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
+            version_sha=$(dotnet gitversion /output json /showvariable ShortSha)
             echo "is_released_version=0" >> "$GITHUB_OUTPUT"
+            echo "version_prefix=$version_prefix" >> "$GITHUB_OUTPUT"
+            echo "version_suffix=preview$version_metadata.sha-$version_sha" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build
@@ -47,7 +52,9 @@ jobs:
 
       - name: Publish Preview
         if: ${{ steps.step_version.is_released_version == '0' }}
-        run: echo "Publish preview packages"
+        run: |
+          dotnet pack -c Release /p:VersionPrefix="${{ steps.step_version.version_prefix }}" /p:VersionSuffix="${{ steps.step_version.version_suffix }}"  --output ./artifact
+          ls -lha ./artifacts
 
       - name: Publish Release
         if: ${{ steps.step_version.is_released_version == '1' }}
