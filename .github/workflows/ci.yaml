@@ -44,4 +44,4 @@ jobs:
           
           dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="ci.sha.$short_sha"  --output ./artifacts
           ls -lha ./artifacts
-          #dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
+          dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
