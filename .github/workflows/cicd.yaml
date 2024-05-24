@@ -42,9 +42,11 @@ jobs:
             echo "version_prefix=$version_prefix"
             echo "version_metadata=$version_metadata"
             echo "version_sha=$version_sha"
+            echo "GITHUB_OUTPUT=$GITHUB_OUTPUT"
             echo "is_released_version=0" >> "$GITHUB_OUTPUT"
             echo "version_prefix=$version_prefix" >> "$GITHUB_OUTPUT"
             echo "version_suffix=preview$version_metadata.sha-$version_sha" >> "$GITHUB_OUTPUT"
+            cat "$GITHUB_OUTPUT"
           fi
 
       - name: Build
