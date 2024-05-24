@@ -21,6 +21,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
@@ -40,10 +42,9 @@ jobs:
 
       - name: Publish private packages
         run: |
-          dotnet gitversion
-          #major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
-          #short_sha=$(dotnet gitversion /output json /showvariable ShortSha)
-          #
-          #dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="ci.sha.$short_sha"  --output ./artifacts
-          #ls -lha ./artifacts
-          #dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
+          major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
+          short_sha=$(dotnet gitversion /output json /showvariable ShortSha)
+          
+          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="ci.sha.$short_sha"  --output ./artifacts
+          ls -lha ./artifacts
+          dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
