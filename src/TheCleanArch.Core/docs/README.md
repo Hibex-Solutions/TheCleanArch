@@ -1,8 +1,12 @@
-# TheCleanArch.Core
+<p align="center">
+      <img src="https://raw.githubusercontent.com/Hibex-Solutions/TheCleanArch/main/docs/assets/CleanArchBanner.png" alt="The Clean Arch Project for .NET" />
+</p>
+
+## TheCleanArch.Core
 
 Utilitários base para The Clean Arch.
 
-## Guard Clause
+### Guard Clause
 
 > Saiba mais em https://deviq.com/design-patterns/guard-clause
 
