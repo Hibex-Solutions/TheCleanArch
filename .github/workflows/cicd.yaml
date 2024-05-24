@@ -6,12 +6,13 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]"
     branches: [main]
 
+env:
+  GITHUB_NUGET_SOURCE: https://nuget.pkg.github.com/Hibex-Solutions/index.json
+
 jobs:
   build:
     runs-on: ubuntu-22.04
 
-    # outputs:
-    #   is_released_version: ${{ steps.step_version.is_released_version }}
     steps:
 
       - name: Checkout
@@ -34,19 +35,9 @@ jobs:
         run: |
           build_meta_data=$(dotnet gitversion /output json /showvariable BuildMetaData)
           if [ "$build_meta_data" == "" ]; then
-            echo "is_released_version=1" >> "$GITHUB_OUTPUT"
+            echo "is_released_version=true" >> "$GITHUB_OUTPUT"
           else
-            version_prefix=$(dotnet gitversion /output json /showvariable NuGetVersionV2)
-            version_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
-            version_sha=$(dotnet gitversion /output json /showvariable ShortSha)
-            echo "version_prefix=$version_prefix"
-            echo "version_metadata=$version_metadata"
-            echo "version_sha=$version_sha"
-            echo "GITHUB_OUTPUT=$GITHUB_OUTPUT"
-            echo "is_released_version=0" >> "$GITHUB_OUTPUT"
-            echo "version_prefix=$version_prefix" >> "$GITHUB_OUTPUT"
-            echo "version_suffix=preview$version_metadata.sha-$version_sha" >> "$GITHUB_OUTPUT"
-            cat "$GITHUB_OUTPUT"
+            echo "is_released_version=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build
@@ -56,14 +47,18 @@ jobs:
         run: dotnet test ./TheCleanArch.sln -c Release --no-build
 
       - name: Publish Preview
-        if: ${{ steps.step_version.is_released_version == '0' }}
+        if: ${{ steps.step_version.is_released_version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           version_prefix=$(dotnet gitversion /output json /showvariable NuGetVersionV2)
           version_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
           version_sha=$(dotnet gitversion /output json /showvariable ShortSha)
           version_suffix="preview$version_metadata.sha-$version_sha"
+          
           dotnet pack -c Release /p:VersionPrefix="$version_prefix" /p:VersionSuffix="$version_suffix"  --output ./artifacts
-          ls -lha ./artifacts
+          
+          dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
 
       - name: Publish Release
         if: ${{ steps.step_version.is_released_version == '1' }}
