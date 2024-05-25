@@ -71,7 +71,7 @@ jobs:
 
       - name: Check outputs
         env:
-          IS_RELEASED: ${{ steps.version.is_released }}
+          IS_RELEASED: ${{ steps.version.outputs.is_released }}
           IS_PRERELEASE: ${{ steps.version.is_prerelease }}
           IS_PUBLIC: ${{ steps.version.is_public }}
         run: |
