@@ -34,17 +34,17 @@ jobs:
       - name: Set up version
         id: version
         run: |
-          if [ "$GITHUB_REF" =~ "^refs/tags/v[0-9]+.[0-9]+.[0-9]+$"" ]; then
+          if [ "$GITHUB_REF" =~ "^refs/tags/v[0-9]+.[0-9]+.[0-9]+$" ]; then
             echo "is_released=true" >> "$GITHUB_OUTPUT"
             echo "is_prerelease=false" >> "$GITHUB_OUTPUT"
             echo "is_public=true" >> "$GITHUB_OUTPUT"
           
-          elif [ "$GITHUB_REF" =~ "^refs/tags/v[0-9]+.[0-9]+.[0-9]+\+.*$"" ]; then
+          elif [ "$GITHUB_REF" =~ "^refs/tags/v[0-9]+.[0-9]+.[0-9]+\+.*$" ]; then
             echo "is_released=true" >> "$GITHUB_OUTPUT"
             echo "is_prerelease=true" >> "$GITHUB_OUTPUT"
             echo "is_public=true" >> "$GITHUB_OUTPUT"
           
-          elif [ "$GITHUB_REF" =~ "^refs/tags/v[0-9]+.[0-9]+.[0-9]+\-.*$"" ]; then
+          elif [ "$GITHUB_REF" =~ "^refs/tags/v[0-9]+.[0-9]+.[0-9]+\-.*$" ]; then
             echo "is_released=true" >> "$GITHUB_OUTPUT"
             echo "is_prerelease=true" >> "$GITHUB_OUTPUT"
             echo "is_public=false" >> "$GITHUB_OUTPUT"
