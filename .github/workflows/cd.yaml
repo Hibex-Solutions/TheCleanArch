@@ -97,7 +97,7 @@ jobs:
           
           if [[ -n "$nuget_tag" ]]; then
             version_suffix="$nuget_tag"
-          elif if [[ -n "$build_metadata" ]]; then
+          elif [[ -n "$build_metadata" ]]; then
             version_suffix="alpha.$build_metadata"
           else
             version_suffix="alpha"
