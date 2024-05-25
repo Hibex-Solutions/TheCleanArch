@@ -3,6 +3,9 @@ name: Continuous Integration
 on:
   push:
     branches: [main]
+      paths:
+        - '!docs/**'
+        - '!.github/**'
   
 env:
   GITHUB_NUGET_SOURCE: 'https://nuget.pkg.github.com/Hibex-Solutions/index.json'
