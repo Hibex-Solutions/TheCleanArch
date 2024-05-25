@@ -92,9 +92,18 @@ jobs:
         run: |
           major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
           build_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
+          nuget_tag=$(dotnet gitversion /output json /showvariable NuGetPreReleaseTagV2)
           short_sha=$(dotnet gitversion /output json /showvariable ShortSha)
           
-          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="alpha.$build_metadata.sha.$short_sha"  --output ./artifacts
+          if [[ -n "$nuget_tag" ]]; then
+            version_suffix="$nuget_tag"
+          elif if [[ -n "$build_metadata" ]]; then
+            version_suffix="alpha.$build_metadata"
+          else
+            version_suffix="alpha"
+          fi
+          
+          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="$version_suffix.sha.$short_sha"  --output ./artifacts
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
 
       - name: Publish PREVIEW packages
