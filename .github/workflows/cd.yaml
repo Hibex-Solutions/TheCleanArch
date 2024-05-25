@@ -69,9 +69,15 @@ jobs:
           echo "GITHUB_OUTPUT=$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
 
-      - run: echo "steps.version.is_released = ${{ steps.version.is_released }}"
-      - run: echo "steps.version.is_prerelease = ${{ steps.version.is_prerelease }}"
-      - run: echo "steps.version.is_public = ${{ steps.version.is_public }}"
+      - name: Check outputs
+        env:
+          IS_RELEASED: ${{ steps.version.is_released }}
+          IS_PRERELEASE: ${{ steps.version.is_prerelease }}
+          IS_PUBLIC: ${{ steps.version.is_public }}
+        run: |
+          echo "IS_RELEASED = $IS_RELEASED"
+          echo "IS_PRERELEASE = $IS_PRERELEASE"
+          echo "IS_PUBLIC = $IS_PUBLIC"
 
       - name: Build
         if: ${{ steps.version.is_released }}
