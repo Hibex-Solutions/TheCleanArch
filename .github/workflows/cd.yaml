@@ -5,10 +5,13 @@ on:
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+"
       - "v[0-9]+.[0-9]+.[0-9]+-*"
+      - "v[0-9]+.[0-9]+.[0-9]++*"
 
 env:
   GITHUB_NUGET_SOURCE: 'https://nuget.pkg.github.com/Hibex-Solutions/index.json'
   NUGET_SOURCE: 'https://api.nuget.org/v3/index.json'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NUGET_TOKEN: ${{ secrets.NUGET_THECLEANARCH_TOKEN }}
 
 jobs:
   build:
@@ -34,21 +37,25 @@ jobs:
       - name: Set up version
         id: version
         run: |
-          if [ "$GITHUB_REF" =~ "^refs/tags/v[0-9]+.[0-9]+.[0-9]+$" ]; then
+          # v0.0.0[+{*}]
+          if [[ "$GITHUB_REF" =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+(\+.*)?$ ]]; then
             echo "is_released=true" >> "$GITHUB_OUTPUT"
             echo "is_prerelease=false" >> "$GITHUB_OUTPUT"
             echo "is_public=true" >> "$GITHUB_OUTPUT"
           
-          elif [ "$GITHUB_REF" =~ "^refs/tags/v[0-9]+.[0-9]+.[0-9]+\+.*$" ]; then
+          # v0.0.0-{preview|rc}{*}
+          elif [[ "$GITHUB_REF" =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+\-[rc|preview].*$ ]]; then
             echo "is_released=true" >> "$GITHUB_OUTPUT"
             echo "is_prerelease=true" >> "$GITHUB_OUTPUT"
             echo "is_public=true" >> "$GITHUB_OUTPUT"
           
-          elif [ "$GITHUB_REF" =~ "^refs/tags/v[0-9]+.[0-9]+.[0-9]+\-.*$" ]; then
+          # v0.0.0-{*}
+          elif [[ "$GITHUB_REF" =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+\-.*$ ]]; then
             echo "is_released=true" >> "$GITHUB_OUTPUT"
             echo "is_prerelease=true" >> "$GITHUB_OUTPUT"
             echo "is_public=false" >> "$GITHUB_OUTPUT"
           
+          # {*}
           else
             echo "is_released=false" >> "$GITHUB_OUTPUT"
             echo "is_prerelease=false" >> "$GITHUB_OUTPUT"
@@ -65,8 +72,6 @@ jobs:
 
       - name: Publish ALPHA packages
         if: ${{ steps.version.is_released && steps.version.is_prerelease && !steps.version.is_public }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
           build_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
@@ -77,20 +82,16 @@ jobs:
 
       - name: Publish PREVIEW packages
         if: ${{ steps.version.is_released && steps.version.is_prerelease && steps.version.is_public }}
-        env:
-          NUGET_TOKEN: ${{ secrets.NUGET_THECLEANARCH_TOKEN }}
         run: |
           major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
           build_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
           short_sha=$(dotnet gitversion /output json /showvariable ShortSha)
           
-          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="alpha.$build_metadata.sha.$short_sha"  --output ./artifacts
+          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="preview.$build_metadata.sha.$short_sha"  --output ./artifacts
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$NUGET_SOURCE"  --api-key "${NUGET_TOKEN}"
 
       - name: Release packages
         if: ${{ steps.version.is_released && !steps.version.is_prerelease && steps.version.is_public }}
-        env:
-          NUGET_TOKEN: ${{ secrets.NUGET_THECLEANARCH_TOKEN }}
         run: |
           full_semver=$(dotnet gitversion /output json /showvariable FullSemVer)
           
