@@ -118,6 +118,7 @@ jobs:
           fi
           
           dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="$version_suffix.sha.$short_sha"  --output ./artifacts
+          dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$NUGET_SOURCE"  --api-key "${NUGET_TOKEN}"
 
       - name: Release packages
@@ -126,5 +127,6 @@ jobs:
           full_semver=$(dotnet gitversion /output json /showvariable FullSemVer)
           
           dotnet pack -c Release /p:Version="$full_semver" --output ./artifacts
+          dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$NUGET_SOURCE"  --api-key "${NUGET_TOKEN}"
       
