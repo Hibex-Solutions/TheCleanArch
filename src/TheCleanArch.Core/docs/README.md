@@ -13,11 +13,18 @@ Use para garantir a consistência dos parâmetros em seus métodos.
 ```c#
 using TheCleanArch.Core.Patterns.GuardClauses;
 
-void MyMethod(object param1, string param2)
+class MyClass
 {
-    _ = Guard.NotNullArgument(param1, nameof(param1));
-    _ = Guard.NotEmptyArgument(param1, nameof(param2));
+    readonly MyService _myService;
 
-    // ...
+    MyClass(MyService myService, int param1, string param2)
+    {
+        _myService = Guard.NotNullArgument(myService, nameof(myService));
+
+        _ = Guard.NotNullArgument(param1, nameof(param1));
+        _ = Guard.NotEmptyArgument(param1, nameof(param2));
+
+        // ...
+    }
 }
 ```
