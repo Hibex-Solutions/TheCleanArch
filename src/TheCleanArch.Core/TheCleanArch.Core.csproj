@@ -4,11 +4,13 @@
     <TargetFramework>net6.0</TargetFramework>
     <PackageId>TheCleanArch.Core</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>CleanArchIcon.png</PackageIcon>
     <Description>Utilitários base para The Clean Arch</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="docs\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\docs\assets\CleanArchIcon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
