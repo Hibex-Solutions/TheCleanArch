@@ -3,6 +3,3 @@ ignore:
   sha: []
 merge-message-formats: {}
 commit-message-incrementing: Enabled
-major-version-bump-message: '\+release:\s?major'
-minor-version-bump-message: '\+release:\s?minor'
-patch-version-bump-message: '\+release:\s?patch'
