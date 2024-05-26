@@ -64,6 +64,16 @@ jobs:
             echo "is_public=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Check outputs
+        env:
+          IS_RELEASED: ${{ steps.version.outputs.is_released }}
+          IS_PRERELEASE: ${{ steps.version.outputs.is_prerelease }}
+          IS_PUBLIC: ${{ steps.version.outputs.is_public }}
+        run: |
+          echo "IS_RELEASED = $IS_RELEASED"
+          echo "IS_PRERELEASE = $IS_PRERELEASE"
+          echo "IS_PUBLIC = $IS_PUBLIC"
+      
       - name: Build
         if: ${{ steps.version.outputs.is_released }}
         run: dotnet build ./TheCleanArch.sln -c Release --no-restore
