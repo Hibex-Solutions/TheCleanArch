@@ -35,8 +35,6 @@ jobs:
       - name: Set up version
         id: version
         run: |
-          echo "GITHUB_REF=$GITHUB_REF"
-
           # v0.0.0[+{*}]
           if [[ "$GITHUB_REF" =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+(\+.*)?$ ]]; then
             echo "IF v0.0.0[+{*}]!"
@@ -65,19 +63,6 @@ jobs:
             echo "is_prerelease=false" >> "$GITHUB_OUTPUT"
             echo "is_public=false" >> "$GITHUB_OUTPUT"
           fi
-
-          echo "GITHUB_OUTPUT=$GITHUB_OUTPUT"
-          cat "$GITHUB_OUTPUT"
-
-      - name: Check outputs
-        env:
-          IS_RELEASED: ${{ steps.version.outputs.is_released }}
-          IS_PRERELEASE: ${{ steps.version.outputs.is_prerelease }}
-          IS_PUBLIC: ${{ steps.version.outputs.is_public }}
-        run: |
-          echo "IS_RELEASED = $IS_RELEASED"
-          echo "IS_PRERELEASE = $IS_PRERELEASE"
-          echo "IS_PUBLIC = $IS_PUBLIC"
 
       - name: Build
         if: ${{ steps.version.outputs.is_released }}
@@ -111,9 +96,18 @@ jobs:
         run: |
           major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
           build_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
+          nuget_tag=$(dotnet gitversion /output json /showvariable NuGetPreReleaseTagV2)
           short_sha=$(dotnet gitversion /output json /showvariable ShortSha)
           
-          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="preview.$build_metadata.sha.$short_sha"  --output ./artifacts
+          if [[ -n "$nuget_tag" ]]; then
+            version_suffix="$nuget_tag"
+          elif [[ -n "$build_metadata" ]]; then
+            version_suffix="preview.$build_metadata"
+          else
+            version_suffix="preview"
+          fi
+          
+          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="$version_suffix.sha.$short_sha"  --output ./artifacts
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$NUGET_SOURCE"  --api-key "${NUGET_TOKEN}"
 
       - name: Release packages
