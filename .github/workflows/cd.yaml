@@ -85,7 +85,7 @@ jobs:
       - name: Publish private packages
         if: ${{ steps.version.outputs.is_released == 'true' && steps.version.outputs.is_prerelease == 'true' && steps.version.outputs.is_public == 'false' }}
         run: |
-          major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
+          version_prefix=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
           build_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
           nuget_tag=$(dotnet gitversion /output json /showvariable NuGetPreReleaseTagV2)
           short_sha=$(dotnet gitversion /output json /showvariable ShortSha)
@@ -97,14 +97,18 @@ jobs:
           else
             version_suffix="alpha"
           fi
+
+          if ! [[ "$version_suffix" =~ ^beta|rc[0-9]+$ ]]; then
+            version_suffix="$version_suffix.sha.$short_sha"
+          fi
           
-          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="$version_suffix.sha.$short_sha"  --output ./artifacts
+          dotnet pack -c Release /p:VersionPrefix="$version_prefix" /p:VersionSuffix="$version_suffix"  --output ./artifacts
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
 
       - name: Publish public packages
         if: ${{ steps.version.outputs.is_released == 'true' && steps.version.outputs.is_prerelease == 'true' && steps.version.outputs.is_public == 'true' }}
         run: |
-          major_minor_patch=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
+          version_prefix=$(dotnet gitversion /output json /showvariable MajorMinorPatch)
           build_metadata=$(dotnet gitversion /output json /showvariable BuildMetaDataPadded)
           nuget_tag=$(dotnet gitversion /output json /showvariable NuGetPreReleaseTagV2)
           short_sha=$(dotnet gitversion /output json /showvariable ShortSha)
@@ -116,8 +120,12 @@ jobs:
           else
             version_suffix="beta"
           fi
+
+          if ! [[ "$version_suffix" =~ ^beta|rc[0-9]+$ ]]; then
+            version_suffix="$version_suffix.sha.$short_sha"
+          fi
           
-          dotnet pack -c Release /p:VersionPrefix="$major_minor_patch" /p:VersionSuffix="$version_suffix.sha.$short_sha"  --output ./artifacts
+          dotnet pack -c Release /p:VersionPrefix="$version_prefix" /p:VersionSuffix="$version_suffix"  --output ./artifacts
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$GITHUB_NUGET_SOURCE"  --api-key "${GITHUB_TOKEN}"
           dotnet nuget push ./artifacts/TheCleanArch.*.nupkg --source "$NUGET_SOURCE"  --api-key "${NUGET_TOKEN}"
 
