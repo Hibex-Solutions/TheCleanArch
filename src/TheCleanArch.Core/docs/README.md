@@ -1,6 +1,4 @@
-<p align="center">
-      <img src="https://raw.githubusercontent.com/Hibex-Solutions/TheCleanArch/main/docs/assets/CleanArchBanner.png" alt="The Clean Arch Project for .NET" />
-</p>
+![The Clean Arch for .NET](https://raw.githubusercontent.com/Hibex-Solutions/TheCleanArch/main/docs/assets/CleanArchBanner.png)
 
 ## TheCleanArch.Core
 
