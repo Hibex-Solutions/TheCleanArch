@@ -1,6 +1,8 @@
 ![](docs/assets/CleanArchBanner.png)
 
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Hibex-Solutions/TheCleanArch/ci.yaml?style=flat-square&logo=github&label=CI) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Hibex-Solutions/TheCleanArch/cd.yaml?style=flat-square&logo=github&label=CD) ![GitHub Tag](https://img.shields.io/github/v/tag/Hibex-Solutions/TheCleanArch?include_prereleases&sort=semver&style=flat-square&logo=github) 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Hibex-Solutions/TheCleanArch/ci.yaml?style=flat-square&logo=github&label=CI) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Hibex-Solutions/TheCleanArch/cd.yaml?style=flat-square&logo=github&label=CD) ![GitHub Tag](https://img.shields.io/github/v/tag/Hibex-Solutions/TheCleanArch?include_prereleases&sort=semver&style=flat-square&logo=github) ![GitHub License](https://img.shields.io/github/license/Hibex-Solutions/TheCleanArch?style=flat-square&logo=apache) ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/Hibex-Solutions/TheCleanArch?style=flat-square&logo=github&label=commits)
+
+
 
 Mais uma implementação da definição de _"Arquitetura Limpa"_ conforme escrito por _Robert C. Martin (Uncle Bob)_ em seu artigo _"The Clean Architecture"_. Neste caso, implementamos para .NET.
 
