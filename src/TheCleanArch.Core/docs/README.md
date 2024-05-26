@@ -22,7 +22,7 @@ class MyClass
         _myService = Guard.NotNullArgument(myService, nameof(myService));
 
         _ = Guard.NotNullArgument(param1, nameof(param1));
-        _ = Guard.NotEmptyArgument(param1, nameof(param2));
+        _ = Guard.NotEmptyArgument(param2, nameof(param2));
 
         // ...
     }
