@@ -1,4 +1,4 @@
-![The Clean Arch for .NET](https://raw.githubusercontent.com/Hibex-Solutions/TheCleanArch/main/docs/assets/CleanArchBanner.png)
+![The Clean Arch for .NET](https://raw.githubusercontent.com/Hibex-Solutions/TheCleanArch/main/docs/images/CleanArchBanner.png)
 
 ## TheCleanArch.Core
 
