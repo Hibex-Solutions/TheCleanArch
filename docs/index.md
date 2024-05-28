@@ -1,7 +1,5 @@
-# This is the **HOMEPAGE**.
+![The Clean Arch for .NET](images/CleanArchBannerSmall.png)
 
-Refer to [Markdown](http://daringfireball.net/projects/markdown/) for how to write markdown files.
+Essa é mais uma implementação da definição de _"Arquitetura Limpa"_ conforme escrito por _Robert C. Martin (Uncle Bob)_ em seu artigo _"The Clean Architecture"_. Neste caso, implementamos para .NET.
 
-## Quick Start Notes:
-
-1. Add images to the *images* folder if the file is referencing an image.
+Leia [nossa documentação](articles/introduction.md) ou vá direto ao [_Guia de Início Rápido_](articles/getting-started.md).
