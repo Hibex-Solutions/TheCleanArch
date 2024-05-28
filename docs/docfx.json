@@ -61,10 +61,7 @@
         "priority": 0.5,
         "changefreq": "daily"
       },
-      "_gitContribute": {
-        "repo": "https://github.com/Hibex-Solutions/TheCleanArch",
-        "branch": "main"
-      }
+      "_disableContribution": true
     }
   }
 }
