@@ -1,1 +1,1 @@
-# Começando
+# Início rápido

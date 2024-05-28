@@ -51,7 +51,7 @@
       "_appName": "The Clean Arch",
       "_appTitle": "The Clean Arch Project",
       "_enableSearch": true,
-      "pdf": true,
+      "pdf": false,
       "_lang": "pt-br",
       "_appLogoPath": "images/CleanArchIcon.svg",
       "_appFaviconPath": "images/CleanArchIcon.png",
