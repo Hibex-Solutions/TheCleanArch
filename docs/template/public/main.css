@@ -1,0 +1,9 @@
+body {
+    --bs-link-color-rgb: 44, 90, 160 !important;
+    --bs-link-hover-color-rgb: 95, 141, 211 !important;
+}
+
+#logo {
+    max-height: 2em;
+    margin-right: 0.5em;
+}
