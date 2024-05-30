@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <PackageId>TheCleanArch.Core</PackageId>
+    <PackageId>TheCleanArch.Application</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>TheCleanArchIcon.png</PackageIcon>
-    <Description>Utilitários base "The Clean Arch"</Description>
+    <Description>Utilitários da camada de regras de aplicação "The Clean Arch"</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Bcl.TimeProvider" Version="8.0.1" />
+    <ProjectReference Include="..\TheCleanArch.Enterprise\TheCleanArch.Enterprise.csproj" />
   </ItemGroup>
 
 </Project>

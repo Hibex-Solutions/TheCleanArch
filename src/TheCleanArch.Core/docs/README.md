@@ -2,7 +2,7 @@
 
 ## TheCleanArch.Core
 
-Utilitários base para The Clean Arch.
+Utilitários base "The Clean Arch".
 
 ### Guard Clause
 
