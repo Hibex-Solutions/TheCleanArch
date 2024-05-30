@@ -13,6 +13,9 @@ Mais uma implementação da definição de _"Arquitetura Limpa"_ conforme escrit
 | Pacote | Versão |
 | ------ | ----------------- |
 | TheCleanArch.Core  | ![NuGet Version](https://img.shields.io/nuget/v/TheCleanArch.Core?style=flat-square&logo=nuget) ![NuGet Version](https://img.shields.io/nuget/vpre/TheCleanArch.Core?style=flat-square&logo=nuget) |
+| TheCleanArch.Enterprise  | ![NuGet Version](https://img.shields.io/nuget/v/TheCleanArch.Enterprise?style=flat-square&logo=nuget) ![NuGet Version](https://img.shields.io/nuget/vpre/TheCleanArch.Enterprise?style=flat-square&logo=nuget) |
+| TheCleanArch.Application  | ![NuGet Version](https://img.shields.io/nuget/v/TheCleanArch.Application?style=flat-square&logo=nuget) ![NuGet Version](https://img.shields.io/nuget/vpre/TheCleanArch.Application?style=flat-square&logo=nuget) |
+| TheCleanArch.InterfaceAdapter  | ![NuGet Version](https://img.shields.io/nuget/v/TheCleanArch.InterfaceAdapter?style=flat-square&logo=nuget) ![NuGet Version](https://img.shields.io/nuget/vpre/TheCleanArch.InterfaceAdapter?style=flat-square&logo=nuget) |
 
 ## Requisitos mínimos
 
@@ -23,11 +26,12 @@ Mais uma implementação da definição de _"Arquitetura Limpa"_ conforme escrit
 
 Ao iniciar:
 ```sh
-$ dotnet restore
 $ dotnet tool restore
+$ dotnet restore
 ```
 
-Para exibir informações de versão:
+Ao codificar:
 ```sh
-$ dotnet gitversion
+$ dotnet build
+$ dotnet test
 ```
