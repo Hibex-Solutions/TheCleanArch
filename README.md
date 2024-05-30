@@ -1,4 +1,4 @@
-![The Clean Arch for .NET](docs/images/CleanArchBanner.png)
+![The Clean Arch for .NET](docs/images/TheCleanArchBanner.png)
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Hibex-Solutions/TheCleanArch/ci.yaml?style=flat-square&logo=github&label=CI) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Hibex-Solutions/TheCleanArch/cd.yaml?style=flat-square&logo=github&label=CD) ![GitHub Tag](https://img.shields.io/github/v/tag/Hibex-Solutions/TheCleanArch?include_prereleases&style=flat-square&logo=github) ![GitHub License](https://img.shields.io/github/license/Hibex-Solutions/TheCleanArch?style=flat-square&logo=apache) ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/Hibex-Solutions/TheCleanArch?style=flat-square&logo=github&label=commits)
 

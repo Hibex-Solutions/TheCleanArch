@@ -53,8 +53,8 @@
       "_enableSearch": true,
       "pdf": true,
       "_lang": "pt-br",
-      "_appLogoPath": "images/CleanArchIcon.svg",
-      "_appFaviconPath": "images/CleanArchIcon.png",
+      "_appLogoPath": "images/TheCleanArchIcon.svg",
+      "_appFaviconPath": "images/TheCleanArchIcon.png",
       "_appFooter": "<span>Apoiado por <a href=\"https://hibex.co\">Hibex Solutions</a>. Feito com <a href=\"https://dotnet.github.io/docfx\">docfx</a></span>",
       "sitemap": {
         "baseUrl": "https://hibex-solutions.github.io/TheCleanArch",
