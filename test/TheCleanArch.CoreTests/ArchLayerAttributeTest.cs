@@ -42,7 +42,9 @@ public class ArchLayerTest
         Assert.Contains(compileResult.Diagnostics, d => string.Equals(d.Id, "cs0592", StringComparison.OrdinalIgnoreCase));
     }
 
+#pragma warning disable CA2211 // Non-constant fields should not be visible
     public static TheoryData<string> CodesWithInvalidUseOfArchLayerAttribute = new()
+#pragma warning restore CA2211 // Non-constant fields should not be visible
     {
         // Não pode ser atribuído a parâmetros genéricos
         @"

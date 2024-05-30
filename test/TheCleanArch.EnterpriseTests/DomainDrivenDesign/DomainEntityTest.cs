@@ -6,7 +6,7 @@ using TheCleanArch.Enterprise.DomainDrivenDesign;
 
 namespace TheCleanArch.EnterpriseTests;
 
-[Trait("target", nameof(DomainEntity))]
+[Trait("target", "DomainEntity<>")]
 public class DomainEntityTest
 {
     [Fact(DisplayName = "Deve haver uma fila de eventos vazia ao criar")]
@@ -70,11 +70,35 @@ public class DomainEntityTest
         Assert.Equal("domainEvent", exception.ParamName);
     }
 
-    #region Stubs
-    private class MyStubEntity : DomainEntity
+    [Fact(DisplayName = "Um identificador é obrigatório para uma entidade")]
+    public void AnIdentifierIsMandatoryForAnEntity()
     {
+        int id1 = 1;
+        Guid id2 = Guid.NewGuid();
+
+        var eInt = new MyIntEntity(id1);
+        var eGuid = new MyGuidEntity(id2);
+
+        Assert.Equal(id1, eInt.Id);
+        Assert.Equal(id2, eGuid.Id);
+    }
+
+    #region Stubs
+    private class MyStubEntity : DomainEntity<int>
+    {
+        public MyStubEntity() : base(default) { }
+
         public void AddEvent(DomainEvent domainEvent) => AddDomainEvent(domainEvent);
         public IEnumerable<DomainEvent> GetAllEvents() => GetDomainEvents();
+    }
+
+    private class MyIntEntity : DomainEntity<int>
+    {
+        public MyIntEntity(int id) : base(id) { }
+    }
+    private class MyGuidEntity : DomainEntity<Guid>
+    {
+        public MyGuidEntity(Guid id) : base(id) { }
     }
     #endregion
 }
