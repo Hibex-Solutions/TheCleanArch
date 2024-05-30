@@ -12,7 +12,7 @@ public static class ArchLayerNames
     /// <summary>
     /// Nome original da camada de regras organizacionais
     /// </summary>
-    public static class Enterprise
+    public class Enterprise
     {
         public const ArchLayerId Id = ArchLayerId.Enterprise;
         public const string Name = nameof(Enterprise);
