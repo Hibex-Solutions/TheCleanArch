@@ -9,7 +9,8 @@ namespace TheCleanArch.Enterprise.DomainDrivenDesign;
 /// <summary>
 /// Uma entidade de domínio
 /// </summary>
-public abstract class DomainEntity<TEntityId> where TEntityId : struct
+public abstract class DomainEntity<TEntityId> : IDomainEntity
+    where TEntityId : struct
 {
     private readonly List<DomainEvent> _events = new();
 
