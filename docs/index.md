@@ -1,5 +1,6 @@
 ---
 layout: landing
+title: Seja bem vindo!
 ---
 
 ![The Clean Arch evolution](./images/TheCleanArchEvolution.png)
