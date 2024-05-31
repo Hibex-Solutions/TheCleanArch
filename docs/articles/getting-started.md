@@ -80,7 +80,8 @@ dotnet new classlib -n ArvoreGenealogica.InMemoryStorage.InterfaceAdapter \
 ```
 
 # [4. External](#tab/external)
-As camadas de apresentação são as mais comuns do tipo externas, e você também pode ter várias assim como as camadas de infraestrutura. No nosso exemplo vamos focar em apenas uma _API Web_.
+> [!NOTE]
+> As camadas de apresentação são as mais comuns do tipo externas, e você também pode ter várias assim como as camadas de infraestrutura. No nosso exemplo vamos focar em apenas uma _API Web_.
 
 Criaremos um componente da camada externa usando o [Framework ASP.NET Core][ASPNET_CORE] chamado **ArvoreGenealogica.WebApi**.
 ```sh
@@ -91,10 +92,6 @@ dotnet new webapi -controllers -f net8.0 -n ArvoreGenealogica.WebApi \
 ---
 
 Agora vamos relacionar esses projetos entre si de acordo com suas dependências.
-
-
-
-
 
 ```sh
 # A camada de domínio não depende de ninguém
@@ -116,7 +113,8 @@ dotnet add reference ../ArvoreGenealogica.InMemoryStorage.InterfaceAdapter/Arvor
 cd ../..
 ```
 
-Agora vamos reunir todos os componentes em um arquivo de solução .NET.
+Por fim, vamos reunir todos os componentes em um arquivo de solução .NET.
+
 ```sh
 dotnet new sln -n ArvoreGenealogica
 
@@ -127,7 +125,8 @@ dotnet sln ./ArvoreGenealogica.sln add ./src/ArvoreGenealogica.InMemoryStorage.I
 dotnet sln ./ArvoreGenealogica.sln add ./src/ArvoreGenealogica.WebApi/ArvoreGenealogica.WebApi.csproj
 ```
 
-Até o momento, nosso diretório deve estar assim:
+Isso nos leva a uma estrutura de diretórios e arquivos semelhantes a esta:
+
 ```console
 ./arvore-genealogica-project
   ├─ .config/
@@ -161,6 +160,6 @@ Isso não é tudo, porém o primeiro passo para que você desenvolva de acordo c
 [DOTNET]: https://dot.net
 [ASPNET_CORE]: https://asp.net
 [DEPENDENSEE]: https://github.com/madushans/DependenSee
-[NUGET]: https://www.nuget.org/
-[GIT]: https://git-scm.com/
-[EDITORCONFIG]: https://editorconfig.org/
+[NUGET]: https://www.nuget.org
+[GIT]: https://git-scm.com
+[EDITORCONFIG]: https://editorconfig.org
