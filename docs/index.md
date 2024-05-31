@@ -2,7 +2,7 @@
 layout: landing
 ---
 
-![The Clean Arch evolution](../images/TheCleanArchEvolution.png)
+![The Clean Arch evolution](./images/TheCleanArchEvolution.png)
 
 Essa é mais uma implementação da definição de _"Arquitetura Limpa"_ conforme escrito por _Robert C. Martin (Uncle Bob)_ em seu artigo _"The Clean Architecture"_. Neste caso, implementamos para .NET.
 
