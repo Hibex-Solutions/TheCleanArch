@@ -2,8 +2,6 @@
 // This file is a part of TheCleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.
 
-using TheCleanArch.Core.Patterns.GuardClauses;
-
 namespace EmptyCoreLibrary;
 
 /// <summary>
