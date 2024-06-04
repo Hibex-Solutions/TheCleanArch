@@ -7,7 +7,7 @@ namespace TheCleanArch.Application.PortsAndAdapters;
 /// <summary>
 /// Um manipulador para porta de entrada da camada de aplicação
 /// </summary>
-public abstract class InboundPortHandler : InboundPortHandler<NullPortData, NullPortData>
+public abstract class InboundPortHandler : IInboundPort
 {
-    //public abstract Task HandleAsync(CancellationToken cancellationToken = default);
+    public abstract Task HandleAsync(CancellationToken cancellationToken = default);
 }

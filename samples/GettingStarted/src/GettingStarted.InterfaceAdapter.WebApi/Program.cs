@@ -55,7 +55,7 @@ public class Program
         {
             var useCase = new NullUseCase();
 
-            _ = await useCase.HandleAsync();
+            await useCase.HandleAsync();
 
             return Results.Ok();
         });
