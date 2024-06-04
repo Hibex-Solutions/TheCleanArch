@@ -8,7 +8,7 @@ Vamos então endender alguns detalhes dessa imagem para que você a possa ter em
 
 ## A imagem no artigo original
 
-[No artigo original][BLOG_POST] você vai encontrar a famosa imagem _"The Clean Architecture".
+[No artigo original][BLOG_POST] você vai encontrar a famosa imagem _"The Clean Architecture"_.
 
 ![Famosa imagem "The Clean Architecture"](./../images/TheCleanArchitectureBlogImage.jpg)
 

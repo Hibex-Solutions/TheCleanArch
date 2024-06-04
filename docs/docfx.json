@@ -47,11 +47,25 @@
       "modern",
       "template"
     ],
+    "markdownEngineProperties": {
+      "alerts": {
+        "NOTE": "alert alert-light",
+        "TIP": "alert alert-info",
+        "IMPORTANT": "alert alert-primary",
+        "CAUTION": "alert alert-danger",
+        "WARNING": "alert alert-warning",
+        "TODO": "alert alert-dark"
+      }
+    },
     "globalMetadata": {
       "_appName": "The Clean Arch",
       "_appTitle": "The Clean Arch Project",
       "_enableSearch": true,
       "pdf": true,
+      "pdfTocPage": true,
+      "pdfPrintBackground": true,
+      "pdfFooterTemplate": "<div style=\"width: 100%; font-size: 12px;\"><div style=\"float: right; padding: 0 2em\">Pg. <span class=\"pageNumber\"></span> / <span class=\"totalPages\"></span></div></div>",
+      "pdfCoverPage": "cover.html",
       "_lang": "pt-br",
       "_appLogoPath": "images/TheCleanArchIcon.svg",
       "_appFaviconPath": "images/TheCleanArchIcon.png",
