@@ -3,5 +3,6 @@
 - href: the-image.md
 - href: create-solution-structure.md
 
-- name: Diversos
+- name: Engineering Guidelines
+- href: thecheanarch-style.md
 - href: time-abstraction.md
