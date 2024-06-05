@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TheCleanArch.Core" Version="0.1.0-rc0004" />
+    <ProjectReference Include="..\..\src\TheCleanArch.Core\TheCleanArch.Core.csproj" />
   </ItemGroup>
 
 </Project>

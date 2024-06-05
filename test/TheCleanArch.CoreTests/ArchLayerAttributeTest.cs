@@ -18,9 +18,9 @@ public class ArchLayerTest
     {
         var code = @"
             using TheCleanArch.Core;
-            using static TheCleanArch.Core.ArchLayerNames;
+            using static TheCleanArch.Core.ArchLayerId;
 
-            [assembly: ArchLayer(Enterprise.Id, Enterprise.Name)]
+            [assembly: ArchLayer(Enterprise, nameof(Enterprise))]
         ";
 
         var compileResult = CompileCSharpCode(code);
@@ -49,130 +49,130 @@ public class ArchLayerTest
         // Não pode ser atribuído a parâmetros genéricos
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
-        public class MyGenericClass<[ArchLayer(Enterprise.Id, Enterprise.Name)] TGenericParameter> { }",
+        public class MyGenericClass<[ArchLayer(Enterprise, nameof(Enterprise))] TGenericParameter> { }",
 
         // Não pode ser atribuído a valores de retorno
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
         public class MyClass
         {
-            [return: ArchLayer(Enterprise.Id, Enterprise.Name)]
+            [return: ArchLayer(Enterprise, nameof(Enterprise))]
             int MyMethod() {}
         }",
 
         // Não pode ser atribuído a delegados
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
-        [ArchLayer(Enterprise.Id, Enterprise.Name)]
+        [ArchLayer(Enterprise, nameof(Enterprise))]
         public delegate void MyDelegate();",
 
         // Não pode ser atribuído a parâmetros
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
         public class MyClass
         {
-            void MyMethod([ArchLayer(Enterprise.Id, Enterprise.Name)]object myParameter) {}
+            void MyMethod([ArchLayer(Enterprise, nameof(Enterprise))]object myParameter) {}
         }",
 
         // Não pode ser atribuído a eventos
         @"
         using System;
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
         public class MyClass
         {
-            [ArchLayer(Enterprise.Id, Enterprise.Name)]
+            [ArchLayer(Enterprise, nameof(Enterprise))]
             event EventHandler<object> MyEvent;
         }",
 
         // Não pode ser atribuído a construtores
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
         public class MyClass
         {
-            [ArchLayer(Enterprise.Id, Enterprise.Name)]
+            [ArchLayer(Enterprise, nameof(Enterprise))]
             MyClass(){}
         }",
 
         // Não pode ser atribuído a módulos
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
-        [module: ArchLayer(Enterprise.Id, Enterprise.Name)]
+        [module: ArchLayer(Enterprise, nameof(Enterprise))]
         namespace MyModule;",
         
         // Não pode ser atribuído a enumeradores
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
-        [ArchLayer(Enterprise.Id, Enterprise.Name)]
+        [ArchLayer(Enterprise, nameof(Enterprise))]
         public enum MyEnum {}",
 
         // Não pode ser atribuído a estruturas
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
-        [ArchLayer(Enterprise.Id, Enterprise.Name)]
+        [ArchLayer(Enterprise, nameof(Enterprise))]
         public struct {}",
 
         // Não pode ser atribuído a interfaces
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
-        [ArchLayer(Enterprise.Id, Enterprise.Name)]
+        [ArchLayer(Enterprise, nameof(Enterprise))]
         public interface IMyInterface {}",
 
         // Não pode ser atribuído a métodos
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
         public class MyClass {
-            [ArchLayer(Enterprise.Id, Enterprise.Name)]
+            [ArchLayer(Enterprise, nameof(Enterprise))]
             public void MyMethod() {}
         }",
 
         // Não pode ser atribuído a propriedades
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
         public class MyClass {
-            [ArchLayer(Enterprise.Id, Enterprise.Name)]
+            [ArchLayer(Enterprise, nameof(Enterprise))]
             public string myProperty { get; set; }
         }",
 
         // Não pode ser atribuído a campos
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
 
         public class MyClass {
-            [ArchLayer(Enterprise.Id, Enterprise.Name)]
+            [ArchLayer(Enterprise, nameof(Enterprise))]
             public string myField;
         }",
 
         // Não pode ser atribuído a classes
         @"
         using TheCleanArch.Core;
-        using static TheCleanArch.Core.ArchLayerNames;
+        using static TheCleanArch.Core.ArchLayerId;
         
-        [ArchLayer(Enterprise.Id, Enterprise.Name)]
+        [ArchLayer(Enterprise, nameof(Enterprise))]
         public class MyClass { }"
     };
 
