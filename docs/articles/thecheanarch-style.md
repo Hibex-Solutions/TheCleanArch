@@ -25,7 +25,8 @@ Essa é a estrutura de diretório para nossas soluções de software .NET:
   ├─ .gitignore
   ├─ {Solution}.sln
   ├─ global.json
-  └─ nuget.config
+  ├─ nuget.config
+  └─ omnisharp.json
 ```
 
 Ententendo:
@@ -41,6 +42,7 @@ Ententendo:
 * Arquivo geral da solução `{Solution}.sln` (aqui o nome é o da sua solução)
 * Arquivo com configurações globais .NET para a solução `global.json`
 * Arquivo com configurações globais [NuGet](https://nuget.org) para a solução `nuget.config`
+* Arquivo de definições do [Omnisharp][OMNISHARP]
 
 ## Licença de software
 
@@ -90,8 +92,14 @@ Exemplos:
 > [!IMPORTANT]
 > Ambos os arquivos de testes devem residir no subdiretório `test/`.
 
+## Editores e IDEs
+
+> [!TODO]
+> Incluir detalhes sobre uso de editores e IDEs para o desenvolvimento
+
 Nos próximos passos você verá ainda mais alguns detalhes sobre nosso estilo de codificação.
 
 <!-- links -->
 [LICENSE]: https://github.com/Hibex-Solutions/TheCleanArch/blob/main/LICENSE
 [CAMELCASE]: https://en.wikipedia.org/wiki/Camel_case
+[OMNISHARP]: https://www.omnisharp.net/
