@@ -8,6 +8,7 @@ on:
       - '!**'
       - 'docs/**'
       - 'src/**'
+      - 'samples/**'
 
 permissions:
   actions: read
