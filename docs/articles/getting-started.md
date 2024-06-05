@@ -2,18 +2,27 @@
 
 A maneira mais prática de usar _The Clean Arch_ é criar uma solução nos moldes que se propõe. Então aqui iremos criar uma solução .NET em camadas para que você esteja apto a conhecer melhor cada componente da arquitetura em seus detalhes.
 
-À partir de agora vamos trabalhar tendo em mente uma aplicação para controle de nossa [árvore genealógica.][ARVORE_GENEALOGICA]. A princípio vamos trabalhar na construção de uma _API Web_, mas poderia ser qualquer outro tipo de aplicação. Vamos então chamar nossa solução de _"Árvore Genealógica"_, a que usaremos o _token_ _"ArvoreGenealogica"_ para tal daqui em diante.
+À partir de agora vamos trabalhar tendo em mente uma aplicação para controle de nossa [árvore genealógica.][ARVORE_GENEALOGICA]. A princípio vamos trabalhar na construção de uma _API Web_, mas poderia ser qualquer outro tipo de aplicação. Vamos então chamar nossa solução de _"Árvore Genealógica"_, a que podemos usar o _token_ _"ArvoreGenealogica"_ para identificar ou ainda _"Age"_ para ser mais curto.
 
 1. Crie um diretório para a solução com uma estrutura mínima.
-```sh
-mkdir arvore-genealogica-project
-cd arvore-genealogica-project
 
-mkdir docs
-mkdir eng
-mkdir src
-mkdir test
+# [PowerShell](#tab/pwsh)
+```sh
+mkdir age-project
+cd age-project
+
+mkdir docs,eng,samples,src,test
 ```
+
+# [Shell Script](#tab/sh)
+```sh
+mkdir age-project
+cd age-project
+
+mkdir {docs,eng,samples,src,test}
+```
+
+---
 
 > [!TIP]
 > Deste momento em diante, vamos imaginar que você estará sempre neste diretório de solução.
@@ -32,17 +41,18 @@ dotnet new tool-manifest
 
 E é isso que temos até o momento:
 ```console
-./arvore-genealogica-project
-  ├─ .config/
-  │  └─ dotnet-tools.json
-  ├─ docs/
-  ├─ eng/
-  ├─ src/
-  ├─ test/
-  ├─ .editorconfig
-  ├─ .gitignore
-  ├─ global.json
-  └─ nuget.config
+./age-project
+  ├── .config
+  │   └── dotnet-tools.json
+  ├── docs
+  ├── eng
+  ├── samples
+  ├── src
+  ├── test
+  ├── .editorconfig
+  ├── .gitignore
+  ├── global.json
+  └── nuget.config
 ```
 
 > [!NOTE]
@@ -53,108 +63,99 @@ E é isso que temos até o momento:
 
 3. Crie os projetos de cada camada do software
 
-# [1. Enterprise](#tab/enterprise)
-Nossa camada de regras organizacionais se chamará **ArvoreGenealogica.Domain**.
+# [Enterprise](#tab/enterprise)
+Nossa camada de regras organizacionais se chamará **Age.Domain**.
 ```sh
-dotnet new classlib -n ArvoreGenealogica.Domain \
--o ./src/ArvoreGenealogica.Domain
+dotnet new classlib -n Age.Domain -o src/Age.Domain
 ```
 
-# [2. Application](#tab/application)
-Nossa camada de regras de aplicação se chamará **ArvoreGenealogica.Application**.
+# [Application](#tab/application)
+Nossa camada de regras de aplicação se chamará **Age** apenas, porque é a aplicação em si.
 ```sh
-dotnet new classlib -n ArvoreGenealogica.Application \
--o ./src/ArvoreGenealogica.Application
+dotnet new classlib -n Age -o src/Age
 ```
 
-# [3. Interface Adapter](#tab/interface-adapter)
+# [Interface Adapter](#tab/interface-adapter)
 
 > [!NOTE]
-> Não queremos gerar confusões quanto a componentes de infraestrutura, e essa pode ser uma decisão adiata o quanto for possível. É possível inclusive desenvolver uma aplicação completa sem definir nenhum componente de infraestrutura inicialmente, mas como é bastante comum pelo menos termos armazenamento em bancos de dados, vamos criar um único componente para armazenamento dos dados explicitamente em memória. Mas tenha em mente que os componentes de infraestrutura podem ser tantos quantos você precisar.
+> Os adaptadores de interface podem ser tantos quanto você precisar. Aqui usaremos apenas 2 componentes adaptadores: 1) a camada de apresentação como um adaptador de interface para entrada dos dados, e 2) a camada de acesso a dados como adaptador de interface para saída de dados.
 
-Aqui criaremos um componente da camada de adaptadores de interface para armazenamento de dados em memória chamado **ArvoreGenealogica.InMemoryStorage.InterfaceAdapter**.
+Um adaptadore de interface para armazenamento de dados em memória chamado **Age.InMemoryStorage** e um adaptador de interface para API Web chamado **Age.WebApi**.
 
 ```sh
-dotnet new classlib -n ArvoreGenealogica.InMemoryStorage.InterfaceAdapter \
--o ./src/ArvoreGenealogica.InMemoryStorage.InterfaceAdapter
-```
-
-# [4. External](#tab/external)
-> [!NOTE]
-> As camadas de apresentação são as mais comuns do tipo externas, e você também pode ter várias assim como as camadas de infraestrutura. No nosso exemplo vamos focar em apenas uma _API Web_.
-
-Criaremos um componente da camada externa usando o [Framework ASP.NET Core][ASPNET_CORE] chamado **ArvoreGenealogica.WebApi**.
-```sh
-dotnet new webapi -controllers -f net8.0 -n ArvoreGenealogica.WebApi \
--o ./src/ArvoreGenealogica.WebApi
+dotnet new classlib -n Age.InMemoryStorage -o src/Age.InMemoryStorage
+dotnet new webapi --use-controllers -f net8.0 -n Age.WebApi -o src/Age.WebApi
 ```
 
 ---
 
 Agora vamos relacionar esses projetos entre si de acordo com suas dependências.
 
+```mermaid
+flowchart BT
+
+Age(Age.csproj)
+Domain(Age.Domain.csproj)
+InMemoryStorage(Age.InMemoryStorage.csproj)
+WebApi(Age.WebApi.csproj)
+
+
+Age --> Domain
+InMemoryStorage --> Age
+WebApi --> Age
+WebApi --> InMemoryStorage
+```
+
 ```sh
-# A camada de domínio não depende de ninguém
-
-# A camada de aplicação depende da camada de domínio
-cd ./src/ArvoreGenealogica.Application
-dotnet add reference ../ArvoreGenealogica.Domain/ArvoreGenealogica.Domain.csproj
-cd ../..
-
-# A camada de adaptador de interface depende da camada de aplicação
-cd ./src/ArvoreGenealogica.InMemoryStorage.InterfaceAdapter
-dotnet add reference ../ArvoreGenealogica.Application/ArvoreGenealogica.Application.csproj
-cd ../..
-
-# A camada externa depende tanto da camada de aplicação quanto de todos da camada de adaptadores de interface
-cd ./src/ArvoreGenealogica.WebApi
-dotnet add reference ../ArvoreGenealogica.Application/ArvoreGenealogica.Application.csproj
-dotnet add reference ../ArvoreGenealogica.InMemoryStorage.InterfaceAdapter/ArvoreGenealogica.InMemoryStorage.InterfaceAdapter.csproj
-cd ../..
+dotnet add src/Age/Age.csproj reference src/Age.Domain/Age.Domain.csproj
+dotnet add src/Age.InMemoryStorage reference src/Age/Age.csproj
+dotnet add src/Age.WebApi reference src/Age.InMemoryStorage/Age.InMemoryStorage.csproj
+dotnet add src/Age.WebApi reference src/Age/Age.csproj
 ```
 
 Por fim, vamos reunir todos os componentes em um arquivo de solução .NET.
 
 ```sh
-dotnet new sln -n ArvoreGenealogica
+dotnet new sln -n Age
 
-# adicionando os projetos que acabamos de criar ao arquivo de solução
-dotnet sln ./ArvoreGenealogica.sln add ./src/ArvoreGenealogica.Domain/ArvoreGenealogica.Domain.csproj
-dotnet sln ./ArvoreGenealogica.sln add ./src/ArvoreGenealogica.Application/ArvoreGenealogica.Application.csproj
-dotnet sln ./ArvoreGenealogica.sln add ./src/ArvoreGenealogica.InMemoryStorage.InterfaceAdapter/ArvoreGenealogica.InMemoryStorage.InterfaceAdapter.csproj
-dotnet sln ./ArvoreGenealogica.sln add ./src/ArvoreGenealogica.WebApi/ArvoreGenealogica.WebApi.csproj
+dotnet sln Age.sln add src/Age/Age.csproj
+dotnet sln Age.sln add src/Age.Domain/Age.Domain.csproj
+dotnet sln Age.sln add src/Age.InMemoryStorage/Age.InMemoryStorage.csproj
+dotnet sln Age.sln add src/Age.WebApi/Age.WebApi.csproj
 ```
 
 Isso nos leva a uma estrutura de diretórios e arquivos semelhantes a esta:
 
 ```console
-./arvore-genealogica-project
+./age-project
   ├─ .config/
   │  └─ dotnet-tools.json
   ├─ docs/
   ├─ eng/
+  ├─ samples/
   ├─ src/
-  │  ├─ ArvoreGenealogica.Application/
-  │  ├─ ArvoreGenealogica.Domain/
-  │  ├─ ArvoreGenealogica.InMemoryStorage.InterfaceAdapter/
-  │  └─ ArvoreGenealogica.WebApi/
+  │  ├─ Age/
+  │  ├─ Age.Domain/
+  │  ├─ Age.InMemoryStorage/
+  │  └─ Age.WebApi/
   ├─ test/
   ├─ .editorconfig
   ├─ .gitignore
-  ├─ ArvoreGenealogica.sln
+  ├─ Age.sln
   ├─ global.json
   └─ nuget.config
 ```
 
-Vamos usar a ferramenta [DependenSee][DEPENDENSEE] para visualizar um gráfico de como está nossa solução. Se você fizer isso no diretório de solução que acaba de criar, obterá um gráfico parecido com esse:
-![Visão com Dependensee](../images/getting-started/dependensee-first-view.png)
+> [!TIP]
+> Experimente a ferramenta [DependenSee][DEPENDENSEE] para visualizar um gráfico de dependências dos seus projetos.
 
-Agora vamos conectar com as camadas definidas conforme _"The Clean Arch"_ para validar se as dependências estão ok.
-![Visão The Clean Arch](../images/getting-started/dependensee-first-view+thecleanarch.png)
+Agora veja como a relação entre o gráfico de dependências de nossos projetos com as camadas de _"The Clean Arch"_ se encaixam perfeitamente.
 
-Meus parabéns :clap: :clap: :wink:!!! Você acaba de criar um esboço de solução .NET de arquitetura limpa de acordo com _"The Clean Arch"_.
+![Visão The Clean Arch](../images/getting-started/thecleanarch-and-layers.png)
 
-Isso não é tudo, porém o primeiro passo para que você desenvolva de acordo com _"The Clean Arch"_ é estruturar seu projeto de software de forma a codificar nas camadas corretas e que tais camadas obedeçam aos princípios estabelecidos, e essa estrutura de solução está de acordo.
+Meus parabéns :clap: :clap: !!! Você acaba de criar um esboço de solução .NET de arquitetura limpa de acordo com _"The Clean Arch"_ :wink:.
+
+Óbvio que isso não é tudo. Porém o primeiro passo para que você desenvolva de acordo com uma definição de _"Arquitetura Limpa"_, é estruturar seu projeto de software de forma a codificar nas camadas corretas e que essas camadas estejam dispostas de forma a seguir os princípios estabelecidos por _"The Clean Arch"_. Você aprenderá mais nos próximos passos.
 
 [ARVORE_GENEALOGICA]: https://pt.wikipedia.org/wiki/%C3%81rvore_geneal%C3%B3gica
 [DOTNET]: https://dot.net
