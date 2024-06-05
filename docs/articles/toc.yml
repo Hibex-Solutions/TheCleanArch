@@ -1,7 +1,7 @@
-- name: Começando
+- name: Getting Started
 - href: introduction.md
 - href: the-image.md
-- href: getting-started.md
+- href: create-solution-structure.md
 
 - name: Diversos
 - href: time-abstraction.md

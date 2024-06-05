@@ -1,4 +1,4 @@
-# Início rápido
+# Criando a estrutura da solução
 
 A maneira mais prática de usar _The Clean Arch_ é criar uma solução nos moldes que se propõe. Então aqui iremos criar uma solução .NET em camadas para que você esteja apto a conhecer melhor cada componente da arquitetura em seus detalhes.
 
@@ -108,9 +108,9 @@ WebApi --> InMemoryStorage
 
 ```sh
 dotnet add src/Age/Age.csproj reference src/Age.Domain/Age.Domain.csproj
-dotnet add src/Age.InMemoryStorage reference src/Age/Age.csproj
-dotnet add src/Age.WebApi reference src/Age.InMemoryStorage/Age.InMemoryStorage.csproj
-dotnet add src/Age.WebApi reference src/Age/Age.csproj
+dotnet add src/Age.InMemoryStorage/Age.InMemoryStorage.csproj reference src/Age/Age.csproj
+dotnet add src/Age.WebApi/Age.WebApi.csproj reference src/Age.InMemoryStorage/Age.InMemoryStorage.csproj
+dotnet add src/Age.WebApi/Age.WebApi.csproj reference src/Age/Age.csproj
 ```
 
 Por fim, vamos reunir todos os componentes em um arquivo de solução .NET.
@@ -155,6 +155,9 @@ Agora veja como a relação entre o gráfico de dependências de nossos projetos
 
 Meus parabéns :clap: :clap: !!! Você acaba de criar um esboço de solução .NET de arquitetura limpa de acordo com _"The Clean Arch"_ :wink:.
 
+> [!TIP]
+> Veja um [exemplo completo dessa solução no GitHub][AGE_SAMPLE_GITHUB]
+
 Óbvio que isso não é tudo. Porém o primeiro passo para que você desenvolva de acordo com uma definição de _"Arquitetura Limpa"_, é estruturar seu projeto de software de forma a codificar nas camadas corretas e que essas camadas estejam dispostas de forma a seguir os princípios estabelecidos por _"The Clean Arch"_. Você aprenderá mais nos próximos passos.
 
 [ARVORE_GENEALOGICA]: https://pt.wikipedia.org/wiki/%C3%81rvore_geneal%C3%B3gica
@@ -164,3 +167,4 @@ Meus parabéns :clap: :clap: !!! Você acaba de criar um esboço de solução .N
 [NUGET]: https://www.nuget.org
 [GIT]: https://git-scm.com
 [EDITORCONFIG]: https://editorconfig.org
+[AGE_SAMPLE_GITHUB]: https://github.com/Hibex-Solutions/TheCleanArch/tree/main/samples/Age
