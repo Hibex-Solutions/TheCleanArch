@@ -1,28 +1,26 @@
-# Criando a estrutura da solução
+# Crie a estrutura da solução
 
 A maneira mais prática de usar _The Clean Arch_ é criar uma solução nos moldes que se propõe. Então aqui iremos criar uma solução .NET em camadas para que você esteja apto a conhecer melhor cada componente da arquitetura em seus detalhes.
 
 À partir de agora vamos trabalhar tendo em mente uma aplicação para controle de nossa [árvore genealógica.][ARVORE_GENEALOGICA]. A princípio vamos trabalhar na construção de uma _API Web_, mas poderia ser qualquer outro tipo de aplicação. Vamos então chamar nossa solução de _"Árvore Genealógica"_, a que podemos usar o _token_ _"ArvoreGenealogica"_ para identificar ou ainda _"Age"_ para ser mais curto.
 
-1. Crie um diretório para a solução com uma estrutura mínima.
+## Diretório da solução
 
-# [PowerShell](#tab/pwsh)
-```sh
-mkdir age-project
-cd age-project
+Crie um diretório para a solução com uma estrutura mínima.
+
+```powershell
+# PowerShell
+mkdir age-project; cd age-project
 
 mkdir docs,eng,samples,src,test
 ```
 
-# [Shell Script](#tab/sh)
 ```sh
-mkdir age-project
-cd age-project
+# Shell Script
+mkdir age-project && cd age-project
 
 mkdir {docs,eng,samples,src,test}
 ```
-
----
 
 > [!TIP]
 > Deste momento em diante, vamos imaginar que você estará sempre neste diretório de solução.
@@ -30,7 +28,11 @@ mkdir {docs,eng,samples,src,test}
 > [!WARNING]
 > Outra coisa que iremos considerar é que você já tem o [.NET SDK][DOTNET] instalado e pronto para uso. Aqui usaremos a versão 8 como exemplo, mas à partir da versão 6 já é compatível.
 
-2. Crie alguns arquivos essenciais. Configuração [NuGet][NUGET], [Git][GIT], [editor][EDITORCONFIG], etc.
+## Arquivos essenciais
+
+Crie alguns arquivos essenciais. Configuração [NuGet][NUGET], [Git][GIT], [editor][EDITORCONFIG], etc.
+
+
 ```sh
 dotnet new nugetconfig
 dotnet new globaljson --sdk-version "8.0.0" --roll-forward feature
@@ -61,21 +63,23 @@ E é isso que temos até o momento:
 > [!TIP]
 > Na vida real usaremos nossos templates de projeto para criar tudo isso, mas por hora vamos fazê-los manualmente para que você saiba que não há nenhuma mágica aqui.
 
-3. Crie os projetos de cada camada do software
+## Arquivos de projeto
 
-# [Enterprise](#tab/enterprise)
+Crie os projetos de cada camada do software.
+
+### Enterprise
 Nossa camada de regras organizacionais se chamará **Age.Domain**.
 ```sh
 dotnet new classlib -n Age.Domain -o src/Age.Domain
 ```
 
-# [Application](#tab/application)
+### Application
 Nossa camada de regras de aplicação se chamará **Age** apenas, porque é a aplicação em si.
 ```sh
 dotnet new classlib -n Age -o src/Age
 ```
 
-# [Interface Adapter](#tab/interface-adapter)
+### Interface Adapter
 
 > [!NOTE]
 > Os adaptadores de interface podem ser tantos quanto você precisar. Aqui usaremos apenas 2 componentes adaptadores: 1) a camada de apresentação como um adaptador de interface para entrada dos dados, e 2) a camada de acesso a dados como adaptador de interface para saída de dados.
@@ -86,8 +90,6 @@ Um adaptadore de interface para armazenamento de dados em memória chamado **Age
 dotnet new classlib -n Age.InMemoryStorage -o src/Age.InMemoryStorage
 dotnet new webapi --use-controllers -f net8.0 -n Age.WebApi -o src/Age.WebApi
 ```
-
----
 
 Agora vamos relacionar esses projetos entre si de acordo com suas dependências.
 
@@ -113,6 +115,8 @@ dotnet add src/Age.WebApi/Age.WebApi.csproj reference src/Age.InMemoryStorage/Ag
 dotnet add src/Age.WebApi/Age.WebApi.csproj reference src/Age/Age.csproj
 ```
 
+## Arquivo de solução
+
 Por fim, vamos reunir todos os componentes em um arquivo de solução .NET.
 
 ```sh
@@ -123,6 +127,8 @@ dotnet sln Age.sln add src/Age.Domain/Age.Domain.csproj
 dotnet sln Age.sln add src/Age.InMemoryStorage/Age.InMemoryStorage.csproj
 dotnet sln Age.sln add src/Age.WebApi/Age.WebApi.csproj
 ```
+
+## Conferindo tudo
 
 Isso nos leva a uma estrutura de diretórios e arquivos semelhantes a esta:
 

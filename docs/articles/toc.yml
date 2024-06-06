@@ -1,6 +1,8 @@
-- name: Getting Started
+- name: Overview
 - href: introduction.md
 - href: the-image.md
+
+- name: Getting Started
 - href: create-solution-structure.md
 
 - name: Engineering Guidelines

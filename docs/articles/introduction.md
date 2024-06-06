@@ -1,4 +1,4 @@
-# Introdução
+# O que é _The Clean Arch_?
 
 O termo _Clean Architecture_ (Arquitetura Limpa) foi cunhado inicialmente por _Robert C. Martin (Uncle Bob)_ por volta de 2008, e está disponível em seu blog com última atualização em 2012 como ["The Clean Architecture"][BLOG_POST]. _Clean Architecture_ envolve uma série de boas práticas para o desenvolvimento de software de forma sustentável. Desde que o termo foi cunhado por _Uncle Bob_, muitas pessoas vem procurando traduzir melhor suas ideias e implementá-las em várias tecnologias, fazendo isso através de templates, bibliotecas, além de inúmeros tutoriais guias espalhados pelo vasto terreno da Web.
 
