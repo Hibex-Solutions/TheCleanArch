@@ -1,0 +1,13 @@
+SCRIPT_DIR=$(dirname "$0")
+DOCS_DIR="`cd \"${SCRIPT_DIR}/../docs\";pwd`"
+DOCFX_PATH="$DOCS_DIR/docfx.json"
+DOCFX_SITE_PATH="$DOCS_DIR/_site"
+DOCFX_API_PATH="$DOCS_DIR/api"
+
+echo "Removendo arquivos estáticos de documentação anterior..."
+rm -rdf "$DOCFX_SITE_PATH"
+rm -rdf "$DOCFX_API_PATH"
+
+echo "EXEC: dotnet docfx $DOCFX_PATH --serve"
+dotnet docfx "$DOCFX_PATH" --serve
+

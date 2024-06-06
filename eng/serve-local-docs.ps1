@@ -3,7 +3,7 @@ $DOCFX_PATH = Join-Path $SCRIPT_PWD "../docs/docfx.json" | Resolve-Path
 $DOCFX_SITE_PATH = Join-Path $SCRIPT_PWD "../docs/_site" | Resolve-Path
 $DOCFX_API_PATH = Join-Path $SCRIPT_PWD "../docs/api" | Resolve-Path
 
-"Removendo arquivos estáticos de documentação anterior..."
+"Removendo arquivos estáticos de documentação anterior..." | Write-Output
 Remove-Item -Path $DOCFX_SITE_PATH -Recurse
 Remove-Item -Path $DOCFX_API_PATH -Recurse
 
