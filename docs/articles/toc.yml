@@ -4,6 +4,7 @@
 
 - name: Getting Started
 - href: create-solution-structure.md
+- href: enable-thecleanarch.md
 
 - name: Engineering Guidelines
 - href: thecheanarch-style.md

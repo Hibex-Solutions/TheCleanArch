@@ -10,7 +10,7 @@ Utilitários base "The Clean Arch".
 
 Use para garantir a consistência dos parâmetros em seus métodos.
 
-```c#
+```cs
 using TheCleanArch.Core.Patterns.GuardClauses;
 
 class MyClass

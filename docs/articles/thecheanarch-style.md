@@ -52,7 +52,7 @@ Portanto:
 
 * Toda solução _"The Clean Arch"_ deve conter um [arquivo `LICENSE`][LICENSE] na raiz da solução contendo as regras de licenciamento
 * Todo arquivo de código deve conter um aviso de licença e direitos autorais como neste exemplo:
-```c#
+```cs
 // Copyright (c) The Clean Arch Project. All rights reserved.
 // This file is a part of TheCleanArch.
 // Licensed under the Apache version 2.0: LICENSE file.

@@ -7,7 +7,7 @@ e para não incluir mais uma abstração própria, o componente `TheCleanArch.Co
 
 > [!WARNING]
 > Não use mais `DateTime.UtcNow()` diretamente!
-```csharp
+```cs
 using System;
 
 class MyClass
@@ -21,7 +21,7 @@ class MyClass
 
 > [!NOTE]
 > Use a abstração `TimeProvider.GetUtcNow()`
-```csharp
+```cs
 using System;
 
 class Mclass MyClass
