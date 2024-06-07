@@ -27,15 +27,21 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 8.0.x
 
       - name: Restore
         run: |
           dotnet tool restore
           dotnet restore ./TheCleanArch.sln
 
-      - name: Build
-        run: dotnet build ./TheCleanArch.sln -c Release --no-restore
+      - name: Build to .NET 6
+        run: dotnet build ./TheCleanArch.sln -c Release --no-restore --no-incremental -warnaserror -f net6.0
+      
+      - name: Build to .NET 8
+        run: dotnet build ./TheCleanArch.sln -c Release --no-restore --no-incremental -warnaserror -f net8.0
 
-      - name: Test
-        run: dotnet test ./TheCleanArch.sln -c Release --no-build
+      - name: Test to .NET 6
+        run: dotnet test ./TheCleanArch.sln -c Release --no-build -f net6.0
+      
+      - name: Test to .NET 8
+        run: dotnet test ./TheCleanArch.sln -c Release --no-build -f net8.0
