@@ -2,9 +2,6 @@
 // This file is a part of TheCleanArch Samples.
 // Licensed under the Apache version 2.0: LICENSE file.
 
-namespace Age.Domain;
+using static TheCleanArch.Core.ArchLayerId;
 
-public class Class1
-{
-
-}
+[assembly: ArchLayer(InterfaceAdapter, nameof(InterfaceAdapter))]

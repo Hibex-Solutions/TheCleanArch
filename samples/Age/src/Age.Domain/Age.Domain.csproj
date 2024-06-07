@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="TheCleanArch.Enterprise" Version="0.1.0-rc0005" />
+  </ItemGroup>
+
 </Project>
