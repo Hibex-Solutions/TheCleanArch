@@ -48,7 +48,7 @@ public class DomainValueObjectTest
     }
 
     #region Stubs
-    private class MyDomainValueObject : DomainValueObject
+    private sealed class MyDomainValueObject : DomainValueObject
     {
         public MyDomainValueObject(int a, string b)
         {

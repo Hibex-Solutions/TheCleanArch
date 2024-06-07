@@ -84,7 +84,7 @@ public class DomainEntityTest
     }
 
     #region Stubs
-    private class MyStubEntity : DomainEntity<int>
+    private sealed class MyStubEntity : DomainEntity<int>
     {
         public MyStubEntity() : base(default) { }
 
@@ -92,11 +92,11 @@ public class DomainEntityTest
         public IEnumerable<DomainEvent> GetAllEvents() => GetDomainEvents();
     }
 
-    private class MyIntEntity : DomainEntity<int>
+    private sealed class MyIntEntity : DomainEntity<int>
     {
         public MyIntEntity(int id) : base(id) { }
     }
-    private class MyGuidEntity : DomainEntity<Guid>
+    private sealed class MyGuidEntity : DomainEntity<Guid>
     {
         public MyGuidEntity(Guid id) : base(id) { }
     }

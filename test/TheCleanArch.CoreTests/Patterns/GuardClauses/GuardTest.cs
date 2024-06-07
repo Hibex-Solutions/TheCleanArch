@@ -10,7 +10,7 @@ namespace TheCleanArch.CoreTests.Patterns.GuardClauses;
 public class GuardTest
 {
     [Fact(DisplayName = "NotNullArgument() raise exception when null value")]
-    public void NotNullArgument_RaiseException_WhenNullValue()
+    public void NotNullArgumentRaiseExceptionWhenNullValue()
     {
         var exception = Assert.Throws<ArgumentNullException>(
             () => _ = Guard.NotNullArgument<object>(null!, "value")
@@ -20,13 +20,13 @@ public class GuardTest
     }
 
     [Fact(DisplayName = "NotNulArgument() accept not null values")]
-    public void NotNullArgument_AcceptNotNull()
+    public void NotNullArgumentAcceptNotNull()
     {
         _ = Guard.NotNullArgument(new { }, "value");
     }
 
     [Fact(DisplayName = "NotNullArgument() returns same value")]
-    public void NotNullArgument_ReturnsSameValue()
+    public void NotNullArgumentReturnsSameValue()
     {
         var value1 = Guard.NotNullArgument(string.Empty, "value1");
         var value2 = new object();
@@ -39,7 +39,7 @@ public class GuardTest
     }
 
     [Fact(DisplayName = "NotEmptyArgument() raise exception when null value")]
-    public void NotEmptyArgument_RaiseException_WhenNullValue()
+    public void NotEmptyArgumentRaiseExceptionWhenNullValue()
     {
         var exception = Assert.Throws<ArgumentNullException>(
             () => _ = Guard.NotEmptyArgument<object[]>(null!, "value")
@@ -49,7 +49,7 @@ public class GuardTest
     }
 
     [Fact(DisplayName = "NotEmptyArgument() reject empty value collection")]
-    public void NotEmptyArgument_RejectEmptyCollection()
+    public void NotEmptyArgumentRejectEmptyCollection()
     {
         var exception1 = Assert.Throws<ArgumentOutOfRangeException>(
             () => _ = Guard.NotEmptyArgument(Array.Empty<object>(), "value1")
@@ -69,7 +69,7 @@ public class GuardTest
     }
 
     [Fact(DisplayName = "NotEmptyArgument() returns same value")]
-    public void NotEmptyArgument_ReturnsSameValue()
+    public void NotEmptyArgumentReturnsSameValue()
     {
         var value1 = Guard.NotEmptyArgument("Initial value", "value");
         var value2 = new int[] { 1, 2, 3 };
