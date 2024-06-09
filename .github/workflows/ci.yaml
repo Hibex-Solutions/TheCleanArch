@@ -8,7 +8,7 @@ on:
       - '**'
       - '!docs/**'
       - '!samples/**'
-      # - '!.github/**'
+      - '!.github/**'
   
 jobs:
   build:
