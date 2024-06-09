@@ -17,7 +17,7 @@ Mais uma implementação da definição de _"Arquitetura Limpa"_ conforme escrit
 | TheCleanArch.Application  | ![NuGet Version](https://img.shields.io/nuget/v/TheCleanArch.Application?style=flat-square&logo=nuget) ![NuGet Version](https://img.shields.io/nuget/vpre/TheCleanArch.Application?style=flat-square&logo=nuget) |
 | TheCleanArch.InterfaceAdapter  | ![NuGet Version](https://img.shields.io/nuget/v/TheCleanArch.InterfaceAdapter?style=flat-square&logo=nuget) ![NuGet Version](https://img.shields.io/nuget/vpre/TheCleanArch.InterfaceAdapter?style=flat-square&logo=nuget) |
 
-## Requisitos mínimos
+## Requisitos de desenvolvimento
 
 * [.NET 8](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0)
 * [C# 12](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12)
