@@ -1,4 +1,4 @@
-name: Documentation Site
+name: Documentation
 
 on:
   push:
@@ -9,6 +9,9 @@ on:
       - 'docs/**'
       - 'src/**'
       - 'samples/**'
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 permissions:
   actions: read
