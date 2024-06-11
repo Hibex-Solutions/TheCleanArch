@@ -37,13 +37,13 @@ jobs:
           dotnet restore ./TheCleanArch.sln
 
       - name: Build to .NET 6
-        run: dotnet build ./TheCleanArch.sln -c Release --no-restore --no-incremental -warnaserror -f net6.0
+        run: dotnet build ./TheCleanArch.sln --nologo -c Release --no-restore --no-incremental -warnaserror -f net6.0
       
       - name: Build to .NET 8
-        run: dotnet build ./TheCleanArch.sln -c Release --no-restore --no-incremental -warnaserror -f net8.0
+        run: dotnet build ./TheCleanArch.sln --nologo -c Release --no-restore --no-incremental -warnaserror -f net8.0
 
       - name: Test to .NET 6
-        run: dotnet test ./TheCleanArch.sln -c Release --no-build -f net6.0
+        run: dotnet test ./TheCleanArch.sln --nologo -c Release --no-build -f net6.0
       
       - name: Test to .NET 8
-        run: dotnet test ./TheCleanArch.sln -c Release --no-build -f net8.0
+        run: dotnet test ./TheCleanArch.sln --nologo -c Release --no-build -f net8.0
