@@ -1,4 +1,4 @@
-# Habilite _The Clean Arch_
+# 2. Habilite _The Clean Arch_
 
 Agora que você já tem um diretório de solução organizado e já com alguns componentes criados, precisamos _habilitar_ os componentes de software fornecidos como bibliotecas _The Clean Arch_. Basicamente vamos incluir uma dependência de biblioteca em cada componente que criamos de acordo com a camada que ele faz parte, e iremos _"marcá-los"_ assim.
 
@@ -19,11 +19,9 @@ Application --> Enterprise
 Enterprise --> Core
 ```
 
-Essas bibliotecas estão prontas para uso em cada camada de nossa aplicação, e como você pode perceber na imagem anterior, elas já obedecem a _Regra de Dependência_ estabelecida por nossas definições de _Arquitetura Limpa_.
+Essas bibliotecas estão prontas para uso em cada camada de nossa aplicação e levam os nomes dessas camadas, e como você pode perceber na imagem anterior, elas já obedecem a _Regra de Dependência_ estabelecida por nossas definições de _Arquitetura Limpa_. A camada mais externa tem acesso a camada mais interna e o inverso não é permitido.
 
 O que temos que fazer agora é adicionar a biblioteca adequada como dependência em cada um dos componentes de nossa solução.
-
- e nossas camadas de infraestrutura e apresentação dependerão de `TheCleanArch.InterfaceAdapter`.
 
 ```sh
 # A camada de domínio depende de "TheCleanArch.Enterprise"
@@ -58,7 +56,7 @@ Vamos definir essas propriedades e outras de forma comum para todos os component
         <AnalysisLevel>8.0-recommended</AnalysisLevel>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <ImplicitUsings>disable</ImplicitUsings>
-        <Nullable>disable</Nullable>
+        <Nullable>enable</Nullable>
         <!-- Informe aqui todas as outras propriedades que queira
              e sejam comuns a todos os componentes -->
     </PropertyGroup>
@@ -109,6 +107,22 @@ using static TheCleanArch.Core.ArchLayerId;
 [assembly: ArchLayer(InterfaceAdapter, nameof(InterfaceAdapter))]
 ```
 
+Agora além ter os componentes prontos para codificar já com os utilitários _The Clean Arch_, acabamos com alguns arquivos novos (`AssemblyInfo.cs` e `Usings.cs`).
+
+> [!TIP]
+> Podemos considerar esses dois novos arquivos como padrão para qualquer componente que criarmos daqui pra frente.
+
+Teremos no mínimo 3 (três) arquivos em cada componente. Veja um exemplo de nossa camada de aplicação:
+```console
+./Age
+  ├── AssemblyInfo.cs
+  ├── Usings.cs
+  └── Age.csproj
+```
+
+Agora nossos componentes de software estão prontos para serem codificados pois já temos o mínimo da solução configurada. Nos próximos passos prepararemos o necessário para permitir [testes unitários][UNIT_TEST].
+
 <!-- links -->
 [CORE_ON_NUGETORG]: https://www.nuget.org/packages/TheCleanArch.Core#readme-body-tab
 [CUSTOMIZE_BYDIRECTORY]: https://learn.microsoft.com/pt-br/visualstudio/msbuild/customize-by-directory
+[UNIT_TEST]: https://en.wikipedia.org/wiki/Unit_testing

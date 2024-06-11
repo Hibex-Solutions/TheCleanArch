@@ -1,4 +1,4 @@
-# Crie a estrutura da solução
+# 1. Crie a estrutura da solução
 
 A maneira mais prática de usar _The Clean Arch_ é criar uma solução nos moldes que se propõe. Então aqui iremos criar uma solução .NET em camadas para que você esteja apto a conhecer melhor cada componente da arquitetura em seus detalhes.
 
