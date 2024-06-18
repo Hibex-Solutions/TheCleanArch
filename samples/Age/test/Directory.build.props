@@ -1,0 +1,17 @@
+<Project>
+    <PropertyGroup>
+        <Company>Hibex Solutions</Company>
+        <Copyright>Copyright (c) The Clean Arch Project. All rights reserved.</Copyright>
+        <Authors>TheCleanArch</Authors>
+        <Product>TheCleanArch Age Sample</Product>
+        <RepositoryUrl>https://github.com/Hibex-Solutions/TheCleanArch</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <AnalysisLevel>8.0-recommended</AnalysisLevel>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+    </PropertyGroup>
+</Project>
+

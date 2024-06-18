@@ -1,6 +1,6 @@
 # Estilo _The Clean Arch_
 
-Antes de continuar, queremos estabelecer primeiro algumas recomendações sobre a codificação de soluções .NET no estilo _"The Clean Arch"_. Vamos falar de pequenos detalhes como: estrutura de diretórios, arquivos de configuração, manuseio de Data/Hora, escrever testes, e outros.
+Antes de continuar, queremos estabelecer primeiro algumas recomendações sobre a codificação de soluções .NET no estilo _"The Clean Arch"_. Vamos falar de pequenos detalhes como: estrutura de diretórios, arquivos de configuração, manuseio de Data/Hora, escrever testes, e outros. Alguns você já conhece se passou pelo guia de início rápido [_Getting Started_](create-solution-structure.md), mas queremos consolidá-los nessa seção.
 
 Conhecer esses detalhes lhe ajudará a se familiarizar e reconhecer projetos no estilo _"The Clean Arch"_. Então você pode encarar essas recomendações como parte da arquitetura, e compreende o _"Estilo The Clean Arch"_ de codificar.
 
@@ -46,7 +46,7 @@ Ententendo:
 
 ## Licença de software
 
-A licença de software é expressa de duas formas distintas: Um arquivo `LICENSE` na raiz da solução que determina as regras de licenciamento, e cabeçalho de aviso de licença e direitos autorais nos arquivos de código.
+A licença de software é expressa de duas formas distintas: 1) Um arquivo `LICENSE` na raiz da solução que determina as regras de licenciamento, e 2) Cabeçalho de aviso de licença e direitos autorais nos arquivos de código.
 
 Portanto:
 
@@ -54,21 +54,24 @@ Portanto:
 * Todo arquivo de código deve conter um aviso de licença e direitos autorais como neste exemplo:
 ```cs
 // Copyright (c) The Clean Arch Project. All rights reserved.
-// This file is a part of TheCleanArch.
-// Licensed under the Apache version 2.0: LICENSE file.
+// This file is a part of TheCleanArch. Licensed under the Apache version 2.0: LICENSE file.
 ```
 
 ## Nomenclatura de componentes
 
-O arquivo geral da solução deve ser nomeado com o nome do projeto de software, porém sem espaços ou caracteres especiais, e obedecendo ao padrão [UpperCamelCase][CAMELCASE]. Exemplo: Para um projeto chamado _"Árvore Genealógica"_ o arquivo de solução seria `ArvoreGenealogica.sln`.
+O arquivo geral da solução deve ser nomeado com o nome do projeto de software, porém sem espaços ou caracteres especiais, e obedecendo ao padrão [UpperCamelCase][CAMELCASE].
+
+Exemplo: Para um projeto de software chamado _"Árvore Genealógica"_, o arquivo de solução seria `ArvoreGenealogica.sln`.
 
 > [!NOTE]
-> O nome do projeto de software pode ser um componente de um projeto maior, ou seja, um subprojeto.
-> Nestes casos é recomendado usar a separação de nome de módulo ou companhia do submódulo por um ponto. Ex: `MyProject.MySubproject`.
+> O próprio projeto de software pode ser apenas um módulo de um projeto maior, ou seja, um subprojeto.
+> Ou ainda, pode ser uma companhia (empresa, grupo ou comunidade) que produz vários projetos de software relacionados.
+> Nestes casos é recomendado usar o nome do projeto principal ou da companhia como prefixo do nome do projeto.
+> Separe o prefixo do nome com um ponto. Ex: `MyProject.MySubproject.sln` ou `MyCompany.MyProject.sln`.
 
 O componente (projeto .NET) principal da solução (a camada de aplicação) leva o mesmo nome do arquivo geral da solução, pois representa a aplicação em si. Ex: `ArvoreGenealogica.csproj` para um projeto C#.
 
-Os demais componentes devem ser nomeados com o nome da solução como prefixo, seguido do nome do componente (que muitas vezes reflete a camada do sofware codificada).
+Os demais componentes devem ser nomeados com o nome da solução como prefixo, seguido do nome do componente (que muitas vezes reflete a camada do sofware codificada), como `[Prefixo].Componente`.
 
 Exemplos:
 * `ArvoreGenealogica.Domain`
@@ -78,9 +81,9 @@ Exemplos:
 * `ArvoreGenealogica.GitHubApiGateway`
 
 > [!IMPORTANT]
-> Ambos os arquivos de componente devem residir no subdiretório `src/`.
+> Os componentes devem residir no subdiretório `src/`.
 
-Os arquivos de teste devem levar o mesmo nome do componente alvo mais o sufixo `Tests`.
+Os arquivos de teste devem levar o mesmo nome do componente alvo mais o sufixo `Tests`, porém sem um ponto o separando do nome, como `[ComponenteAlvo]Tests`.
 
 Exemplos:
 * `ArvoreGenealogica.DomainTests`
@@ -90,12 +93,14 @@ Exemplos:
 * `ArvoreGenealogica.GitHubApiGatewayTests`
 
 > [!IMPORTANT]
-> Ambos os arquivos de testes devem residir no subdiretório `test/`.
+> Os testes de componentes devem residir no subdiretório `test/`.
 
 ## Editores e IDEs
 
-> [!TODO]
-> Incluir detalhes sobre uso de editores e IDEs para o desenvolvimento
+Nenhum projeto de software deve depender de qualquer recurso que seja exclusivo de um editor ou IDE. Ao invés disso use técnicas e padrões que possam ser compartilhados entre esses editores e IDEs.
+
+> [!NOTE]
+> Saiba mais em [Habilite editores](enable-code-editors.md).
 
 Nos próximos passos você verá ainda mais alguns detalhes sobre nosso estilo de codificação.
 

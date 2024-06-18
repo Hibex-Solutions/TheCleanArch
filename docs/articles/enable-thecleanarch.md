@@ -74,8 +74,25 @@ global using TheCleanArch.Core;
 global using TheCleanArch.Core.Patterns.GuardClauses;
 ```
 
+Com exceção do arquivo `Usings.cs` no projeto de API Web que tem mais informações:
+```cs
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.Extensions.Logging;
+
+global using TheCleanArch.Core;
+global using TheCleanArch.Core.Patterns.GuardClauses;
+```
+
 > [!NOTE]
-> Neste arquivo em cada projeto inclua as cláusulas `using` que forem relevantes para cada projeto
+> Perceba que neste arquivo em cada projeto nós incluímos as cláusulas `using` que forem relevantes para cada projeto.
+> Ele não é o mesmo para todos os projetos, mas contém as cláusulas `using` que devem estar disponíveis em qualquer lugar do código.
+> Ou seja, preferimos e recomendamos o uso de [_global using directive_][GLOBALUSING] de forma explícita no arquivo `Usings.cs` em detrimento a configuração [_implicit using directives_][IMPLICITUSING] nos arquivos de projeto.
 
 Agora crie um arquivo `AssemblyInfo.cs` em cada projeto, e use o trecho de código abaixo para marcar (anotar) o `Assembly` com metadados que indicam o _Id_ da camada a que pertence.
 
@@ -126,3 +143,5 @@ Agora nossos componentes de software estão prontos para serem codificados pois 
 [CORE_ON_NUGETORG]: https://www.nuget.org/packages/TheCleanArch.Core#readme-body-tab
 [CUSTOMIZE_BYDIRECTORY]: https://learn.microsoft.com/pt-br/visualstudio/msbuild/customize-by-directory
 [UNIT_TEST]: https://en.wikipedia.org/wiki/Unit_testing
+[GLOBALUSING]: https://learn.microsoft.com/pt-br/dotnet/csharp/language-reference/keywords/using-directive#global-modifier
+[IMPLICITUSING]: https://learn.microsoft.com/pt-br/dotnet/core/project-sdk/overview#implicit-using-directives
