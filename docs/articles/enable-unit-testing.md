@@ -3,7 +3,7 @@
 Você aprenderá mais sobre testes unitários e como nós recomendamos seu uso nas seções de _Engineering Guidelines_. Por hora vamos criar os projetos de teste para 3 componentes: nossa camada de aplicação, domínio e API Web. Este é o mínimo recomendado para cobertura de teste em nossos softwares.
 
 > [!TIP]
-> Nós recomendamos o framework de testes [xUnit.net][XUNIT] com biblioteca [Moq][MOQ] para dublagem de dependências.
+> Nós recomendamos o framework de testes [xUnit.net][XUNIT] com biblioteca [Moq][MOQ] para [objetos mock][MOCK_OBJECTS] de dependências, e [Report Generator][REPORT_GENERATOR] para relatórios de cobertura de código.
 
 Crie os projetos de teste de componente.
 
@@ -84,9 +84,19 @@ global using Xunit;
 > [!TIP]
 > Percebeu que as propriedades que removemos de nossos arquivos de projeto `.csproj` estão agora nesses arquivos com propriedades e códigos padrões?
 
+Porfim instale a ferramenta [Report Generator][REPORT_GENERATOR] como dependência da solução.
+
+```sh
+dotnet tool install dotnet-reportgenerator-globaltool
+```
+
+Para saber mais sobre o uso da ferramenta Report Generator use `dotnet reportgenerator -h` ou acesse o [site da ferramenta][REPORT_GENERATOR].
+
 Pronto! Agora você está habilitado para usar [TDD][TDD] no seu dia a dia. Inclusive essa é outra recomendação _The Clean Arch_.
 
 <!-- links -->
 [XUNIT]: https://xunit.net
 [MOQ]: https://github.com/devlooped/moq
 [TDD]: https://pt.wikipedia.org/wiki/Test-driven_development
+[MOCK_OBJECTS]: https://en.wikipedia.org/wiki/Mock_object
+[REPORT_GENERATOR]: https://reportgenerator.io
