@@ -10,4 +10,4 @@ Essa é mais uma implementação da definição de _"Arquitetura Limpa"_ conform
 Gostamos de pensar em _"The Clean Arch"_ como uma especialização da definição original de _"The Clean Architecture"_.
 
 > [!TIP]
-> Leia [nossa documentação](articles/introduction.md)!
+> Fique à vontade e leia [toda nossa documentação](articles/overview/introduction.md)!

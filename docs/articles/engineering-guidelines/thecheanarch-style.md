@@ -1,6 +1,6 @@
 # Estilo _The Clean Arch_
 
-Antes de continuar, queremos estabelecer primeiro algumas recomendações sobre a codificação de soluções .NET no estilo _"The Clean Arch"_. Vamos falar de pequenos detalhes como: estrutura de diretórios, arquivos de configuração, manuseio de Data/Hora, escrever testes, e outros. Alguns você já conhece se passou pelo guia de início rápido [_Getting Started_](create-solution-structure.md), mas queremos consolidá-los nessa seção.
+Antes de continuar, queremos estabelecer primeiro algumas recomendações sobre a codificação de soluções .NET no estilo _"The Clean Arch"_. Vamos falar de pequenos detalhes como: estrutura de diretórios, arquivos de configuração, manuseio de Data/Hora, escrever testes, e outros. Alguns você já conhece se passou pelo [guia de início rápido](../getting-started/create-solution-structure.md), mas queremos consolidá-los nessa seção.
 
 Conhecer esses detalhes lhe ajudará a se familiarizar e reconhecer projetos no estilo _"The Clean Arch"_. Então você pode encarar essas recomendações como parte da arquitetura, e compreende o _"Estilo The Clean Arch"_ de codificar.
 
@@ -38,11 +38,11 @@ Ententendo:
 * Diretório de código de componentes `src/`
 * Diretório de testes de componentes `test/`
 * Arquivo de configurações do editor `.editorconfig`
-* Arquivo de definições [Git](https://git-scm.com) para ignorar arquivos
+* Arquivo de definições [Git](https://git-scm.com) para ignorar arquivos `.gitignore`
 * Arquivo geral da solução `{Solution}.sln` (aqui o nome é o da sua solução)
 * Arquivo com configurações globais .NET para a solução `global.json`
 * Arquivo com configurações globais [NuGet](https://nuget.org) para a solução `nuget.config`
-* Arquivo de definições do [Omnisharp][OMNISHARP]
+* Arquivo de definições do [Omnisharp][OMNISHARP] `omnisharp.json`
 
 ## Licença de software
 
@@ -100,7 +100,7 @@ Exemplos:
 Nenhum projeto de software deve depender de qualquer recurso que seja exclusivo de um editor ou IDE. Ao invés disso use técnicas e padrões que possam ser compartilhados entre esses editores e IDEs.
 
 > [!NOTE]
-> Saiba mais em [Habilite editores](enable-code-editors.md).
+> Saiba mais em [Habilite editores](../getting-started/enable-code-editors.md).
 
 Nos próximos passos você verá ainda mais alguns detalhes sobre nosso estilo de codificação.
 

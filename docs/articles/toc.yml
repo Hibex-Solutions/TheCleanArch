@@ -1,13 +1,14 @@
-- name: Overview
-- href: introduction.md
-- href: the-image.md
+- name: Resumo
+- href: overview/introduction.md
+- href: overview/the-image.md
 
-- name: Getting Started
-- href: create-solution-structure.md
-- href: enable-thecleanarch.md
-- href: enable-code-editors.md
-- href: enable-unit-testing.md
+- name: Guia de Início Rápido
+- href: getting-started/create-solution-structure.md
+- href: getting-started/enable-thecleanarch.md
+- href: getting-started/enable-code-editors.md
+- href: getting-started/enable-unit-testing.md
+- href: getting-started/simplifying.md
 
-- name: Engineering Guidelines
-- href: thecheanarch-style.md
-- href: time-abstraction.md
+- name: Diretrizes de Engenharia
+- href: engineering-guidelines/thecheanarch-style.md
+- href: engineering-guidelines/time-abstraction.md

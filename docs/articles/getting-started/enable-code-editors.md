@@ -14,11 +14,11 @@ O arquivo `omnisharp.json` será necessário para que editores mais tradicionais
 ```json
 {
     "$schema": "http://json.schemastore.org/omnisharp",
-    "RoslynExtensionsOptions": {
-        "EnableAnalyzersSupport": true
+    "roslynExtensionsOptions": {
+        "enableAnalyzersSupport": true
     },
-    "FormattingOptions": {
-        "EnableEditorConfigSupport": true
+    "formattingOptions": {
+        "enableEditorConfigSupport": true
     }
 }
 ```

@@ -157,7 +157,7 @@ Isso nos leva a uma estrutura de diretórios e arquivos semelhantes a esta:
 
 Agora veja como a relação entre o gráfico de dependências de nossos projetos com as camadas de _"The Clean Arch"_ se encaixam perfeitamente.
 
-![Visão The Clean Arch](../images/getting-started/thecleanarch-and-layers.png)
+![Visão The Clean Arch](../../images/getting-started/thecleanarch-and-layers.png)
 
 Meus parabéns :clap: :clap: !!! Você acaba de criar um esboço de solução .NET de arquitetura limpa de acordo com _"The Clean Arch"_ :wink:.
 

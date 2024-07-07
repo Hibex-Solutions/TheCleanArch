@@ -48,7 +48,7 @@ Primeiro altere todos seus arquivos `.csproj` removendo as propriedades `Implici
   </PropertyGroup>
 ```
 
-Vamos definir essas propriedades e outras de forma comum para todos os componentes. Então crie o arquivo `src/Directory.build.props` com o seguinte conteúdo:
+Vamos definir essas propriedades e outras de forma comum para todos os componentes. Então crie o arquivo `src/Directory.Build.props` com o seguinte conteúdo:
 ```xml
 <Project>
     <PropertyGroup>

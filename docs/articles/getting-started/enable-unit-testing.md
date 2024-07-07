@@ -57,7 +57,7 @@ Primeiro altere todos seus arquivos `.csproj` dentro de `/test/` removendo as pr
 - </ItemGroup>
 ```
 
-Crie o arquivo `test/Directory.build.props` com as propriedades comuns em todos os projetos de teste seguinte conteúdo:
+Crie o arquivo `test/Directory.Build.props` com as propriedades comuns em todos os projetos de teste seguinte conteúdo:
 
 ```xml?highlight=8,9
 <Project>
