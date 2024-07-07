@@ -48,14 +48,14 @@ Ententendo:
 
 A licença de software é expressa de duas formas distintas: 1) Um arquivo `LICENSE` na raiz da solução que determina as regras de licenciamento, e 2) Cabeçalho de aviso de licença e direitos autorais nos arquivos de código.
 
-Portanto:
+Portanto, em uma solução nos padrões _The Clean Arch_, temos:
 
-* Toda solução _"The Clean Arch"_ deve conter um [arquivo `LICENSE`][LICENSE] na raiz da solução contendo as regras de licenciamento
 * Todo arquivo de código deve conter um aviso de licença e direitos autorais como neste exemplo:
 ```cs
 // Copyright (c) The Clean Arch Project. All rights reserved.
 // This file is a part of TheCleanArch. Licensed under the Apache version 2.0: LICENSE file.
 ```
+* Opcionalmente contém um [arquivo `LICENSE`][LICENSE] na raiz da solução contendo as regras de licenciamento
 
 ## Nomenclatura de componentes
 
