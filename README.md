@@ -17,21 +17,14 @@ Mais uma implementação da definição de _"Arquitetura Limpa"_ conforme escrit
 | TheCleanArch.Application  | ![NuGet Version](https://img.shields.io/nuget/v/TheCleanArch.Application?style=flat-square&logo=nuget) ![NuGet Version](https://img.shields.io/nuget/vpre/TheCleanArch.Application?style=flat-square&logo=nuget) |
 | TheCleanArch.InterfaceAdapter  | ![NuGet Version](https://img.shields.io/nuget/v/TheCleanArch.InterfaceAdapter?style=flat-square&logo=nuget) ![NuGet Version](https://img.shields.io/nuget/vpre/TheCleanArch.InterfaceAdapter?style=flat-square&logo=nuget) |
 
-## Requisitos de desenvolvimento
+# Início rápido
 
-* [.NET 8](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0)
-* [C# 12](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12)
-
-## Instruções de desenvolvimento
-
-Ao iniciar:
 ```sh
-$ dotnet tool restore
-$ dotnet restore
+# 1. Instale os templates
+dotnet new install TheCleanArch.Templates
+
+# 2. Crie sua solução
+dotnet new tca-basic-solution -n Solucao -o ./solucao
 ```
 
-Ao codificar:
-```sh
-$ dotnet build
-$ dotnet test
-```
+Pronto. Agora é só "codar" 😄!
