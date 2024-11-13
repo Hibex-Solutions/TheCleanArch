@@ -1,0 +1,7 @@
+services:
+  devenv:
+    build:
+      context: .
+    volumes:
+      - ..:/TheCleanArch
+    command: sleep infinity
