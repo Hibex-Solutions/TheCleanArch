@@ -6,13 +6,22 @@
       "version": "5.12.0",
       "commands": [
         "dotnet-gitversion"
-      ]
+      ],
+      "rollForward": false
     },
     "docfx": {
       "version": "2.76.0",
       "commands": [
         "docfx"
-      ]
+      ],
+      "rollForward": false
+    },
+    "husky": {
+      "version": "0.7.1",
+      "commands": [
+        "husky"
+      ],
+      "rollForward": false
     }
   }
 }

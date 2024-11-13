@@ -7,5 +7,8 @@ git config core.autocrlf true
 # Restore .NET Tools
 dotnet tool restore
 
+# Install Git Hooks Husky
+dotnet husky install
+
 # Restore .NET Dependencies
 dotnet restore ||:
