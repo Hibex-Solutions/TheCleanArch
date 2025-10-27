@@ -23,8 +23,14 @@ Mais uma implementação da definição de _"Arquitetura Limpa"_ conforme escrit
 # 1. Instale os templates
 dotnet new install TheCleanArch.Templates
 
-# 2. Crie sua solução
-dotnet new tca-basic-solution -n Solucao -o ./solucao
+# 2a. Crie sua solução padrão
+dotnet new tca-solution -n MinhaNova.Solucao -o ./minha-nova-solucao
+
+# 2b. Se preferir com suporte a DDD
+dotnet new tca-solution -n MinhaNova.Solucao -o ./minha-nova-solucao --UseDomainDrivenDesign
+
+# 4. Conheça mais opções do template
+dotnet new tca-solution --help
 ```
 
 Pronto. Agora é só "codar" 😄!

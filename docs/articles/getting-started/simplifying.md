@@ -16,7 +16,7 @@ dotnet new install TheCleanArch.Templates
 
 2. Crie uma solução básica como a que acabamos de criar manualmente.
 ```sh
-dotnet new tca-basic-solution -n Age -o age-project
+dotnet new tca-solution -n Age -o age-project --UseDomainDrivenDesign --EnableOmnisharpExtensions
 ```
 
 Pronto! Assim é muito mais simples. E acabamos com a mesma estrutura de solução.
