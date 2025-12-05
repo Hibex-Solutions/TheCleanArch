@@ -3,50 +3,42 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - 'main'
+      - "main"
     paths:
-      - '**'
-      - '!docs/**'
-      - '!samples/**'
+      - "**"
+      - "!docs/**"
+      - "!samples/**"
       # - '!.github/**'
 
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
-  
+
 jobs:
   build:
     name: Build and Test
     strategy:
       matrix:
-        os: [ubuntu-22.04, windows-2022, macos-14]
-    runs-on: ${{ matrix.os }}
+        dotnet-version: ["6.0", "8.0", "10.0"]
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v4
+      - name: Set up .NET ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: |
-            6.0.x
-            8.0.x
+          dotnet-version: ${{ matrix.dotnet-version }}
 
       - name: Restore
         run: |
           dotnet tool restore
           dotnet restore ./TheCleanArch.sln
 
-      - name: Build to .NET 6
-        run: dotnet build ./TheCleanArch.sln --nologo -c Release --no-restore --no-incremental -warnaserror -f net6.0
-      
-      - name: Build to .NET 8
-        run: dotnet build ./TheCleanArch.sln --nologo -c Release --no-restore --no-incremental -warnaserror -f net8.0
+      - name: Build to .NET ${{ matrix.dotnet-version }}
+        run: dotnet build ./TheCleanArch.sln --nologo -c Release --no-restore --no-incremental -warnaserror -f net${{ matrix.dotnet-version }}
 
-      - name: Test to .NET 6
-        run: dotnet test ./TheCleanArch.sln --nologo -c Release --no-build -f net6.0
-      
-      - name: Test to .NET 8
-        run: dotnet test ./TheCleanArch.sln --nologo -c Release --no-build -f net8.0
+      - name: Test to .NET ${{ matrix.dotnet-version }}
+        run: dotnet test ./TheCleanArch.sln --nologo -c Release --no-build -f net${{ matrix.dotnet-version }}
