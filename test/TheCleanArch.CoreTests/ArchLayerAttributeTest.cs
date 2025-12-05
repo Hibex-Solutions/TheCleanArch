@@ -200,6 +200,7 @@ public class ArchLayerTest
         MetadataReference Ref(string s)
         {
             return MetadataReference.CreateFromFile(Path.Combine(clrPath!, $"{s}.dll"));
-        };
+        }
+        ;
     }
 }
