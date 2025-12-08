@@ -80,7 +80,10 @@ jobs:
 
       - name: Build
         if: ${{ steps.version.outputs.is_released }}
-        run: dotnet build ./TheCleanArch.sln -c Release --no-restore
+        run: |
+          dotnet --version
+          dotnet --info
+          dotnet build ./TheCleanArch.sln -c Release --no-restore
 
       - name: Test
         if: ${{ steps.version.outputs.is_released }}
