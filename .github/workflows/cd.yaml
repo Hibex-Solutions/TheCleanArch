@@ -25,10 +25,7 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: |
-            6.0.x
-            8.0.x
-            10.0.x
+          dotnet-version: "10.0"
 
       - name: Restore
         run: |
@@ -81,13 +78,12 @@ jobs:
       - name: Build
         if: ${{ steps.version.outputs.is_released }}
         run: |
-          dotnet --version
-          dotnet --info
-          dotnet build ./TheCleanArch.sln -c Release --no-restore
+          dotnet build ./TheCleanArch.sln --nologo -c Release --no-restore --no-incremental -warnaserror -f net10.0
 
       - name: Test
         if: ${{ steps.version.outputs.is_released }}
-        run: dotnet test ./TheCleanArch.sln -c Release --no-build
+        run: |
+          dotnet test ./TheCleanArch.sln --nologo -c Release --no-build -f net10.0
 
       - name: Publish private packages
         if: ${{ steps.version.outputs.is_released == 'true' && steps.version.outputs.is_prerelease == 'true' && steps.version.outputs.is_public == 'false' }}
