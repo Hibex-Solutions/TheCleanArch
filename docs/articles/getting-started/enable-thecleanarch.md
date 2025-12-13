@@ -100,29 +100,39 @@ global using TheCleanArch.Core.Patterns.GuardClauses;
 
 Agora crie um arquivo `AssemblyInfo.cs` em cada projeto, e use o trecho de código abaixo para marcar (anotar) o `Assembly` com metadados que identificam a camada a que pertencem.
 
-```cs
 # [src/Age.Domain/AssemblyInfo.cs](#tab/domain)
+
+```cs
 using static TheCleanArch.Core.ArchLayerId;
 
 [assembly: ArchLayer(Enterprise, nameof(Enterprise))]
+```
 
 # [src/Age.Application/AssemblyInfo.cs](#tab/application)
+
+```cs
 using static TheCleanArch.Core.ArchLayerId;
 
 [assembly: ArchLayer(Application, nameof(Application))]
+```
 
 # [src/Age.DataAdapter/AssemblyInfo.cs](#tab/dataadapter)
+
+```cs
 using static TheCleanArch.Core.ArchLayerId;
 
 [assembly: ArchLayer(InterfaceAdapter, nameof(InterfaceAdapter))]
+```
 
 # [src/Age.WebApi/AssemblyInfo.cs](#tab/webapi)
+
+```cs
 using static TheCleanArch.Core.ArchLayerId;
 
 [assembly: ArchLayer(InterfaceAdapter, nameof(InterfaceAdapter))]
+```
 
 ---
-```
 
 Agora além ter os componentes prontos para codificar já com os utilitários _The Clean Arch_, acabamos com alguns arquivos novos (`AssemblyInfo.cs` e `Usings.cs`).
 
