@@ -26,7 +26,7 @@ mkdir {docs,eng,samples,src,test}
 > Deste momento em diante, vamos imaginar que você estará sempre neste diretório de solução.
 
 > [!WARNING]
-> Outra coisa que iremos considerar é que você já tem o [.NET SDK][DOTNET] instalado e pronto para uso. Aqui usaremos a versão 8 como exemplo, mas à partir da versão 6 já é compatível.
+> Outra coisa que iremos considerar é que você já tem o [.NET SDK][DOTNET] instalado e pronto para uso. Aqui usaremos a versão 10 como exemplo, mas à partir da versão 6 já é compatível.
 
 ## Arquivos essenciais
 
@@ -84,7 +84,7 @@ dotnet new classlib -n Age.Application -o src/Age.Application
 > [!NOTE]
 > Os adaptadores de interface podem ser tantos quanto você precisar. Aqui usaremos apenas 2 componentes adaptadores: 1) a camada de apresentação como um adaptador de interface para entrada dos dados, e 2) a camada de acesso a dados como adaptador de interface para saída de dados.
 
-Um adaptadore de interface para armazenamento de dados em memória chamado **Age.InMemoryStorage** e um adaptador de interface para API Web chamado **Age.WebApi**.
+Um adaptador de interface para armazenamento de dados chamado **Age.DataAdapter** e um adaptador de interface para API Web chamado **Age.WebApi**.
 
 ```sh
 dotnet new classlib -n Age.DataAdapter -o src/Age.DataAdapter
@@ -96,16 +96,16 @@ Agora vamos relacionar esses projetos entre si de acordo com suas dependências.
 ```mermaid
 flowchart BT
 
-Age(Age.csproj)
+Application(Age.Application.csproj)
 Domain(Age.Domain.csproj)
-InMemoryStorage(Age.InMemoryStorage.csproj)
+DataAdapter(Age.DataAdapter.csproj)
 WebApi(Age.WebApi.csproj)
 
 
-Age --> Domain
-InMemoryStorage --> Age
-WebApi --> Age
-WebApi --> InMemoryStorage
+Application --> Domain
+DataAdapter --> Application
+WebApi --> Application
+WebApi --> DataAdapter
 ```
 
 ```sh
