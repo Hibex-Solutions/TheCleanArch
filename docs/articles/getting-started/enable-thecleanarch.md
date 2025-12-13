@@ -28,10 +28,10 @@ O que temos que fazer agora é adicionar a biblioteca adequada como dependência
 dotnet add src/Age.Domain/Age.Domain.csproj package TheCleanArch.Enterprise --prerelease
 
 # A camada de aplicação depende de "TheCleanArch.Application"
-dotnet add src/Age/Age.csproj package TheCleanArch.Application --prerelease
+dotnet add src/Age.Application/Age.Application.csproj package TheCleanArch.Application --prerelease
 
 # A camada de apresentação e infraestrutura dependem de "TheCleanArch.InterfaceAdapter"
-dotnet add src/Age.InMemoryStorage/Age.InMemoryStorage.csproj package TheCleanArch.InterfaceAdapter --prerelease
+dotnet add src/Age.DataAdapter/Age.DataAdapter.csproj package TheCleanArch.InterfaceAdapter --prerelease
 dotnet add src/Age.WebApi/Age.WebApi.csproj package TheCleanArch.InterfaceAdapter --prerelease
 ```
 
@@ -42,7 +42,7 @@ Mas para deixar isso mais explícito, e também para uso posterior de ferramenta
 Primeiro altere todos seus arquivos `.csproj` removendo as propriedades `ImplicitUsings` e `Nullable`:
 ```diff
   <PropertyGroup>
-     <TargetFramework>net8.0</TargetFramework>
+     <TargetFramework>net10.0</TargetFramework>
 -    <ImplicitUsings>enable</ImplicitUsings>
 -    <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -53,7 +53,7 @@ Vamos definir essas propriedades e outras de forma comum para todos os component
 <Project>
     <PropertyGroup>
         <Product>Age</Product>
-        <AnalysisLevel>8.0-recommended</AnalysisLevel>
+        <AnalysisLevel>10.0-recommended</AnalysisLevel>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -104,14 +104,14 @@ using static TheCleanArch.Core.ArchLayerId;
 ```
 
 ```cs
-// File: src/Age/AssemblyInfo.cs
+// File: src/Age.Application/AssemblyInfo.cs
 using static TheCleanArch.Core.ArchLayerId;
 
 [assembly: ArchLayer(Application, nameof(Application))]
 ```
 
 ```cs
-// File: src/Age.InMemoryStorage/AssemblyInfo.cs
+// File: src/Age.DataAdapter/AssemblyInfo.cs
 using static TheCleanArch.Core.ArchLayerId;
 
 [assembly: ArchLayer(InterfaceAdapter, nameof(InterfaceAdapter))]
@@ -131,10 +131,10 @@ Agora além ter os componentes prontos para codificar já com os utilitários _T
 
 Teremos no mínimo 3 (três) arquivos em cada componente. Veja um exemplo de nossa camada de aplicação:
 ```console
-./Age
+./Age.Aplication
   ├── AssemblyInfo.cs
   ├── Usings.cs
-  └── Age.csproj
+  └── Age.Application.csproj
 ```
 
 Agora nossos componentes de software estão prontos para serem codificados pois já temos o mínimo da solução configurada. Nos próximos passos prepararemos o necessário para permitir [testes unitários][UNIT_TEST].
