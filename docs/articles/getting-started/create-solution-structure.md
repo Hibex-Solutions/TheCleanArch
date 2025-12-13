@@ -35,7 +35,7 @@ Crie alguns arquivos essenciais. Configuração [NuGet][NUGET], [Git][GIT], [edi
 
 ```sh
 dotnet new nugetconfig
-dotnet new globaljson --sdk-version "8.0.0" --roll-forward feature
+dotnet new globaljson --sdk-version "10.0.100" --roll-forward feature
 dotnet new gitignore
 dotnet new editorconfig
 dotnet new tool-manifest
@@ -76,7 +76,7 @@ dotnet new classlib -n Age.Domain -o src/Age.Domain
 ### Application
 Nossa camada de regras de aplicação se chamará **Age** apenas, porque é a aplicação em si.
 ```sh
-dotnet new classlib -n Age -o src/Age
+dotnet new classlib -n Age.Application -o src/Age.Application
 ```
 
 ### Interface Adapter
@@ -87,8 +87,8 @@ dotnet new classlib -n Age -o src/Age
 Um adaptadore de interface para armazenamento de dados em memória chamado **Age.InMemoryStorage** e um adaptador de interface para API Web chamado **Age.WebApi**.
 
 ```sh
-dotnet new classlib -n Age.InMemoryStorage -o src/Age.InMemoryStorage
-dotnet new webapi --use-controllers -f net8.0 -n Age.WebApi -o src/Age.WebApi
+dotnet new classlib -n Age.DataAdapter -o src/Age.DataAdapter
+dotnet new webapi -minimal -f net10.0 -n Age.WebApi -o src/Age.WebApi
 ```
 
 Agora vamos relacionar esses projetos entre si de acordo com suas dependências.
@@ -109,10 +109,10 @@ WebApi --> InMemoryStorage
 ```
 
 ```sh
-dotnet add src/Age/Age.csproj reference src/Age.Domain/Age.Domain.csproj
-dotnet add src/Age.InMemoryStorage/Age.InMemoryStorage.csproj reference src/Age/Age.csproj
-dotnet add src/Age.WebApi/Age.WebApi.csproj reference src/Age.InMemoryStorage/Age.InMemoryStorage.csproj
-dotnet add src/Age.WebApi/Age.WebApi.csproj reference src/Age/Age.csproj
+dotnet add src/Age.Application/Age.Application.csproj reference src/Age.Domain/Age.Domain.csproj
+dotnet add src/Age.DataAdapter/Age.DataAdapter.csproj reference src/Age.Application/Age.Application.csproj
+dotnet add src/Age.WebApi/Age.WebApi.csproj reference src/Age.DataAdapter/Age.DataAdapter.csproj
+dotnet add src/Age.WebApi/Age.WebApi.csproj reference src/Age.Application/Age.Application.csproj
 ```
 
 ## Arquivo de solução
@@ -120,12 +120,12 @@ dotnet add src/Age.WebApi/Age.WebApi.csproj reference src/Age/Age.csproj
 Por fim, vamos reunir todos os componentes em um arquivo de solução .NET.
 
 ```sh
-dotnet new sln -n Age
+dotnet new sln -n Age -f slnx
 
-dotnet sln Age.sln add src/Age/Age.csproj
-dotnet sln Age.sln add src/Age.Domain/Age.Domain.csproj
-dotnet sln Age.sln add src/Age.InMemoryStorage/Age.InMemoryStorage.csproj
-dotnet sln Age.sln add src/Age.WebApi/Age.WebApi.csproj
+dotnet sln add src/Age.Domain/Age.Domain.csproj
+dotnet sln add src/Age.Application/Age.Application.csproj
+dotnet sln add src/Age.DataAdapter/Age.DataAdapter.csproj
+dotnet sln add src/Age.WebApi/Age.WebApi.csproj
 ```
 
 ## Conferindo tudo
@@ -140,14 +140,14 @@ Isso nos leva a uma estrutura de diretórios e arquivos semelhantes a esta:
   ├─ eng/
   ├─ samples/
   ├─ src/
-  │  ├─ Age/
+  │  ├─ Age.Application/
+  │  ├─ Age.DataAdapter/
   │  ├─ Age.Domain/
-  │  ├─ Age.InMemoryStorage/
   │  └─ Age.WebApi/
   ├─ test/
   ├─ .editorconfig
   ├─ .gitignore
-  ├─ Age.sln
+  ├─ Age.slnx
   ├─ global.json
   └─ nuget.config
 ```
@@ -173,4 +173,4 @@ Meus parabéns :clap: :clap: !!! Você acaba de criar um esboço de solução .N
 [NUGET]: https://www.nuget.org
 [GIT]: https://git-scm.com
 [EDITORCONFIG]: https://editorconfig.org
-[AGE_SAMPLE_GITHUB]: https://github.com/Hibex-Solutions/TheCleanArch/tree/main/samples/Age
+[AGE_SAMPLE_GITHUB]: https://github.com/Hibex-Solutions/TheCleanArch/tree/main/samples/AgeProject

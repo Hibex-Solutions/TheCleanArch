@@ -1,0 +1,11 @@
+<Project>
+    <PropertyGroup>
+        <Product>Age</Product>
+        <AnalysisLevel>10.0-recommended</AnalysisLevel>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <!-- Informe aqui todas as outras propriedades que queira
+             e sejam comuns a todos os componentes -->
+    </PropertyGroup>
+</Project>

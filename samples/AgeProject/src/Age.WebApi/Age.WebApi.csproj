@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1" />
+    <PackageReference Include="TheCleanArch.InterfaceAdapter" Version="0.1.0-rc0007" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Age.DataAdapter\Age.DataAdapter.csproj" />
+    <ProjectReference Include="..\Age.Application\Age.Application.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Age.Application/Age.Application.csproj" />
+    <Project Path="src/Age.DataAdapter/Age.DataAdapter.csproj" />
+    <Project Path="src/Age.Domain/Age.Domain.csproj" />
+    <Project Path="src/Age.WebApi/Age.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Age.ApplicationTests/Age.ApplicationTests.csproj" />
+    <Project Path="test/Age.DomainTests/Age.DomainTests.csproj" />
+    <Project Path="test/Age.WebApiTests/Age.WebApiTests.csproj" />
+  </Folder>
+</Solution>
