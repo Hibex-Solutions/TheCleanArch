@@ -1,6 +1,6 @@
 # 1. Crie a estrutura da solução
 
-A maneira mais prática de usar _The Clean Arch_ é criar uma solução nos moldes que se propõe. Então aqui iremos criar uma solução .NET em camadas para que você esteja apto a conhecer melhor cada componente da arquitetura em seus detalhes.
+A maneira mais prática de usar _The Clean Arch_ é criar uma solução nos moldes que se propõe. Então aqui iremos criar uma solução [.NET][DOTNET] em camadas para que você esteja apto a conhecer melhor cada componente da arquitetura em seus detalhes.
 
 À partir de agora vamos trabalhar tendo em mente uma aplicação para controle de nossa [árvore genealógica.][ARVORE_GENEALOGICA]. A princípio vamos trabalhar na construção de uma _API Web_, mas poderia ser qualquer outro tipo de aplicação. Vamos então chamar nossa solução de _"Árvore Genealógica"_, a que podemos usar o _token_ _"ArvoreGenealogica"_ para identificar ou ainda _"Age"_ para ser mais curto.
 
@@ -34,8 +34,8 @@ Crie alguns arquivos essenciais. Configuração [NuGet][NUGET], [Git][GIT], [edi
 
 
 ```sh
-dotnet new nugetconfig
 dotnet new globaljson --sdk-version "10.0.100" --roll-forward feature
+dotnet new nugetconfig
 dotnet new gitignore
 dotnet new editorconfig
 dotnet new tool-manifest
@@ -74,7 +74,7 @@ dotnet new classlib -n Age.Domain -o src/Age.Domain
 ```
 
 ### Application
-Nossa camada de regras de aplicação se chamará **Age** apenas, porque é a aplicação em si.
+Nossa camada de regras de aplicação se chamará **Age.Application**.
 ```sh
 dotnet new classlib -n Age.Application -o src/Age.Application
 ```
@@ -84,7 +84,7 @@ dotnet new classlib -n Age.Application -o src/Age.Application
 > [!NOTE]
 > Os adaptadores de interface podem ser tantos quanto você precisar. Aqui usaremos apenas 2 componentes adaptadores: 1) a camada de apresentação como um adaptador de interface para entrada dos dados, e 2) a camada de acesso a dados como adaptador de interface para saída de dados.
 
-Um adaptador de interface para armazenamento de dados chamado **Age.DataAdapter** e um adaptador de interface para API Web chamado **Age.WebApi**.
+Um adaptador de interface para armazenamento de dados chamado **Age.DataAdapter** e um adaptador de interface para _API Web_ chamado **Age.WebApi**.
 
 ```sh
 dotnet new classlib -n Age.DataAdapter -o src/Age.DataAdapter
@@ -96,10 +96,10 @@ Agora vamos relacionar esses projetos entre si de acordo com suas dependências.
 ```mermaid
 flowchart BT
 
-Application(Age.Application.csproj)
-Domain(Age.Domain.csproj)
-DataAdapter(Age.DataAdapter.csproj)
-WebApi(Age.WebApi.csproj)
+Application(Age.Application)
+Domain(Age.Domain)
+DataAdapter(Age.DataAdapter)
+WebApi(Age.WebApi)
 
 
 Application --> Domain
@@ -109,15 +109,15 @@ WebApi --> DataAdapter
 ```
 
 ```sh
-dotnet add src/Age.Application/Age.Application.csproj reference src/Age.Domain/Age.Domain.csproj
-dotnet add src/Age.DataAdapter/Age.DataAdapter.csproj reference src/Age.Application/Age.Application.csproj
 dotnet add src/Age.WebApi/Age.WebApi.csproj reference src/Age.DataAdapter/Age.DataAdapter.csproj
 dotnet add src/Age.WebApi/Age.WebApi.csproj reference src/Age.Application/Age.Application.csproj
+dotnet add src/Age.DataAdapter/Age.DataAdapter.csproj reference src/Age.Application/Age.Application.csproj
+dotnet add src/Age.Application/Age.Application.csproj reference src/Age.Domain/Age.Domain.csproj
 ```
 
 ## Arquivo de solução
 
-Por fim, vamos reunir todos os componentes em um arquivo de solução .NET.
+Por fim, vamos reunir todos os componentes em um arquivo de solução [.NET][DOTNET].
 
 ```sh
 dotnet new sln -n Age -f slnx
@@ -159,12 +159,12 @@ Agora veja como a relação entre o gráfico de dependências de nossos projetos
 
 ![Visão The Clean Arch](../../images/getting-started/thecleanarch-and-layers.png)
 
-Meus parabéns :clap: :clap: !!! Você acaba de criar um esboço de solução .NET de arquitetura limpa de acordo com _"The Clean Arch"_ :wink:.
+Meus parabéns! Você acaba de criar um esboço de solução [.NET][DOTNET] com arquitetura limpa de acordo com _"The Clean Arch"_ :wink:.
 
 > [!TIP]
 > Veja um [exemplo completo dessa solução no GitHub][AGE_SAMPLE_GITHUB]
 
-Óbvio que isso não é tudo. Porém o primeiro passo para que você desenvolva de acordo com uma definição de _"Arquitetura Limpa"_, é estruturar seu projeto de software de forma a codificar nas camadas corretas e que essas camadas estejam dispostas de forma a seguir os princípios estabelecidos por _"The Clean Arch"_. Você aprenderá mais nos próximos passos.
+Óbvio que isso não é tudo. Porém o primeiro passo para que você desenvolva de acordo com uma definição de _"Arquitetura Limpa"_ é estruturar seu projeto de software de forma a codificar nas camadas corretas e que essas camadas estejam dispostas de forma a seguir os princípios estabelecidos por _"The Clean Arch"_. Você aprenderá mais nos próximos passos.
 
 [ARVORE_GENEALOGICA]: https://pt.wikipedia.org/wiki/%C3%81rvore_geneal%C3%B3gica
 [DOTNET]: https://dot.net

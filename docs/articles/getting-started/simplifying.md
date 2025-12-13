@@ -1,7 +1,7 @@
 # Simplificando as coisas
 
 Por sorte, tudo que você acabou de fazer dos passos 1 ao 4, você não precisá repetir
-no seu dia a dia. Sabemos esses pequenos detalhes são coisas que podemos esquecer no
+no seu dia a dia. Sabemos que esses pequenos detalhes são coisas que podemos esquecer no
 dia a dia se precisarmos repetir muitas vezes, porém é muito importante entendê-los
 e saber porque existem. Por isso fizemos questão de mostrar como fazer tudo manualmente.
 

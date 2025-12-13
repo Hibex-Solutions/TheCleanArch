@@ -19,11 +19,11 @@ Habilite o executor de testes MTP no arquivo `global.json`.
 }
 ```
 
-Crie os projetos de teste de componente.
+Crie os projetos de teste para cada componente.
 
 ```sh
 # Se ainda não tem os templates TUnit
-dotnet new install TUnit.Templates
+# dotnet new install TUnit.Templates
 
 # Criando os projetos
 dotnet new TUnit -n Age.ApplicationTests -o test/Age.ApplicationTests
@@ -110,7 +110,7 @@ Porfim instale a ferramenta [Report Generator][REPORT_GENERATOR] como dependênc
 dotnet tool install dotnet-reportgenerator-globaltool
 ```
 
-Para saber mais sobre o uso da ferramenta Report Generator use `dotnet reportgenerator -h` ou acesse o [site da ferramenta][REPORT_GENERATOR].
+Para saber mais sobre o uso da ferramenta _Report Generator_ use `dotnet reportgenerator -h` ou acesse o [site da ferramenta][REPORT_GENERATOR].
 
 Pronto! Agora você está habilitado para usar [TDD][TDD] no seu dia a dia. Inclusive essa é outra recomendação _The Clean Arch_.
 

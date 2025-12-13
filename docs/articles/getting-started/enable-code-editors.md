@@ -5,7 +5,7 @@ Se você usa uma IDE rica em recursos como [Microsoft Visual Studio][VISUALSTUDI
 > [!TIP]
 > Encare isso como uma recomendação arquitetural _The Clean Arch_!
 
-E é para que o código funcione adequadamente em qualquer um desses seus ambientes de desenvolvimento que sugerimos que todas as soluções tenham os arquivos `global.json`, `nuget.config`, `.editorconfig` e `.config/dotnet-tools.json`. Porque eles controlam de forma padronizada cada aspecto relevante do projeto, e faz com que a experiência de codificação seja como esperada usando quaisquer dessas ferramentas, por serem padrões de mercado. Mas nos falta ainda um arquivo, o `omnisharp.json`.
+E é para que o código funcione adequadamente em qualquer um desses seus ambientes de desenvolvimento que sugerimos que todas as soluções tenham os arquivos `global.json`, `nuget.config`, `.editorconfig` e `.config/dotnet-tools.json`. Porque eles controlam de forma padronizada cada aspecto relevante do projeto, e faz com que a experiência de codificação seja como esperada usando quaisquer dessas ferramentas por serem padrões de mercado. Mas nos falta ainda um arquivo, o `omnisharp.json`.
 
 ## O arquivo de configuração do Omnisharp
 
