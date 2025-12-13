@@ -3,7 +3,7 @@
 Você aprenderá mais sobre testes unitários e como nós recomendamos seu uso nas seções de _Engineering Guidelines_. Por hora vamos criar os projetos de teste para 3 componentes: nossa camada de aplicação, domínio e API Web. Este é o mínimo recomendado para cobertura de teste em nossos softwares.
 
 > [!TIP]
-> Nós recomendamos o framework de testes [TUnit][TUNIT] com biblioteca [Moq][MOQ] para [objetos mock][MOCK_OBJECTS] de dependências, e [Report Generator][REPORT_GENERATOR] para relatórios de cobertura de código.
+> Nós recomendamos [Microsoft.Testing.Platform][MTP], com framework de testes [TUnit][TUNIT], biblioteca [Moq][MOQ] para [objetos mock][MOCK_OBJECTS] de dependências, e [Report Generator][REPORT_GENERATOR] para relatórios de cobertura de código local.
 
 Habilite o executor de testes MTP no arquivo `global.json`.
 
@@ -120,3 +120,4 @@ Pronto! Agora você está habilitado para usar [TDD][TDD] no seu dia a dia. Incl
 [TDD]: https://pt.wikipedia.org/wiki/Test-driven_development
 [MOCK_OBJECTS]: https://en.wikipedia.org/wiki/Mock_object
 [REPORT_GENERATOR]: https://reportgenerator.io
+[MTP]: https://learn.microsoft.com/pt-pt/dotnet/core/testing/microsoft-testing-platform-intro?tabs=dotnetcli
