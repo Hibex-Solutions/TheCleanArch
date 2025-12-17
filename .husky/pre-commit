@@ -1,12 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo 'Hook pre-commit with Husky.Net!'
-
-# Checking for code breakage
-dotnet restore
-dotnet build --no-restore
-dotnet test --no-build
-
-# Checking .NET code style
-dotnet format --no-restore --verify-no-changes
+dotnet husky run

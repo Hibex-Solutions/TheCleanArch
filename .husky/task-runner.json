@@ -2,12 +2,71 @@
    "$schema": "https://alirezanet.github.io/Husky.Net/schema.json",
    "tasks": [
       {
-         "name": "welcome-message-example",
+         "name": "restore",
          "command": "bash",
-         "args": [ "-c", "echo Husky.Net is awesome!" ],
+         "args": [
+            "-c",
+            "dotnet restore"
+         ],
          "windows": {
             "command": "cmd",
-            "args": ["/c", "echo Husky.Net is awesome!" ]
+            "args": [
+               "/c",
+               "dotnet",
+               "restore"
+            ]
+         }
+      },
+      {
+         "name": "format",
+         "command": "bash",
+         "args": [
+            "-c",
+            "dotnet format --no-restore --verify-no-changes"
+         ],
+         "windows": {
+            "command": "cmd",
+            "args": [
+               "/c",
+               "dotnet",
+               "format",
+               "--no-restore",
+               "--verify-no-changes"
+            ]
+         }
+      },
+      {
+         "name": "build",
+         "command": "bash",
+         "args": [
+            "-c",
+            "dotnet build --no-restore"
+         ],
+         "windows": {
+            "command": "cmd",
+            "args": [
+               "/c",
+               "dotnet",
+               "build",
+               "--no-restore"
+            ]
+         }
+      },
+      {
+         "name": "test",
+         "command": "bash",
+         "args": [
+            "-c",
+            "dotnet test --no-build"
+         ],
+         "windows": {
+            "command": "cmd",
+            "args": [
+               "/c",
+               "dotnet",
+               "test",
+               "--no-build"
+            ]
          }
       }
    ]
