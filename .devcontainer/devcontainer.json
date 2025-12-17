@@ -4,7 +4,7 @@
     "dockerComposeFile": "compose.yml",
     "remoteUser": "tcadev",
     "workspaceFolder": "/TheCleanArch",
-    "postStartCommand": ". .devcontainer/postStartCommand.sh",
+    "postStartCommand": ". ./.devcontainer/post-start-command.sh",
     "customizations": {
         "vscode": {
             "settings": {
@@ -13,7 +13,6 @@
             "extensions": [
                 "ms-azuretools.vscode-docker",
                 "ms-dotnettools.csdevkit",
-                "ms-dotnettools.vscodeintellicode-csharp",
                 "EditorConfig.EditorConfig"
             ]
         }

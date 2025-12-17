@@ -2,6 +2,7 @@ services:
   devenv:
     build:
       context: .
+    user: tcadev
     volumes:
       - ..:/TheCleanArch
     command: sleep infinity
