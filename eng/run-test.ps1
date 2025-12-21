@@ -8,7 +8,7 @@ for($count = 0; $count -lt $args.length; $count++) {
 }
 
 $SCRIPT_PWD = Split-Path $MyInvocation.MyCommand.Path -Parent
-$SOLUTION_FILE = Join-Path $SCRIPT_PWD "../TheCleanArch.sln" | Resolve-Path
+$SOLUTION_FILE = Join-Path $SCRIPT_PWD "../TheCleanArch.slnx" | Resolve-Path
 $TEST_DIR = Join-Path $SCRIPT_PWD "../test" | Resolve-Path
 
 "Removendo resultados de testes anteriores..." | Write-Output

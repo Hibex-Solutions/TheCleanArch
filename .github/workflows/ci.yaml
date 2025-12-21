@@ -35,10 +35,10 @@ jobs:
       - name: Restore
         run: |
           dotnet tool restore
-          dotnet restore ./TheCleanArch.sln
+          dotnet restore
 
       - name: Build to .NET ${{ matrix.dotnet-version }}
-        run: dotnet build ./TheCleanArch.sln --nologo -c Release --no-restore --no-incremental -warnaserror -f net${{ matrix.dotnet-version }}
+        run: dotnet build --nologo -c Release --no-restore --no-incremental -warnaserror -f net${{ matrix.dotnet-version }}
 
       - name: Test to .NET ${{ matrix.dotnet-version }}
-        run: dotnet test ./TheCleanArch.sln --nologo -c Release --no-build -f net${{ matrix.dotnet-version }}
+        run: dotnet test --nologo -c Release --no-build -f net${{ matrix.dotnet-version }}
