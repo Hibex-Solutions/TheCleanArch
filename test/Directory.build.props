@@ -5,9 +5,8 @@
         <Copyright>Copyright (c) The Clean Arch Project. All rights reserved.</Copyright>
         <Authors>TheCleanArch</Authors>
 
-        <AnalysisLevel>8.0-recommended</AnalysisLevel>
+        <AnalysisLevel>10.0-recommended</AnalysisLevel>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-        <LangVersion>12.0</LangVersion>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>disable</Nullable>
         <IsPackable>false</IsPackable>
