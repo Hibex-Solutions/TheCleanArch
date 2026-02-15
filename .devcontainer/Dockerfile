@@ -2,9 +2,6 @@ ARG USER_UID=1001
 ARG USER_GID=$USER_UID
 FROM mcr.microsoft.com/dotnet/sdk:10.0
 
-# Include .NET SDK 6.0
-COPY --from=mcr.microsoft.com/dotnet/sdk:6.0 /usr/share/dotnet/shared /usr/share/dotnet/shared
-
 # Include .NET SDK 8.0
 COPY --from=mcr.microsoft.com/dotnet/sdk:8.0 /usr/share/dotnet/shared /usr/share/dotnet/shared
 

@@ -46,7 +46,10 @@ Ententendo:
 
 ## Licença de software
 
-A licença de software é expressa de duas formas distintas: 1) Um arquivo `LICENSE` na raiz da solução que determina as regras de licenciamento, e 2) Cabeçalho de aviso de licença e direitos autorais nos arquivos de código.
+A licença de software é expressa de duas formas distintas:
+
+1. Um arquivo `LICENSE` na raiz da solução que determina as regras de licenciamento, e
+2. Cabeçalho de aviso de licença e direitos autorais nos arquivos de código.
 
 Portanto, em uma solução nos padrões _The Clean Arch_, temos:
 
@@ -72,12 +75,12 @@ Exemplo: Para um projeto de software chamado _"Árvore Genealógica"_, o arquivo
 Os componentes devem ser nomeados com o nome da solução como prefixo, seguido do nome do componente (que muitas vezes reflete a camada do sofware codificada), como `[Prefixo].Componente`.
 
 Exemplos:
-* `ArvoreGenealogica.Application`
-* `ArvoreGenealogica.Domain`
-* `ArvoreGenealogica.WebApi`
-* `ArvoreGenealogica.Cli`
-* `ArvoreGenealogica.DataStorage`
-* `ArvoreGenealogica.GitHubApiGateway`
+* `ArvoreGenealogica.Business.Entities`
+* `ArvoreGenealogica.Business.UseCases`
+* `ArvoreGenealogica.InterfaceAdapters.UserInterfaces.WebApi`
+* `ArvoreGenealogica.InterfaceAdapters.UserInterfaces.CliApp`
+* `ArvoreGenealogica.InterfaceAdapters.DataAccess.MongoDB`
+* `ArvoreGenealogica.InterfaceAdapters.Gateways.GitHub`
 
 > [!IMPORTANT]
 > Os componentes devem residir no subdiretório `src/`.
@@ -85,12 +88,12 @@ Exemplos:
 Os arquivos de teste devem levar o mesmo nome do componente alvo mais o sufixo `Tests`, porém sem um ponto o separando do nome, como `[ComponenteAlvo]Tests`.
 
 Exemplos:
-* `ArvoreGenealogica.ApplicationTests`
-* `ArvoreGenealogica.DomainTests`
-* `ArvoreGenealogica.WebApiTests`
-* `ArvoreGenealogica.CliTests`
-* `ArvoreGenealogica.DataStorageTests`
-* `ArvoreGenealogica.GitHubApiGatewayTests`
+* `ArvoreGenealogica.Business.UseCasesTests`
+* `ArvoreGenealogica.Business.EntitiesTests`
+* `ArvoreGenealogica.InterfaceAdapters.UserInterfaces.WebApiTests`
+* `ArvoreGenealogica.InterfaceAdapters.UserInterfaces.CliAppTests`
+* `ArvoreGenealogica.InterfaceAdapters.DataAccess.MongoDBTests`
+* `ArvoreGenealogica.InterfaceAdapters.Gateways.GitHubTests`
 
 > [!IMPORTANT]
 > Os testes de componentes devem residir no subdiretório `test/`.

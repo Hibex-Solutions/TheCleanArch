@@ -1,5 +1,22 @@
 # Como contribuir com TheCleanArch
 
+Requisitos:
+
+- .NET SDK 8.0 e 10.0
+
+## Aprenda a desenvolva localmente primeiro
+
+Após clonar o repositório, confira se tudo está ok:
+```sh
+dotnet tool restore
+dotnet husky install
+dotnet husky run
+dotnet docfx ./docs/docfx.json
+```
+
+Qualquer falha nessa etapa indica ou um requisito não presente, ou
+talvez você tenha até encontrado um bug.
+
 ## Encontrou um bug?
 
 * **Não abra um problema no GitHub se o bug for uma vulnerabilidade de segurança no .NET**, em vez disso, entre em contato com a [própria equipe do .NET](https://github.com/dotnet/).

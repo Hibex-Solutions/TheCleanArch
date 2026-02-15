@@ -1,1 +1,0 @@
-Diretório reservado para amostras do projeto.

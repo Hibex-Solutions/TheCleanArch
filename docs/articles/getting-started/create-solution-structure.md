@@ -34,7 +34,7 @@ Crie alguns arquivos essenciais. Configuração [NuGet][NUGET], [Git][GIT], [edi
 
 
 ```sh
-dotnet new globaljson --sdk-version "10.0.100" --roll-forward feature
+dotnet new globaljson --sdk-version "10.0.103" --roll-forward feature
 dotnet new nugetconfig
 dotnet new gitignore
 dotnet new editorconfig

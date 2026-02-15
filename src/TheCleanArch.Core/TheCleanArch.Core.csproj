@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net10.0;net8.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net10.0;net8.0</TargetFrameworks>
     <PackageId>TheCleanArch.Core</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>TheCleanArchIcon.png</PackageIcon>
@@ -11,10 +11,6 @@
   <ItemGroup>
     <None Include="docs\README.md" Pack="true" PackagePath="\" />
     <None Include="..\..\docs\images\TheCleanArchIcon.png" Pack="true" PackagePath="\" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-    <PackageReference Include="Microsoft.Bcl.TimeProvider" Version="8.0.1" />
   </ItemGroup>
 
 </Project>
