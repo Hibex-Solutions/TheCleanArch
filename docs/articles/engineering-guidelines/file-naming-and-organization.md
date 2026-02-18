@@ -22,9 +22,10 @@ resumidas em 2 categorias:
 - Business
 - InterfaceAdapters
 
-Dentro dessas podemos acomodar todos os nossos componentes de software.
+Dentro dessas podemos acomodar todos os nossos componentes de software, e se
+necessário ainda podem ser organizados em subcategorias.
 
-# Camada de negócio
+## Camada de negócio
 
 Em **Business** temos (caso esteja olhando para o círculo):
 
@@ -57,9 +58,12 @@ Já se não usarmos a camada _Enterprise_:
   - UseCases
 - InterfaceAdapters
 
-# Camada de adaptadores
+Nesses casos, temos a categoria **Business**, e dentro só cabem dois componentes:
+**Entities** e **UseCases**.
 
-Já a camada de adaptadores pode ser mais extensa, porém normalmente existem
+## Camada de adaptadores
+
+Já a camada de adaptadores pode ser mais extensa e por isso usaremos normalmente
 quatro subcategorias específicas:
 
 - DataAccess (para acesso a dados - ou só "Data")
@@ -100,10 +104,10 @@ Vejamos uma lista com exemplos de componentes adaptadores:
     - PaymentProcessorWorkerService
     - StatusUpdateWorkerService
 
-# Juntando tudo
+## Juntando tudo e exemplificando melhor
 
 Agora veja o exemplo completo considerando que optamos por usar a camada
-_Enterprise_, e já ordenado hieraquicamente os arquivos:
+_Enterprise_, e já ordenando hieraquicamente os arquivos:
 
 - Business
   - Entities
@@ -131,7 +135,7 @@ _Enterprise_, e já ordenado hieraquicamente os arquivos:
     - PaymentProcessorWorkerService
     - StatusUpdateWorkerService
 
-E agora a relação entre estrutura de diretórios hieráquica e os namespaces _C#_:
+Veja como a estrutura de diretórios combina bem com a visão de namespaces do _C#_:
 
 ```sh
 src/
@@ -162,20 +166,20 @@ src/
       └─ StatusUpdateWorkerService/      # InterfaceAdapters.Workers.StatusUpdateWorkerService
 ```
 
-Agora veja a disposição com os arquivos de projetos alocados em seus respectivos
-diretórios (obviamente omitimos alguns para tornar a lista mais prática):
+Os arquivos de projetos (componentes) devem estar dentro do diretório (subdiretório)
+de componente:
 
 ```sh
 src/
-├─ Business/
-│  ├─ Entities/
+├─ Business/                           # Diretório de categoria
+│  ├─ Entities/                        # Diretório de componente
 │  │  └─ Business.Entities.csproj
 │  └─ UseCases/
 │     └─ Business.UseCases.csproj
-└─ InterfaceAdapters/
-   ├─ Data/
+└─ InterfaceAdapters/                  # Diretório de categoria
+   ├─ Data/                            # Diretório de subcategoria
    │  ├─ ...
-   │  └─ RedisCache/
+   │  └─ RedisCache/                   # Diretório de componente
    │     └─ InterfaceAdapters.Data.RedisCache.csproj
    ├─ Gateways/
    │  ├─ ...
@@ -191,23 +195,102 @@ src/
          └─ InterfaceAdapters.Workers.StatusUpdateWorkerService.csproj
 ```
 
-Caso, na camada de negócios você tenha apenas o projeto _Use Cases_ e não use
-_Enterprise_, você pode omitir o subdiretório:
+Quando você tem apenas um componente dentro da categoria ou subcategoria, você
+pode combinar o diretório do projeto com o diretório de categoria ou subcategoria,
+e esse será o diretório do projeto.
+
+No exemplo a seguir, temos apenas um componente `Business.UseCases.csproj` na
+categoria `Business`, e ele está no diretório de componente `Business/UseCases`.
 
 ```sh
 src/
 ├─ Business/
+│  └─ UseCases/
+│     └─ Business.UseCases.csproj
+└─ InterfaceAdapters/
+   └─ ...
+```
+
+Você pode combinar o diretório de componente `UseCases` com o diretório da
+categoria `Business` e esse será o diretório do componente diretamente:
+
+```sh
+src/
+├─ Business.UseCases/
 │  └─ Business.UseCases.csproj
 └─ InterfaceAdapters/
-   ├─ Data/
-   │  └─ ...
-   ├─ Gateways/
-   │  └─ ...
-   ├─ UI/
-   │  └─ ...
-   └─ Workers/
-      └─ ...
+   └─ ...
 ```
+
+Nesse outro exemplo, agora temos apenas um componente para cada subcategoria
+de `InterfaceAdapters`.
+
+```sh
+src/
+├─ Business/
+│  └─ ...
+└─ InterfaceAdapters/
+   ├─ Data/
+   │  └─ RedisCache/
+   │     └─ InterfaceAdapters.Data.RedisCache.csproj
+   ├─ Gateways/
+   │  └─ Stripe/
+   │     └─ InterfaceAdapters.Gateways.Stripe.csproj
+   ├─ UI/
+   │  └─ WebApp/
+   │     └─ InterfaceAdapters.UI.WebApp.csproj
+   └─ Workers/
+      └─ StatusUpdateWorkerService/
+         └─ InterfaceAdapters.Workers.StatusUpdateWorkerService.csproj
+```
+
+Você também pode combiná-los assim:
+
+```sh
+src/
+├─ Business/
+│  └─ ...
+└─ InterfaceAdapters/
+   ├─ Data.RedisCache/
+   │     └─ InterfaceAdapters.Data.RedisCache.csproj
+   ├─ Gateways.Stripe/
+   │     └─ InterfaceAdapters.Gateways.Stripe.csproj
+   ├─ UI.WebApp/
+   │     └─ InterfaceAdapters.UI.WebApp.csproj
+   └─ Workers.StatusUpdateWorkerService/
+         └─ InterfaceAdapters.Workers.StatusUpdateWorkerService.csproj
+```
+
+Imagine que seu projeto tem apenas um componente _Business_, e também apenas um
+adaptador de interfaces, como a seguir:
+
+```sh
+src/
+├─ Business/
+│  └─ UseCases/
+│     └─ Business.UseCases.csproj
+└─ InterfaceAdapters/
+   └─ UI/
+      └─ CliApp/
+         └─ InterfaceAdapters.UI.CliApp.csproj
+```
+
+Você pode simplificar tudo assim:
+
+```sh
+src/
+├─ Business.UseCases/
+│  └─ Business.UseCases.csproj
+└─ InterfaceAdapters.UI.CliApp/
+   └─ InterfaceAdapters.UI.CliApp.csproj
+```
+
+> [!IMPORTANT]
+> Temos um padrão: Quando há apenas um componente dentro da categoria ou
+> subcategoria, devemos combinar os diretórios em um só diretório de componente.
+
+
+## Conclusão
 
 Com isso alcançamos uma configuração de nomenclatura que reflete não só os
 princípios de camadas apresentados em _Clean Architecture_, mas também permite
