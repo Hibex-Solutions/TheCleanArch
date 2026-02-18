@@ -10,5 +10,6 @@
 - href: getting-started/simplifying.md
 
 - name: Diretrizes de Engenharia
+- href: engineering-guidelines/file-naming-and-organization.md
 - href: engineering-guidelines/thecheanarch-style.md
 - href: engineering-guidelines/time-abstraction.md
