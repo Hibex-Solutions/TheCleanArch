@@ -62,6 +62,8 @@ Portanto, em uma solução nos padrões _The Clean Arch_, temos:
 
 ## Nomenclatura de componentes
 
+### Solução
+
 O arquivo geral da solução deve ser nomeado com o nome do projeto de software, porém sem espaços ou caracteres especiais, e obedecendo ao padrão [UpperCamelCase][CAMELCASE].
 
 Exemplo: Para um projeto de software chamado _"Árvore Genealógica"_, o arquivo de solução seria `ArvoreGenealogica.slnx`.
@@ -70,37 +72,56 @@ Exemplo: Para um projeto de software chamado _"Árvore Genealógica"_, o arquivo
 > O próprio projeto de software pode ser apenas um módulo de um projeto maior, ou seja, um subprojeto.
 > Ou ainda, pode ser uma companhia (empresa, grupo ou comunidade) que produz vários projetos de software relacionados.
 > Nestes casos é recomendado usar o nome do projeto principal ou da companhia como prefixo do nome do projeto.
-> Separe o prefixo do nome com um ponto. Ex: `MyProject.MySubproject.slnx` ou `MyCompany.MyProject.slnx`.
+> Separe o prefixo do nome com um ponto. Ex: `Hibex.ArvoreGenealogica.slnx`.
 
-Os componentes devem ser nomeados com o nome da solução como prefixo, seguido do nome do componente (que muitas vezes reflete a camada do sofware codificada), como `[Prefixo].Componente`.
+Recomendamos fortemente que se use nomes curtos para nomear seus projetos, então
+algo como `Age` pode ser usage ao invés de `ArvoreGenealogica`. Vamos considerar
+`Hibex.Age.slnx` para este nosso exemplo.
 
-Exemplos:
-* `ArvoreGenealogica.Business.Entities`
-* `ArvoreGenealogica.Business.UseCases`
-* `ArvoreGenealogica.InterfaceAdapters.UserInterfaces.WebApi`
-* `ArvoreGenealogica.InterfaceAdapters.UserInterfaces.CliApp`
-* `ArvoreGenealogica.InterfaceAdapters.DataAccess.MongoDB`
-* `ArvoreGenealogica.InterfaceAdapters.Gateways.GitHub`
+### Projetos
+
+Os demais componentes devem ser nomeados com o nome da solução como prefixo,
+seguido da categoria do componente (que na verdade reflete a camada do sofware),
+e aí sim nome do componente. Assim: `[Prefixo].[Categoria].Componente`.
+
+Exemplos de nomes de componentes :
+* `Hibex.Age.Business.Entities`
+* `Hibex.Age.Business.UseCases`
+* `Hibex.Age.InterfaceAdapters.UI.WebApi`
+* `Hibex.Age.InterfaceAdapters.UI.CliApp`
+* `Hibex.Age.InterfaceAdapters.Data.MongoDB`
+* `Hibex.Age.InterfaceAdapters.Gateways.GitHub`
 
 > [!IMPORTANT]
-> Os componentes devem residir no subdiretório `src/`.
+> Os componentes devem residir no subdiretório `src/` e organizado em diretórios
+> e subdiretórios.
 
-Os arquivos de teste devem levar o mesmo nome do componente alvo mais o sufixo `Tests`, porém sem um ponto o separando do nome, como `[ComponenteAlvo]Tests`.
+Saiba mais em [Nomenclatura e organização de arquivos](file-naming-and-organization.md).
+
+### Projetos de testes
+
+Os componentes de teste devem levar o mesmo nome do componente alvo, mais o
+sufixo `UnitTests` (para testes unitários), `IntegrationTests` (para testes
+de integração), `EndToEndTests` (para testes fim a fim) ou `LoadTests` (para
+testes de carga). Porém sem um ponto separando o nome e o sufixo.
 
 Exemplos:
-* `ArvoreGenealogica.Business.UseCasesTests`
-* `ArvoreGenealogica.Business.EntitiesTests`
-* `ArvoreGenealogica.InterfaceAdapters.UserInterfaces.WebApiTests`
-* `ArvoreGenealogica.InterfaceAdapters.UserInterfaces.CliAppTests`
-* `ArvoreGenealogica.InterfaceAdapters.DataAccess.MongoDBTests`
-* `ArvoreGenealogica.InterfaceAdapters.Gateways.GitHubTests`
+* `Hibex.Age.Business.EntitiesUnitTests`
+* `Hibex.Age.Business.UseCasesUnitTests`
+* `Hibex.Age.InterfaceAdapters.UI.WebAppEndToEndTests`
+* `Hibex.Age.InterfaceAdapters.UI.WebApiLoadTests`
+* `Hibex.Age.InterfaceAdapters.UI.CliAppIntegrationTests`
+* `Hibex.Age.InterfaceAdapters.Data.MongoDBIntegrationTests`
+* `Hibex.Age.InterfaceAdapters.Gateways.GitHubIntegrationTests`
 
 > [!IMPORTANT]
 > Os testes de componentes devem residir no subdiretório `test/`.
 
 ## Editores e IDEs
 
-Nenhum projeto de software deve depender de qualquer recurso que seja exclusivo de um editor ou IDE. Ao invés disso use técnicas e padrões que possam ser compartilhados entre esses editores e IDEs.
+Nenhum projeto de software deve depender de qualquer recurso que seja exclusivo
+de um editor ou IDE. Ao invés disso use técnicas e padrões que possam ser
+compartilhados entre esses editores e IDEs.
 
 > [!NOTE]
 > Saiba mais em [Habilite editores](../getting-started/enable-code-editors.md).
