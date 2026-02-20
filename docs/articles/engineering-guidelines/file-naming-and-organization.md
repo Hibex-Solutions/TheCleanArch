@@ -1,38 +1,38 @@
-# Nomenclatura e organização de arquivos do projeto
+# Nomenclatura e organização de arquivos
 
-Nomeamos nossos arquivos de projetos em conformidade com as ideias centrais
-[expostas pela definição de _Clean Architecture_ conforme artigo](BLOG_ARTICLE), e que tem a imagem a seguir como guia.
+Nomeamos nossos arquivos em conformidade com as ideias centrais
+[expostas pela definição de _The Clean Architecture_][BLOG_ARTICLE], e que tem a imagem a seguir como guia.
 
 ![](../../images/TheCleanArchitectureBlogImage.jpg)
 
 Temos então 4 camadas principais (no desenho - o próprio autor reforça que a
 quantidade de camadas não faz parte da definição apresentada). Sendo duas delas
 para regras de negócio (Entities e Use Cases), uma para os vários adaptadores
-de interfaces possíveis, e outra para drivers e frameworks que raramente
+de interfaces possíveis, e outra para _drivers_ e _frameworks_ que raramente
 escreveremos.
 
-Ainda que a definição de _Clean Architecture_ se aplique a uma gama de softwares
-onde _Frameworks & Drivers_ se aplique, na nossa definição de **TheCheanArch**
-não consideramos essa última camada para fins de aplicabilidade no tipo de
-software que consideramos.
+Ainda que a definição de _The Clean Architecture_ se aplique a uma gama de
+softwares onde _Frameworks & Drivers_ também façam parte, na nossa definição
+de **TheCheanArch** não consideramos essa última camada para fins de
+aplicabilidade no tipo de software que consideramos ser nosso público alvo.
 
-Então, se excluirmos essa última camada sobram 3 outras. Essas ainda podem ser
-resumidas em 2 categorias:
+Então, se excluirmos essa última camada sobram três outras, que ainda podem ser
+resumidas em apenas duas categorias:
 
 - Business
-- InterfaceAdapters
+- e InterfaceAdapters
 
 Dentro dessas podemos acomodar todos os nossos componentes de software, e se
 necessário ainda podem ser organizados em subcategorias.
 
 ## Camada de negócio
 
-Em **Business** temos (caso esteja olhando para o círculo):
+Em **Business**, caso esteja olhando para os círculo, temos:
 
 - Entities
 - UseCases
 
-Ou se preferir (se estiver olhando para a descrição dos círculos):
+Ou, se estiver olhando para as descrições dos círculos, temos:
 
 - Application
 - Enterprise
@@ -41,8 +41,8 @@ Ou se preferir (se estiver olhando para a descrição dos círculos):
 > A camada _Entities_ (ou _Enterprise_) não é obrigatória. Essa também poderia
 > se chamar _Domain_ (é o como muitos chamam) caso você use _DDD_ para
 > implementá-la. Mas visto que _DDD_ é uma técnica e não o nome de uma camada
-> de fato em _Clean Architecture_, preferimos referenciar as camadas conforme
-> _Clean Architecture_ determina. Saiba mais em
+> de fato em _The Clean Architecture_, preferimos referenciar as camadas
+> conforme _The Clean Architecture_ determina. Saiba mais em
 > ["Quando usar Domain Driven Design?"](when-to-use-domain-driven-design.md).
 
 Então se tivermos a camada _Enterprise_:
@@ -166,8 +166,7 @@ src/
       └─ StatusUpdateWorkerService/      # InterfaceAdapters.Workers.StatusUpdateWorkerService
 ```
 
-Os arquivos de projetos (componentes) devem estar dentro do diretório (subdiretório)
-de componente:
+Os arquivos de projetos (componentes) devem estar dentro do diretório de componente:
 
 ```sh
 src/
@@ -196,11 +195,11 @@ src/
 ```
 
 Quando você tem apenas um componente dentro da categoria ou subcategoria, você
-pode combinar o diretório do projeto com o diretório de categoria ou subcategoria,
-e esse será o diretório do projeto.
+pode combinar o diretório do componente com o diretório de categoria ou
+subcategoria em um só.
 
 No exemplo a seguir, temos apenas um componente `Business.UseCases.csproj` na
-categoria `Business`, e ele está no diretório de componente `Business/UseCases`.
+categoria `Business`:
 
 ```sh
 src/
@@ -262,7 +261,7 @@ src/
 ```
 
 Imagine que seu projeto tem apenas um componente _Business_, e também apenas um
-adaptador de interfaces, como a seguir:
+_InterfaceAdapters_, como a seguir:
 
 ```sh
 src/
@@ -293,18 +292,20 @@ src/
 ## Conclusão
 
 Com isso alcançamos uma configuração de nomenclatura que reflete não só os
-princípios de camadas apresentados em _Clean Architecture_, mas também permite
+princípios de camadas apresentados em _The Clean Architecture_, mas também permite
 a convivência entre visualização em sistemas de arquivos e namespaces do nosso
 código.
 
-> [!NOTE]
-> Talvez você pense que o simples fato de escolher nomes de arquivos e disposição
-> de diretórios e subdiretórios que permitam uma boa visualização, considerando
-> inclusive ordem alfabética, seja algo exagerado. Mas quando você se ver hora
-> trabalhando em uma IDE, e outra em outra IDE, e talvez usando um editor mais
-> simples (Como VSCode) sem recursos de visualização disponíveis em IDEs. Então
-> você encontrará o valor dessa decisão. Lembre-se que uma de nossas definições
-> é ser independentes de IDEs (ou editores).
+Se talvez você pense que o simples fato de escolher nomes de arquivos e disposição
+de diretórios e subdiretórios que permitam uma boa visualização, considerando
+inclusive ordem alfabética, seja algo exagerado. Pense um  pouco mais.
+Considere o fato de você estar trabalhando em múltiplos editores ou até mesmo,
+IDEs. Junte a isso o fato de em outros momentos você estar trabalhando em scripts
+de automação para integração, implantação e entrega contínuas. São muitos os
+cenários onde você precisará combinar a visão que tem na sua IDE (ou editor), com
+a visão dos arquivos no sistema de arquivos. E neste momento você agradecerá por
+ter um padrão prático de organização de arquivos, e sua relação com as camadas
+do software e sua arquitetura.
 
 <!-- links -->
 
