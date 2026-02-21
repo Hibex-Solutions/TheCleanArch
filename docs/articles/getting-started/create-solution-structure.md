@@ -30,7 +30,9 @@ Crie alguns arquivos essenciais. Configuração [NuGet][NUGET], [Git][GIT], [edi
 
 
 ```sh
-dotnet new globaljson --sdk-version "10.0.100" --roll-forward feature
+# Fixa versão do .NET
+dotnet new globaljson --sdk-version $(dotnet --version) --roll-forward feature
+
 dotnet new nuget.config
 dotnet new .gitignore
 dotnet new .editorconfig
@@ -41,8 +43,6 @@ E é isso que temos até o momento:
 
 ```
 ./age-project
-  ├── .config
-  │   └── dotnet-tools.json
   ├── docs
   ├── eng
   ├── samples
@@ -50,6 +50,7 @@ E é isso que temos até o momento:
   ├── test
   ├── .editorconfig
   ├── .gitignore
+  ├── dotnet-tools.json
   ├── global.json
   └── nuget.config
 ```
@@ -61,7 +62,7 @@ E é isso que temos até o momento:
 
 Crie os projetos de cada camada do software.
 
-### Enterprise
+### Entities
 
 Nossa camada de regras organizacionais se chamará **Age.Business.Entities**, e residirá
 em `src/Business/Entities`.
@@ -142,8 +143,6 @@ Isso nos leva a uma estrutura de diretórios e arquivos semelhantes a esta:
 
 ```console
 ./age-project
-  ├─ .config/
-  │  └─ dotnet-tools.json
   ├─ docs/
   ├─ eng/
   ├─ samples/
@@ -158,6 +157,7 @@ Isso nos leva a uma estrutura de diretórios e arquivos semelhantes a esta:
   ├─ .editorconfig
   ├─ .gitignore
   ├─ Age.slnx
+  ├─ dotnet-tools.json
   ├─ global.json
   └─ nuget.config
 ```
