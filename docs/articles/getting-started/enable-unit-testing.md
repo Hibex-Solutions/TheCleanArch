@@ -1,6 +1,6 @@
 # 4. Habilite Teste Unitário
 
-Você aprenderá mais sobre testes unitários e como nós recomendamos seu uso nas seções de _Engineering Guidelines_. Por hora vamos criar os projetos de teste para 3 componentes: nossa camada de aplicação, domínio e API Web. Este é o mínimo recomendado para cobertura de teste em nossos softwares.
+Você aprenderá mais sobre testes unitários e como nós recomendamos seu uso nas seções de _Engineering Guidelines_. Por hora vamos criar os projetos de teste unitário para dois componentes: nossa camada de aplicação e domínio. Este é o mínimo recomendado para cobertura de teste em nossos softwares.
 
 > [!TIP]
 > Nós recomendamos [Microsoft.Testing.Platform][MTP], com framework de testes [TUnit][TUNIT], biblioteca [Moq][MOQ] para [objetos mock][MOCK_OBJECTS] de dependências, e [Report Generator][REPORT_GENERATOR] para relatórios de cobertura de código local.
@@ -19,40 +19,52 @@ Habilite o executor de testes MTP no arquivo `global.json`.
 }
 ```
 
-Crie os projetos de teste para cada componente.
+Crie os projetos de teste unitário para cada componente.
+
+> [!IMPORTANT]
+> No nosso exemplo apenas os componentes da camada de negócio farão parte de
+> nossos testes. Acesso a banco e Web APIs ficarão de fora, porque nesses casos
+> usaremos teste de integração, que veremos em outro momento. 
 
 ```sh
-# Se ainda não tem os templates TUnit
-# dotnet new install TUnit.Templates
+mkdir test/Business
 
-# Criando os projetos
-dotnet new TUnit -n Age.ApplicationTests -o test/Age.ApplicationTests
-dotnet new TUnit -n Age.DomainTests -o test/Age.DomainTests
-dotnet new TUnit -n Age.WebApiTests -o test/Age.WebApiTests
+dotnet new console -n Age.Business.EntitiesUnitTests -o test/Business/EntitiesUnitTests
+dotnet new console -n Age.Business.UseCasesUnitTests -o test/Business/UseCasesUnitTests
 ```
 
-Referencie a dependência da biblioteca [Moq][MOQ].
+Referencie a dependência das bibliotecas [TUnit][TUNIT] e [Moq][MOQ], para teste
+e _moking_ respectivamente.
 
 ```sh
-dotnet add test/Age.ApplicationTests/Age.ApplicationTests.csproj package Moq
-dotnet add test/Age.DomainTests/Age.DomainTests.csproj package Moq
-dotnet add test/Age.WebApiTests/Age.WebApiTests.csproj package Moq
+dotnet add test/Business/EntitiesUnitTests/Age.Business.EntitiesUnitTests.csproj package TUnit
+dotnet add test/Business/EntitiesUnitTests/Age.Business.EntitiesUnitTests.csproj package Moq
+
+dotnet add test/Business/UseCasesUnitTests/Age.Business.UseCasesUnitTests.csproj package TUnit
+dotnet add test/Business/UseCasesUnitTests/Age.Business.UseCasesUnitTests.csproj package Moq
+```
+
+Remova o código `Program.cs` das aplicações, porque [TUnit][TUNIT] já vem com
+a implementação de código principal.
+
+```sh
+rm test/Business/EntitiesUnitTests/Program.cs
+rm test/Business/UseCasesUnitTests/Program.cs
 ```
 
 Adicione cada alvo do teste como dependência.
 
 ```sh
-dotnet add test/Age.ApplicationTests/Age.ApplicationTests.csproj reference src/Age.Application/Age.Application.csproj
-dotnet add test/Age.DomainTests/Age.DomainTests.csproj reference src/Age.Domain/Age.Domain.csproj
-dotnet add test/Age.WebApiTests/Age.WebApiTests.csproj reference src/Age.WebApi/Age.WebApi.csproj
+dotnet add test/Business/EntitiesUnitTests/Age.Business.EntitiesUnitTests.csproj reference src/Business/Entities/Age.Business.Entities.csproj
+
+dotnet add test/Business/UseCasesUnitTests/Age.Business.UseCasesUnitTests.csproj reference src/Business/UseCases/Age.Business.UseCases.csproj
 ```
 
 Adicione os novos projetos de teste à solução.
 
 ```sh
-dotnet sln add test/Age.ApplicationTests/Age.ApplicationTests.csproj
-dotnet sln add test/Age.DomainTests/Age.DomainTests.csproj
-dotnet sln add test/Age.WebApiTests/Age.WebApiTests.csproj
+dotnet sln add test/Business/EntitiesUnitTests/Age.Business.EntitiesUnitTests.csproj
+dotnet sln add test/Business/UseCasesUnitTests/Age.Business.UseCasesUnitTests.csproj
 ```
 
 Semelhante ao que fizemos em [Habilite _The Clean Arch_](enable-thecleanarch.md), quando editamos o arquivo `.csproj` e adicionamos alguns novos arquivos com código padrão, faremos aqui.
@@ -64,26 +76,11 @@ Primeiro altere todos seus arquivos `.csproj` dentro de `/test/` removendo as pr
 
 ```diff
   <PropertyGroup>
--    <ImplicitUsings>enable</ImplicitUsings>
--    <Nullable>enable</Nullable>
-     <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+-   <ImplicitUsings>enable</ImplicitUsings>
+-   <Nullable>enable</Nullable>
   </PropertyGroup>
-```
-
-Crie o arquivo `test/Directory.Build.props` com as propriedades comuns em todos os projetos de teste seguinte conteúdo:
-
-```xml?highlight=8,9
-<Project>
-    <PropertyGroup>
-        <Product>Age</Product>
-        <AnalysisLevel>10.0-recommended</AnalysisLevel>
-        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-        <ImplicitUsings>disable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <!-- Informe aqui todas as outras propriedades que queira
-             e sejam comuns a todos os componentes -->
-    </PropertyGroup>
-</Project>
 ```
 
 Crie um arquivo `Usings.cs` em cada projeto de teste com seguinte conteúdo.
@@ -100,17 +97,6 @@ global using TUnit.Assertions.Extensions;
 
 global using Moq;
 ```
-
-> [!TIP]
-> Percebeu que as propriedades que removemos de nossos arquivos de projeto `.csproj` estão agora nesses arquivos com propriedades e códigos padrões?
-
-Porfim instale a ferramenta [Report Generator][REPORT_GENERATOR] como dependência da solução.
-
-```sh
-dotnet tool install dotnet-reportgenerator-globaltool
-```
-
-Para saber mais sobre o uso da ferramenta _Report Generator_ use `dotnet reportgenerator -h` ou acesse o [site da ferramenta][REPORT_GENERATOR].
 
 Pronto! Agora você está habilitado para usar [TDD][TDD] no seu dia a dia. Inclusive essa é outra recomendação _The Clean Arch_.
 
