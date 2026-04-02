@@ -14,8 +14,6 @@ A primeira coisa a se fazer é organizar o diretório de solução para conter n
 Essa é a estrutura de diretório para nossas soluções de software [.NET][DOTNET]:
 ```
 ./solution-folder
-  ├─ .config/
-  │  └─ dotnet-tools.json
   ├─ docs/
   ├─ eng/
   ├─ samples/
@@ -24,14 +22,15 @@ Essa é a estrutura de diretório para nossas soluções de software [.NET][DOTN
   ├─ .editorconfig
   ├─ .gitignore
   ├─ {Solution}.slnx
+  ├─ dotnet-tools.json
   ├─ global.json
   ├─ nuget.config
   └─ omnisharp.json
+
 ```
 
 Ententendo:
 
-* Arquivo de manifesto para ferramentas [.NET][DOTNET] `.config/dotnet-tools.json`
 * Diretório de documentação da solução `docs/`
 * Diretório de programas de engenharia `eng/`
 * Diretório de amostras `samples/`
@@ -40,6 +39,7 @@ Ententendo:
 * Arquivo de configurações do editor `.editorconfig`
 * Arquivo de definições [Git](https://git-scm.com) para ignorar arquivos `.gitignore`
 * Arquivo geral da solução `{Solution}.slnx` (aqui o nome é o da sua solução)
+* Arquivo de manifesto para ferramentas [.NET][DOTNET] `dotnet-tools.json`
 * Arquivo com configurações globais [.NET][DOTNET] para a solução `global.json`
 * Arquivo com configurações globais [NuGet](https://nuget.org) para a solução `nuget.config`
 * Arquivo de definições do [Omnisharp][OMNISHARP] `omnisharp.json`
